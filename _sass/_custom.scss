@@ -1,5 +1,5 @@
 /* ===========================================================
-   Transparent Nav over Full-Bleed Hero + 2-Column Glass Card
+   Transparent Nav over Hero + 2-Column Glass Card
    Font: Montserrat (Thin/Light/Bold)
    =========================================================== */
 
@@ -21,12 +21,13 @@ body{
   background:var(--site-bg-base);
   color:var(--text-color);
   font-family:var(--font-main);
-  font-weight:300; /* Montserrat Light feel site-wide */
+  font-weight:300; /* thin default */
 }
 a{ color:var(--site-primary-light); text-decoration:none; }
 a:hover,a:focus{ color:var(--site-primary); }
 
-/* ===== NAVBAR — TRANSPARENT & OVER THE HERO ===== */
+/* ===== NAVBAR — truly transparent & floating over hero ===== */
+/* We target EVERY layer skins use + force stacking */
 header.site-header,
 .page__header,
 .masthead,
@@ -37,19 +38,18 @@ header.site-header,
   border:0 !important;
   box-shadow:none !important;
 }
-.masthead::before{ background:transparent !important; } /* some skins add a bg via :before */
+.masthead::before{ background:transparent !important; }
 
-.masthead{
-  position:fixed !important;      /* float on top */
+header.masthead{
+  position:fixed !important;
   top:0; left:0; right:0;
-  z-index:40 !important;
+  z-index:40 !important; /* above hero */
 }
 
 .greedy-nav{
   text-transform:uppercase;
   letter-spacing:.08em;
-  font-weight:300; /* thin nav */
-  justify-content:center; /* center nav group */
+  font-weight:300;
 }
 .greedy-nav .site-title,
 .greedy-nav .site-title a,
@@ -64,20 +64,20 @@ header.site-header,
 .greedy-nav .active>a{ color:var(--site-primary-light) !important; }
 .greedy-nav .toggle-nav{ color:var(--text-color) !important; }
 
-/* ===== HERO — FULL-BLEED & TOUCHES TOP ===== */
-/* Minimal Mistakes adds top padding for fixed headers; remove it so hero reaches page top */
+/* ===== HERO — make image touch the very top ===== */
+/* Minimal Mistakes adds top padding when header is fixed; remove it */
 .initial-content{ padding-top:0 !important; margin-top:0 !important; }
 
 .page__hero--overlay{
   margin-top:0 !important;
-  min-height:60vh;                 /* make hero tall enough to sit under nav */
-  padding-top:6rem;                /* space so card content isn't under nav */
-  background-size:cover !important;/* cover = zoom as needed to fill width */
+  min-height:60vh;                 /* tall enough under the nav */
+  padding-top:6rem;                /* room so the card isn’t under nav */
+  background-size:cover !important;
   background-position:center center;
   background-repeat:no-repeat;
 }
 
-/* ===== GLASS CARD (smaller, centered, two columns) ===== */
+/* ===== GLASS CARD — smaller, centered, 2 columns ===== */
 .page__hero--overlay .wrapper{
   background:rgba(10,15,31,.42);
   backdrop-filter:blur(6px);
@@ -86,9 +86,9 @@ header.site-header,
   box-shadow:0 10px 40px rgba(0,0,0,.35);
   border-radius:18px;
 
-  /* layout + size */
-  max-width:1100px;                /* shrink the card */
-  margin:0 auto;                   /* centered on page */
+  /* size + grid */
+  max-width:1100px;      /* shrink card width */
+  margin:0 auto;         /* center card */
   padding:2rem 2.25rem;
 
   display:grid;
@@ -98,11 +98,11 @@ header.site-header,
   min-height:280px;
 }
 
-/* Text column (left) */
+/* Left column — name + subtitle + mini description */
 .page__title{
   grid-column:1 / 2;
   margin:0 0 .4rem 0;
-  font-weight:600;                 /* bolder for the name */
+  font-weight:600; /* bold for name */
   font-size:clamp(2.2rem,5vw,3.2rem);
   line-height:1.1;
   text-align:left;
@@ -110,13 +110,13 @@ header.site-header,
 .page__lead{
   grid-column:1 / 2;
   margin:.1rem 0 .75rem 0;
-  font-weight:300;                 /* thin subtitle */
+  font-weight:300; /* thin subtitle */
   font-size:clamp(1rem,2.2vw,1.2rem);
   color:#dfe6ec;
   text-align:left;
   letter-spacing:.04em;
 }
-/* Optional mini description block (3rd line under subtitle) */
+/* mini description paragraph (we’ll add in index.md) */
 .header__mini-desc{
   grid-column:1 / 2;
   margin:0;
@@ -126,14 +126,14 @@ header.site-header,
   text-align:left;
 }
 
-/* Photo column (right) — fills full right side */
+/* Right column — portrait fills the whole side */
 .page__hero--overlay .wrapper::after{
   content:"";
   grid-column:2 / 3;
   width:100%;
   height:100%;
   border-radius:16px;
-  background-image:url("{{ '/assets/img/pfp.jpg' | relative_url }}");
+  background-image:url("/personalwebsite/assets/img/pfp.jpg"); /* hardcoded base path for project site */
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -141,23 +141,26 @@ header.site-header,
   box-shadow:0 12px 40px rgba(0,0,0,.35);
 }
 
-/* Responsive: stack on small screens */
+/* Stack nicely on mobile */
 @media (max-width: 720px){
+  .page__hero--overlay{ padding-top:5rem; }
   .page__hero--overlay .wrapper{
     grid-template-columns:1fr;
     text-align:center;
   }
-  .page__title,.page__lead,.header__mini-desc{ text-align:center; grid-column:1 / -1; }
+  .page__title,.page__lead,.header__mini-desc{
+    text-align:center; grid-column:1 / -1;
+  }
   .page__hero--overlay .wrapper::after{
     grid-column:1 / -1;
     margin-top:1rem;
-    width: clamp(160px, 70vw, 260px);
-    height: clamp(200px, 90vw, 320px);
+    width:clamp(160px, 70vw, 260px);
+    height:clamp(200px, 90vw, 320px);
     justify-self:center;
   }
 }
 
-/* Cards (below) */
+/* (Optional) keep cards below consistent */
 .feature__item{
   background:var(--site-bg-secondary);
   border-radius:18px;
@@ -165,8 +168,3 @@ header.site-header,
   transition:transform .3s ease;
 }
 .feature__item:hover{ transform:translateY(-5px); }
-
-/* Footer safety (optional) */
-.site-footer .page__footer-follow,
-.site-footer .page__footer-copyright{ display:none !important; }
-.site-footer a[href$="/feed.xml"], .site-footer a[href*="feed"], .site-footer a[href*="rss"]{ display:none !important; }
