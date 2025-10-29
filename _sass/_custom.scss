@@ -1,29 +1,121 @@
-:root{
-  --site-bg-base:#0D1B2A;
-  --site-bg-secondary:#1B263B;
-  --site-primary:#00B4D8;
-  --site-primary-light:#90E0EF;
-  --text-color:#E0E1DD;
+/* ===== COLOR PALETTE ===== */
+:root {
+  --site-bg-base: #0d1b2a;        /* dark navy background */
+  --site-bg-secondary: #1b263b;   /* secondary card/nav bg */
+  --site-primary: #00b4d8;        /* cyan accent (buttons/links) */
+  --site-primary-light: #90e0ef;  /* lighter accent */
+  --text-color: #e0e1dd;          /* off-white for text */
 }
 
-/* Global colors */
-body{ background:var(--site-bg-base); color:var(--text-color); }
-a{ color:var(--site-primary-light); }
-.btn--primary{ background:var(--site-primary); border-color:transparent; }
-
-/* Cards + features */
-.feature__item{ background:var(--site-bg-secondary); border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.09); }
-
-/* Hero overlay + glass card */
-.page__hero--overlay{ background:rgba(0,0,0,.45); }
-.page__hero--overlay .wrapper{
-  background:rgba(10,15,31,.42);
-  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 10px 40px rgba(0,0,0,.35);
-  border-radius:18px; padding:1.25rem 1.5rem;
+/* ===== GLOBAL STYLES ===== */
+body {
+  background: var(--site-bg-base);
+  color: var(--text-color);
 }
 
-/* (Optional) hide footer “Follow/Feed” + copyright — see step 3 for config fix too */
+a {
+  color: var(--site-primary-light);
+}
+
+a:hover,
+a:focus {
+  color: var(--site-primary);
+}
+
+.btn--primary {
+  background: var(--site-primary);
+  color: var(--text-color);
+  border-color: transparent;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.2);
+  transition: 0.25s ease;
+}
+
+.btn--primary:hover {
+  background: var(--site-primary-light);
+  color: #000;
+}
+
+/* ===== HERO SECTION ===== */
+.page__hero--overlay {
+  background: rgba(0, 0, 0, 0.45); /* darken overlay slightly */
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* reduce hero zoom (less cropping) */
+@media (min-width: 768px) {
+  .page__hero--overlay {
+    background-size: 1400px auto;
+  }
+}
+@media (min-width: 1200px) {
+  .page__hero--overlay {
+    background-size: 1700px auto;
+  }
+}
+@media (min-width: 1600px) {
+  .page__hero--overlay {
+    background-size: 2000px auto;
+  }
+}
+
+/* glass effect box behind hero text */
+.page__hero--overlay .wrapper {
+  background: rgba(10, 15, 31, 0.42); /* visible dark glass */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* ===== NAVBAR / TOP BAR ===== */
+.masthead,
+.masthead--fixed,
+.greedy-nav {
+  background: var(--site-bg-base) !important;
+  box-shadow: none;
+}
+
+/* remove white bar background from title & links */
+.greedy-nav .site-title,
+.greedy-nav .visible-links a,
+.greedy-nav .hidden-links a {
+  background: transparent !important;
+  color: var(--text-color) !important;
+}
+
+/* nav hover + active links */
+.greedy-nav a:hover,
+.greedy-nav a:focus,
+.greedy-nav .active > a {
+  color: var(--site-primary-light) !important;
+  text-decoration: none;
+}
+
+/* mobile menu icon color */
+.greedy-nav .toggle-nav {
+  color: var(--text-color);
+}
+
+/* ===== FEATURE CARDS ===== */
+.feature__item {
+  background: var(--site-bg-secondary);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature__item:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== FOOTER ===== */
+/* Hide Feed + Copyright */
 .site-footer .page__footer-follow,
-.site-footer .page__footer-copyright { display:none; }
+.site-footer .page__footer-copyright {
+  display: none;
+}
