@@ -1,28 +1,31 @@
 ---
-layout: home
-title: "Hi, I'm Adam Cheung"
-subtitle: "Cybersecurity & Networks — projects, competitions, and certifications"
+layout: splash
+title: "I'm Adam Cheung."
+subtitle: "Cybersecurity • Networks • Systems"
+# hero header
+header:
+  overlay_image: /assets/img/hero.jpg      # add this image (next step)
+  overlay_filter: 0.35                     # darken the image
+  overlay_color: "#0a0f1f"                 # subtle midnight tint
+  actions:
+    - label: "Resume"
+      url: "{{ '/assets/resume.pdf' | relative_url }}"
+    - label: "Contact"
+      url: "mailto:alcheung168@gmail.com"
+excerpt: >
+  I build secure communication systems, analyze network traffic, and compete in CTFs.
+  Here are some highlights ↓
+# show avatar + sidebar on splash
 author_profile: true
-entries_layout: grid
-
-highlights:
-  - title: "IoT Traffic Classifier"
-    excerpt: "C + OpenSSL pipeline for secure data capture and device-type classification."
-    url: "/projects/iot-traffic-classifier/"
-    image_path: "/assets/img/iot-classifier-thumb.jpg"
-  - title: "SWIFT CTF Placements"
-    excerpt: "Writeups and techniques from CPP SWIFT competitions."
-    url: "/competitions/swift-ctf-2025/"
-    image_path: "/assets/img/ctf-thumb.jpg"
-  - title: "CompTIA Network+ & Security+"
-    excerpt: "Foundational certs with labs and notes."
-    url: "/certifications/comptia-network-plus/"
-    image_path: "/assets/img/cert-thumb.jpg"
 ---
 
-<p>
-  <a class="btn btn--primary" href="{{ '/projects/' | relative_url }}">View Projects</a>
-  <a class="btn" href="{{ '/about/' | relative_url }}">About Me</a>
-</p>
+{% include feature_row
+  id="highlights"
+  type="center"
+  %}
 
-{% include feature_row id="highlights" type="left" %}
+{% capture feature_row %}
+{% endcapture %}
+
+{% assign features = site.projects | sort: 'date' | reverse | slice: 0, 3 %}
+{% include feature_row id="highlights" type="center" %}
