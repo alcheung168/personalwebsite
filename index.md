@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "Hi, I'm Your Name"
+title: "Hi, I'm Adam Cheung"
 subtitle: "Cybersecurity & Networks — projects, competitions, and certifications"
 author_profile: true
 entries_layout: grid
