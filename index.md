@@ -8,3 +8,7 @@ header:
   overlay_color: "#0a0f1f"
 author_profile: false
 ---
+
+<p class="header__mini-desc">
+  I design secure communication systems, analyze network traffic, and build ML-powered tooling.
+</p>
