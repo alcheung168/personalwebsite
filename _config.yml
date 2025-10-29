@@ -1,7 +1,7 @@
 title: Adam Cheung
 description: "Cybersecurity & Networks | Projects, Competitions, Certifications"
-url: https://alcheung168.github.io/personalwebsite/
-baseurl: ""  # keep empty for user/organization pages
+url: https://alcheung168.github.io
+baseurl: "/personalwebsite"  # keep empty for user/organization pages
 
 # Use a polished theme
 remote_theme: "mmistakes/minimal-mistakes"
@@ -106,4 +106,5 @@ favicon: /assets/img/pfp.png
 
 sass:
   style: compressed
+
 
