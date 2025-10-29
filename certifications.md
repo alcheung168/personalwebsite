@@ -1,7 +1,7 @@
 ---
 title: Certifications
-layout: archive
+layout: collection
+collection: certifications
 permalink: /certifications/
+entries_layout: grid
 ---
-
-{% include archive.html type="certifications" %}
