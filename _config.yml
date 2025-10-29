@@ -1,4 +1,105 @@
-theme: minima
 title: Adam Cheung
-description: Portfolio and Blog
+description: "Cybersecurity & Networks | Projects, Competitions, Certifications"
+url: https://alcheung168.github.io/personalwebsite/
+baseurl: ""  # keep empty for user/organization pages
 
+# Use a polished theme
+remote_theme: "mmistakes/minimal-mistakes"
+
+# Pick a skin (try: default, air, contrast, dark, neon, sunrise)
+minimal_mistakes_skin: "air"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins supported by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Navigation (top menu)
+nav:
+  - title: Home
+    url: /
+  - title: Projects
+    url: /projects/
+  - title: Competitions
+    url: /competitions/
+  - title: Certifications
+    url: /certifications/
+  - title: About
+    url: /about/
+
+# Collections for your portfolio sections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+  competitions:
+    output: true
+    permalink: /competitions/:title/
+  certifications:
+    output: true
+    permalink: /certifications/:title/
+
+# Defaults for collection items (no repeat front matter)
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      share: false
+  - scope:
+      path: ""
+      type: "competitions"
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      share: false
+  - scope:
+      path: ""
+      type: "certifications"
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      share: false
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: false
+
+# Author/social (optional but nice)
+author:
+  name: "Adam Cheung"
+  avatar: /assets/img/avatar.jpg
+  bio: "Cybersecurity student focused on network defense, system configuration, and IT operations."
+  location: "Walnut, CA"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: https://github.com/alcheung168
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: https://www.linkedin.com/in/adam-cheung1/
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: mailto:<alcheung1008@gmail.com>
+
+# Footer
+footer:
+  links:
+    - label: "RSS"
+      icon: "fas fa-rss"
+      url: /feed.xml
+
+# SEO & goodies
+logo: /assets/img/logo.png
+favicon: /assets/img/favicon.png
