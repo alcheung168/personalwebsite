@@ -6,9 +6,6 @@ baseurl: "/personalwebsite"  # keep empty for user/organization pages
 # Use a polished theme
 remote_theme: "mmistakes/minimal-mistakes"
 
-# Pick a skin (try: default, air, contrast, dark, neon, sunrise)
-minimal_mistakes_skin: "space"
-
 # Build settings
 markdown: kramdown
 highlighter: rouge
@@ -18,19 +15,6 @@ plugins:
   - jekyll-include-cache
   - jekyll-sitemap
   - jekyll-seo-tag
-
-# Navigation (top menu)
-nav:
-  - title: About
-    url: "{{ '/about/' | relative_url }}"
-  - title: Projects
-    url: "{{ '/projects/' | relative_url }}"
-  - title: Competitions
-    url: "{{ '/competitions/' | relative_url }}"
-  - title: Certifications
-    url: "{{ '/certifications/' | relative_url }}"
-  - title: Blog
-    url: "{{ '/posts/' | relative_url }}"
 
 # Collections for your portfolio sections
 collections:
@@ -112,6 +96,7 @@ sass:
 
 atom_feed:
   hide: true
+
 
 
 
