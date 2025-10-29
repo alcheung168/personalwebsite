@@ -106,12 +106,10 @@ footer:
       icon: "fas fa-envelope"
       url: mailto:<alcheung1008@gmail.com>
 
-# SEO & goodies
-favicon: /assets/img/pfp.png
-
 sass:
   style: compressed
   sass_dir: _sass
+
 
 
 
