@@ -7,7 +7,7 @@ baseurl: "/personalwebsite"  # keep empty for user/organization pages
 remote_theme: "mmistakes/minimal-mistakes"
 
 # Pick a skin (try: default, air, contrast, dark, neon, sunrise)
-minimal_mistakes_skin: "air"
+minimal_mistakes_skin: "neon"
 
 # Build settings
 markdown: kramdown
@@ -22,16 +22,16 @@ plugins:
 
 # Navigation (top menu)
 nav:
-  - title: Home
-    url: /
-  - title: Projects
-    url: /projects/
-  - title: Competitions
-    url: /competitions/
-  - title: Certifications
-    url: /certifications/
   - title: About
-    url: /about/
+    url: "{{ '/about/' | relative_url }}"
+  - title: Projects
+    url: "{{ '/projects/' | relative_url }}"
+  - title: Competitions
+    url: "{{ '/competitions/' | relative_url }}"
+  - title: Certifications
+    url: "{{ '/certifications/' | relative_url }}"
+  - title: Blog
+    url: "{{ '/posts/' | relative_url }}"
 
 # Collections for your portfolio sections
 collections:
@@ -106,5 +106,6 @@ favicon: /assets/img/pfp.png
 
 sass:
   style: compressed
+
 
 
