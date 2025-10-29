@@ -1,5 +1,5 @@
 ---
 ---
-@import "minimal-mistakes/skins/dark"; /* or "neon"—pick one */
+@import "minimal-mistakes/skins/dark";  /* pick any skin you like */
 @import "minimal-mistakes";
-@import "custom";
+@import "custom";                        /* loads _sass/_custom.scss */
