@@ -100,7 +100,7 @@ header.masthead{
 
   /* reserve space for the photo panel on the right */
   padding-right: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
-  min-height:600px;
+  min-height:450px;
 }
 
 /* Photo panel — fills entire right side of the card */
