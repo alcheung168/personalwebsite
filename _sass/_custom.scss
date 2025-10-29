@@ -1,9 +1,9 @@
 /* ===========================================================
-   CYBERSECURITY PORTFOLIO THEME — FINAL FONT + NAV + HERO
+   CYBERSECURITY PORTFOLIO THEME — THIN FONT + FULL HERO
    =========================================================== */
 
-/* ===== FONT (modern, clean) ===== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+/* Thinner, modern font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 
 /* ===== COLOR PALETTE ===== */
 :root {
@@ -12,7 +12,7 @@
   --site-primary: #00b4d8;        /* cyan accent */
   --site-primary-light: #90e0ef;  /* light cyan */
   --text-color: #e0e1dd;          /* off-white */
-  --font-main: "Poppins", sans-serif;
+  --font-main: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 /* ===== GLOBAL ===== */
@@ -20,12 +20,13 @@ body {
   background: var(--site-bg-base);
   color: var(--text-color);
   font-family: var(--font-main);
+  font-weight: 300; /* thinner default text */
 }
 
 a { color: var(--site-primary-light); text-decoration: none; }
 a:hover, a:focus { color: var(--site-primary); }
 
-/* ===== NAVBAR (dark, caps, no white bar) ===== */
+/* ===== NAVBAR (dark, caps, thin) ===== */
 .masthead,
 .masthead--fixed,
 .masthead__inner-wrap,
@@ -34,7 +35,8 @@ a:hover, a:focus { color: var(--site-primary); }
   box-shadow: none !important;
   font-family: var(--font-main);
   text-transform: uppercase;   /* all-caps labels */
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;      /* sleeker spacing */
+  font-weight: 400;
 }
 
 /* remove skin’s white badges */
@@ -44,7 +46,6 @@ a:hover, a:focus { color: var(--site-primary); }
 .greedy-nav .hidden-links a {
   background: transparent !important;
   color: var(--text-color) !important;
-  font-weight: 600;
 }
 
 /* link hover/active */
@@ -58,17 +59,15 @@ a:hover, a:focus { color: var(--site-primary); }
 /* mobile toggle icon */
 .greedy-nav .toggle-nav { color: var(--text-color) !important; }
 
-/* ===== HERO (centered glass card, less zoom) ===== */
+/* ===== HERO (full-bleed, centered glass, zoom as needed) ===== */
 .page__hero--overlay {
-  background: rgba(0, 0, 0, 0.45);
-  background-position: center top;
+  /* make the background image cover the entire viewport width/height area */
+  min-height: 55vh;                     /* increase if you want taller hero */
+  background-size: cover !important;    /* zoom as necessary to cover */
+  background-position: center center;   /* keep centered */
   background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.45); /* fallback tint under overlay */
 }
-
-/* reduce background zoom (adjust numbers to taste) */
-@media (min-width: 768px)  { .page__hero--overlay { background-size: 1400px auto; } }
-@media (min-width: 1200px) { .page__hero--overlay { background-size: 1700px auto; } }
-@media (min-width: 1600px) { .page__hero--overlay { background-size: 2000px auto; } }
 
 /* glass card */
 .page__hero--overlay .wrapper {
@@ -79,13 +78,15 @@ a:hover, a:focus { color: var(--site-primary); }
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   border-radius: 18px;
   padding: 2rem 3rem;
-  text-align: center;     /* center all hero text */
+  text-align: center;
 }
 
-/* hero title (we set index.md title to just "Adam Cheung") */
+/* hero title (just the name) */
 .page__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
+  font-family: var(--font-main);
+  font-weight: 600;                      /* crisp but still slim */
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.1;
   text-align: center;
   margin: 0;
 }
@@ -99,12 +100,11 @@ a:hover, a:focus { color: var(--site-primary); }
 }
 .feature__item:hover { transform: translateY(-5px); }
 
-/* ===== FOOTER (hide feed + copyright) ===== */
+/* ===== FOOTER (hide feed + copyright if theme still injects) ===== */
 .site-footer .page__footer-follow,
 .site-footer .page__footer-copyright {
   display: none !important;
 }
-/* kill any residual feed link */
 .site-footer a[href$="/feed.xml"],
 .site-footer a[href*="feed"],
 .site-footer a[href*="rss"] {
