@@ -1,0 +1,17 @@
+---
+title: "SWIFT CTF 2025"
+excerpt: "Reverse engineering, crypto, and forensics writeups."
+date: 2025-04-20
+header:
+  overlay_image: /assets/img/ctf-hero.jpg
+  overlay_filter: 0.35
+  teaser: /assets/img/ctf-thumb.jpg
+tags: [CTF, Forensics, Crypto, Reversing]
+---
+
+Key solves:
+- **Crypto:** lattice attack notes and pitfalls
+- **Forensics:** memory image triage and carving
+- **Reversing:** unpacking tips
+
+**Writeups:** Linked per challenge with toolchains and scripts.
