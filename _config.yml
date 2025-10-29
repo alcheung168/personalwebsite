@@ -7,7 +7,7 @@ baseurl: "/personalwebsite"  # keep empty for user/organization pages
 remote_theme: "mmistakes/minimal-mistakes"
 
 # Pick a skin (try: default, air, contrast, dark, neon, sunrise)
-minimal_mistakes_skin: "neon"
+minimal_mistakes_skin: "space"
 
 # Build settings
 markdown: kramdown
@@ -112,6 +112,7 @@ favicon: /assets/img/pfp.png
 sass:
   style: compressed
   sass_dir: _sass
+
 
 
 
