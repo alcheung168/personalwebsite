@@ -103,3 +103,5 @@ footer:
 # SEO & goodies
 favicon: /assets/img/pfp.png
 
+sass:
+  style: compressed
