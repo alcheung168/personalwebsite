@@ -1,7 +1,7 @@
 ---
 title: Competitions
-layout: archive
+layout: collection
+collection: competitions
 permalink: /competitions/
+entries_layout: grid
 ---
-
-{% include archive.html type="competitions" %}
