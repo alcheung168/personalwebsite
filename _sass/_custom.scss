@@ -1,5 +1,8 @@
-/* ===== IMPORT FONT ===== */
-/* Use Google Fonts Poppins (modern & clean) */
+/* ===========================================================
+   CYBERSECURITY PORTFOLIO THEME — FINAL FONT + NAV + HERO
+   =========================================================== */
+
+/* ===== FONT (modern, clean) ===== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 /* ===== COLOR PALETTE ===== */
@@ -19,17 +22,10 @@ body {
   font-family: var(--font-main);
 }
 
-a {
-  color: var(--site-primary-light);
-  text-decoration: none;
-}
+a { color: var(--site-primary-light); text-decoration: none; }
+a:hover, a:focus { color: var(--site-primary); }
 
-a:hover,
-a:focus {
-  color: var(--site-primary);
-}
-
-/* ===== NAVBAR ===== */
+/* ===== NAVBAR (dark, caps, no white bar) ===== */
 .masthead,
 .masthead--fixed,
 .masthead__inner-wrap,
@@ -37,11 +33,11 @@ a:focus {
   background: var(--site-bg-base) !important;
   box-shadow: none !important;
   font-family: var(--font-main);
-  text-transform: uppercase;          /* all-caps nav labels */
+  text-transform: uppercase;   /* all-caps labels */
   letter-spacing: 1px;
 }
 
-/* Remove white bar backgrounds */
+/* remove skin’s white badges */
 .greedy-nav .site-title,
 .greedy-nav .site-title a,
 .greedy-nav .visible-links a,
@@ -51,7 +47,7 @@ a:focus {
   font-weight: 600;
 }
 
-/* Nav hover/active */
+/* link hover/active */
 .greedy-nav a:hover,
 .greedy-nav a:focus,
 .greedy-nav .active > a {
@@ -59,24 +55,22 @@ a:focus {
   text-decoration: none !important;
 }
 
-/* Mobile menu icon */
-.greedy-nav .toggle-nav {
-  color: var(--text-color) !important;
-}
+/* mobile toggle icon */
+.greedy-nav .toggle-nav { color: var(--text-color) !important; }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO (centered glass card, less zoom) ===== */
 .page__hero--overlay {
   background: rgba(0, 0, 0, 0.45);
   background-position: center top;
   background-repeat: no-repeat;
 }
 
-/* Reduce zoom (less cropping) */
+/* reduce background zoom (adjust numbers to taste) */
 @media (min-width: 768px)  { .page__hero--overlay { background-size: 1400px auto; } }
 @media (min-width: 1200px) { .page__hero--overlay { background-size: 1700px auto; } }
 @media (min-width: 1600px) { .page__hero--overlay { background-size: 2000px auto; } }
 
-/* Centered glass card with only the name */
+/* glass card */
 .page__hero--overlay .wrapper {
   background: rgba(10, 15, 31, 0.42);
   backdrop-filter: blur(6px);
@@ -85,10 +79,34 @@ a:focus {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   border-radius: 18px;
   padding: 2rem 3rem;
-  text-align: center;
+  text-align: center;     /* center all hero text */
 }
 
+/* hero title (we set index.md title to just "Adam Cheung") */
 .page__title {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  text-al
+  text-align: center;
+  margin: 0;
+}
+
+/* ===== FEATURE CARDS ===== */
+.feature__item {
+  background: var(--site-bg-secondary);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.feature__item:hover { transform: translateY(-5px); }
+
+/* ===== FOOTER (hide feed + copyright) ===== */
+.site-footer .page__footer-follow,
+.site-footer .page__footer-copyright {
+  display: none !important;
+}
+/* kill any residual feed link */
+.site-footer a[href$="/feed.xml"],
+.site-footer a[href*="feed"],
+.site-footer a[href*="rss"] {
+  display: none !important;
+}
