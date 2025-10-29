@@ -1,33 +1,30 @@
 /* ===========================================================
-   CYBER THEME — Transparent Nav, Glass Card with Text + Photo
+   CYBER THEME — Transparent Nav + Glass Card (Text Left, Photo Right)
    =========================================================== */
 
 /* Thin, modern font */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 
-/* ===== COLOR PALETTE ===== */
+/* ===== TOKENS ===== */
 :root {
-  --site-bg-base: #0d1b2a;        /* dark navy */
-  --site-bg-secondary: #1b263b;   /* cards */
-  --site-primary: #00b4d8;        /* cyan */
-  --site-primary-light: #90e0ef;  /* light cyan */
-  --text-color: #e0e1dd;          /* off-white */
+  --site-bg-base: #0d1b2a;
+  --site-bg-secondary: #1b263b;
+  --site-primary: #00b4d8;
+  --site-primary-light: #90e0ef;
+  --text-color: #e0e1dd;
   --font-main: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
 /* ===== GLOBAL ===== */
-body {
-  background: var(--site-bg-base);
-  color: var(--text-color);
-  font-family: var(--font-main);
-  font-weight: 300;
-}
+body { background: var(--site-bg-base); color: var(--text-color); font-family: var(--font-main); font-weight: 300; }
 a { color: var(--site-primary-light); text-decoration: none; }
 a:hover, a:focus { color: var(--site-primary); }
 
-/* ===== NAVBAR — FULLY TRANSPARENT OVER HERO ===== */
-.site-header,
+/* ===== NAVBAR — FULLY TRANSPARENT ON TOP OF HERO ===== */
+/* Different skins paint multiple layers; override ALL with high specificity */
+header.site-header,
 .page__header,
+header.masthead,
 .masthead,
 .masthead--fixed,
 .masthead__inner-wrap,
@@ -36,11 +33,21 @@ a:hover, a:focus { color: var(--site-primary); }
   border: 0 !important;
   box-shadow: none !important;
 }
-.masthead {
-  position: absolute; top: 0; left: 0; right: 0;
-  z-index: 30;
+
+header.masthead {                 /* sit above hero */
+  position: absolute !important;
+  top: 0; left: 0; right: 0;
+  z-index: 30 !important;
 }
-.greedy-nav { text-transform: uppercase; letter-spacing: .08em; font-weight: 400; }
+
+/* nav typography + caps */
+.greedy-nav {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 400;
+}
+
+/* ensure link colors are readable over the image */
 .greedy-nav .site-title,
 .greedy-nav .site-title a,
 .greedy-nav .visible-links a,
@@ -49,16 +56,20 @@ a:hover, a:focus { color: var(--site-primary); }
   color: var(--text-color) !important;
   text-shadow: 0 1px 2px rgba(0,0,0,.55);
 }
+
 .greedy-nav a:hover,
 .greedy-nav a:focus,
-.greedy-nav .active > a { color: var(--site-primary-light) !important; }
+.greedy-nav .active > a {
+  color: var(--site-primary-light) !important;
+  text-decoration: none !important;
+}
 .greedy-nav .toggle-nav { color: var(--text-color) !important; }
 
 /* ===== HERO — FULL BLEED ===== */
 .page__hero--overlay {
   min-height: 55vh;
-  padding-top: 6rem;                   /* clear space for transparent nav */
-  background-size: cover !important;   /* span full width/height */
+  padding-top: 6rem;                  /* room under transparent nav */
+  background-size: cover !important;  /* cover entire area */
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -69,46 +80,45 @@ a:hover, a:focus { color: var(--site-primary); }
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
   border-radius: 18px;
   padding: 2rem 3rem;
 
-  /* turn the card into a 2-column grid: text left, photo right */
+  /* two-column grid: text left, photo right */
   display: grid;
   grid-template-columns: 1.6fr 1fr;
   gap: 1.25rem;
   align-items: center;
 }
 
-/* left side: title + subtitle stacked and left-aligned */
+/* left column: name + subtitle */
 .page__title { 
-  font-weight: 600; 
-  font-size: clamp(2.4rem, 5vw, 3.6rem); 
-  line-height: 1.1; 
-  margin: 0 0 .4rem 0; 
-  text-align: left; 
+  grid-column: 1 / 2;
+  margin: 0 0 .4rem 0;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.1;
+  text-align: left;
 }
-.page__lead { 
-  margin: 0; 
-  font-weight: 400; 
-  font-size: clamp(1rem, 2.2vw, 1.2rem); 
-  color: #dfe6ec; 
-  text-align: left; 
-  letter-spacing: .04em; 
+.page__lead {
+  grid-column: 1 / 2;
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: #dfe6ec;
+  text-align: left;            /* center issue fix */
+  letter-spacing: .04em;
 }
 
-/* Ensure the text column spans only the left column */
-.page__title, .page__lead { grid-column: 1 / 2; }
-
-/* right side: add your photo as a rounded-rectangle "frame" */
+/* right column: portrait with rounded rectangle frame */
 .page__hero--overlay .wrapper::after {
   content: "";
   grid-column: 2 / 3;
   justify-self: end;
   width: clamp(180px, 26vw, 280px);
-  height: clamp(220px, 32vw, 340px);    /* rectangular portrait shape */
+  height: clamp(220px, 32vw, 340px);
   border-radius: 16px;
-  background-image: url("/personalwebsite/assets/img/pfp.jpg"); /* <-- path for project site */
+  background-image: url("{{ '/assets/img/pfp.jpg' | relative_url }}"); /* baseurl-safe */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -116,16 +126,23 @@ a:hover, a:focus { color: var(--site-primary); }
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
 }
 
-/* ===== FEATURE CARDS ===== */
-.feature__item {
-  background: var(--site-bg-secondary);
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+/* single-column fallback on small screens */
+@media (max-width: 720px) {
+  .page__hero--overlay .wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .page__title, .page__lead { text-align: center; }
+  .page__hero--overlay .wrapper::after {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 1rem;
+    width: clamp(160px, 50vw, 240px);
+    height: clamp(200px, 62vw, 300px);
+  }
 }
-.feature__item:hover { transform: translateY(-5px); }
 
-/* ===== FOOTER SAFETY (optional) ===== */
+/* ===== OPTIONAL: hide feed/copyright if theme still injects ===== */
 .site-footer .page__footer-follow,
 .site-footer .page__footer-copyright { display: none !important; }
 .site-footer a[href$="/feed.xml"],
