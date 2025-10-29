@@ -1,150 +1,172 @@
 /* ===========================================================
-   CYBER THEME — Transparent Nav + Glass Card (Text Left, Photo Right)
+   Transparent Nav over Full-Bleed Hero + 2-Column Glass Card
+   Font: Montserrat (Thin/Light/Bold)
    =========================================================== */
 
-/* Thin, modern font */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;600&display=swap");
 
-/* ===== TOKENS ===== */
-:root {
-  --site-bg-base: #0d1b2a;
-  --site-bg-secondary: #1b263b;
-  --site-primary: #00b4d8;
-  --site-primary-light: #90e0ef;
-  --text-color: #e0e1dd;
-  --font-main: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+/* Tokens */
+:root{
+  --site-bg-base:#0d1b2a;
+  --site-bg-secondary:#1b263b;
+  --site-primary:#00b4d8;
+  --site-primary-light:#90e0ef;
+  --text-color:#e0e1dd;
+  --font-main:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
-/* ===== GLOBAL ===== */
-body { background: var(--site-bg-base); color: var(--text-color); font-family: var(--font-main); font-weight: 300; }
-a { color: var(--site-primary-light); text-decoration: none; }
-a:hover, a:focus { color: var(--site-primary); }
+/* Global */
+body{
+  background:var(--site-bg-base);
+  color:var(--text-color);
+  font-family:var(--font-main);
+  font-weight:300; /* Montserrat Light feel site-wide */
+}
+a{ color:var(--site-primary-light); text-decoration:none; }
+a:hover,a:focus{ color:var(--site-primary); }
 
-/* ===== NAVBAR — FULLY TRANSPARENT ON TOP OF HERO ===== */
-/* Different skins paint multiple layers; override ALL with high specificity */
+/* ===== NAVBAR — TRANSPARENT & OVER THE HERO ===== */
 header.site-header,
 .page__header,
-header.masthead,
 .masthead,
 .masthead--fixed,
 .masthead__inner-wrap,
-.greedy-nav {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
+.greedy-nav{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.masthead::before{ background:transparent !important; } /* some skins add a bg via :before */
+
+.masthead{
+  position:fixed !important;      /* float on top */
+  top:0; left:0; right:0;
+  z-index:40 !important;
 }
 
-header.masthead {                 /* sit above hero */
-  position: absolute !important;
-  top: 0; left: 0; right: 0;
-  z-index: 30 !important;
+.greedy-nav{
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:300; /* thin nav */
+  justify-content:center; /* center nav group */
 }
-
-/* nav typography + caps */
-.greedy-nav {
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  font-weight: 400;
-}
-
-/* ensure link colors are readable over the image */
 .greedy-nav .site-title,
 .greedy-nav .site-title a,
 .greedy-nav .visible-links a,
-.greedy-nav .hidden-links a {
-  background: transparent !important;
-  color: var(--text-color) !important;
-  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+.greedy-nav .hidden-links a{
+  background:transparent !important;
+  color:var(--text-color) !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.55);
 }
-
 .greedy-nav a:hover,
 .greedy-nav a:focus,
-.greedy-nav .active > a {
-  color: var(--site-primary-light) !important;
-  text-decoration: none !important;
-}
-.greedy-nav .toggle-nav { color: var(--text-color) !important; }
+.greedy-nav .active>a{ color:var(--site-primary-light) !important; }
+.greedy-nav .toggle-nav{ color:var(--text-color) !important; }
 
-/* ===== HERO — FULL BLEED ===== */
-.page__hero--overlay {
-  min-height: 55vh;
-  padding-top: 6rem;                  /* room under transparent nav */
-  background-size: cover !important;  /* cover entire area */
-  background-position: center center;
-  background-repeat: no-repeat;
-}
+/* ===== HERO — FULL-BLEED & TOUCHES TOP ===== */
+/* Minimal Mistakes adds top padding for fixed headers; remove it so hero reaches page top */
+.initial-content{ padding-top:0 !important; margin-top:0 !important; }
 
-/* ===== GLASS CARD WITH TWO-COLUMN LAYOUT ===== */
-.page__hero--overlay .wrapper {
-  background: rgba(10, 15, 31, 0.42);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-  border-radius: 18px;
-  padding: 2rem 3rem;
-
-  /* two-column grid: text left, photo right */
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 1.25rem;
-  align-items: center;
+.page__hero--overlay{
+  margin-top:0 !important;
+  min-height:60vh;                 /* make hero tall enough to sit under nav */
+  padding-top:6rem;                /* space so card content isn't under nav */
+  background-size:cover !important;/* cover = zoom as needed to fill width */
+  background-position:center center;
+  background-repeat:no-repeat;
 }
 
-/* left column: name + subtitle */
-.page__title { 
-  grid-column: 1 / 2;
-  margin: 0 0 .4rem 0;
-  font-weight: 600;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.1;
-  text-align: left;
-}
-.page__lead {
-  grid-column: 1 / 2;
-  margin: 0;
-  font-weight: 400;
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  color: #dfe6ec;
-  text-align: left;            /* center issue fix */
-  letter-spacing: .04em;
+/* ===== GLASS CARD (smaller, centered, two columns) ===== */
+.page__hero--overlay .wrapper{
+  background:rgba(10,15,31,.42);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 10px 40px rgba(0,0,0,.35);
+  border-radius:18px;
+
+  /* layout + size */
+  max-width:1100px;                /* shrink the card */
+  margin:0 auto;                   /* centered on page */
+  padding:2rem 2.25rem;
+
+  display:grid;
+  grid-template-columns: 2fr 1fr;  /* left text, right photo (>= 1/3) */
+  gap:1.25rem;
+  align-items:center;
+  min-height:280px;
 }
 
-/* right column: portrait with rounded rectangle frame */
-.page__hero--overlay .wrapper::after {
-  content: "";
-  grid-column: 2 / 3;
-  justify-self: end;
-  width: clamp(180px, 26vw, 280px);
-  height: clamp(220px, 32vw, 340px);
-  border-radius: 16px;
-  background-image: url("{{ '/assets/img/pfp.jpg' | relative_url }}"); /* baseurl-safe */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 1px solid rgba(255,255,255,.15);
-  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+/* Text column (left) */
+.page__title{
+  grid-column:1 / 2;
+  margin:0 0 .4rem 0;
+  font-weight:600;                 /* bolder for the name */
+  font-size:clamp(2.2rem,5vw,3.2rem);
+  line-height:1.1;
+  text-align:left;
+}
+.page__lead{
+  grid-column:1 / 2;
+  margin:.1rem 0 .75rem 0;
+  font-weight:300;                 /* thin subtitle */
+  font-size:clamp(1rem,2.2vw,1.2rem);
+  color:#dfe6ec;
+  text-align:left;
+  letter-spacing:.04em;
+}
+/* Optional mini description block (3rd line under subtitle) */
+.header__mini-desc{
+  grid-column:1 / 2;
+  margin:0;
+  font-weight:300;
+  font-size:clamp(.95rem,2vw,1.05rem);
+  color:#cfd7de;
+  text-align:left;
 }
 
-/* single-column fallback on small screens */
-@media (max-width: 720px) {
-  .page__hero--overlay .wrapper {
-    grid-template-columns: 1fr;
-    text-align: center;
+/* Photo column (right) — fills full right side */
+.page__hero--overlay .wrapper::after{
+  content:"";
+  grid-column:2 / 3;
+  width:100%;
+  height:100%;
+  border-radius:16px;
+  background-image:url("{{ '/assets/img/pfp.jpg' | relative_url }}");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 720px){
+  .page__hero--overlay .wrapper{
+    grid-template-columns:1fr;
+    text-align:center;
   }
-  .page__title, .page__lead { text-align: center; }
-  .page__hero--overlay .wrapper::after {
-    grid-column: 1 / -1;
-    justify-self: center;
-    margin-top: 1rem;
-    width: clamp(160px, 50vw, 240px);
-    height: clamp(200px, 62vw, 300px);
+  .page__title,.page__lead,.header__mini-desc{ text-align:center; grid-column:1 / -1; }
+  .page__hero--overlay .wrapper::after{
+    grid-column:1 / -1;
+    margin-top:1rem;
+    width: clamp(160px, 70vw, 260px);
+    height: clamp(200px, 90vw, 320px);
+    justify-self:center;
   }
 }
 
-/* ===== OPTIONAL: hide feed/copyright if theme still injects ===== */
+/* Cards (below) */
+.feature__item{
+  background:var(--site-bg-secondary);
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+  transition:transform .3s ease;
+}
+.feature__item:hover{ transform:translateY(-5px); }
+
+/* Footer safety (optional) */
 .site-footer .page__footer-follow,
-.site-footer .page__footer-copyright { display: none !important; }
-.site-footer a[href$="/feed.xml"],
-.site-footer a[href*="feed"],
-.site-footer a[href*="rss"] { display: none !important; }
+.site-footer .page__footer-copyright{ display:none !important; }
+.site-footer a[href$="/feed.xml"], .site-footer a[href*="feed"], .site-footer a[href*="rss"]{ display:none !important; }
