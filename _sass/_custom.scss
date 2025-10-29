@@ -1,0 +1,22 @@
+/* Softer “glass” card on splash header */
+.page__hero--overlay .wrapper {
+  backdrop-filter: blur(3px);
+  background: rgba(255,255,255,0.02);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* Bold CTA buttons */
+.btn, .btn--primary {
+  border-radius: 9999px;
+  padding: 0.6rem 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+
+/* Headline scale */
+.page__title { font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
+
+/* Grid cards spacing */
+.feature__wrapper { gap: 1.25rem; }
+.feature__item { border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
