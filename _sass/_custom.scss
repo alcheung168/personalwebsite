@@ -1,5 +1,5 @@
 /* ===========================================================
-   Transparent Nav over Hero + 2-Column Glass Card
+   Transparent Nav over Hero + 2×3 Glass Card Grid
    Font: Montserrat (Thin/Light/Bold)
    =========================================================== */
 
@@ -21,13 +21,12 @@ body{
   background:var(--site-bg-base);
   color:var(--text-color);
   font-family:var(--font-main);
-  font-weight:300; /* thin default */
+  font-weight:300; /* thin */
 }
 a{ color:var(--site-primary-light); text-decoration:none; }
 a:hover,a:focus{ color:var(--site-primary); }
 
-/* ===== NAVBAR — truly transparent & floating over hero ===== */
-/* We target EVERY layer skins use + force stacking */
+/* ===== NAVBAR — truly transparent and over the hero ===== */
 header.site-header,
 .page__header,
 .masthead,
@@ -43,7 +42,7 @@ header.site-header,
 header.masthead{
   position:fixed !important;
   top:0; left:0; right:0;
-  z-index:40 !important; /* above hero */
+  z-index:40 !important;
 }
 
 .greedy-nav{
@@ -64,20 +63,18 @@ header.masthead{
 .greedy-nav .active>a{ color:var(--site-primary-light) !important; }
 .greedy-nav .toggle-nav{ color:var(--text-color) !important; }
 
-/* ===== HERO — make image touch the very top ===== */
-/* Minimal Mistakes adds top padding when header is fixed; remove it */
+/* ===== HERO — image touches top ===== */
 .initial-content{ padding-top:0 !important; margin-top:0 !important; }
-
 .page__hero--overlay{
   margin-top:0 !important;
-  min-height:60vh;                 /* tall enough under the nav */
-  padding-top:6rem;                /* room so the card isn’t under nav */
+  min-height:60vh;                 /* tall enough under the fixed nav */
+  padding-top:6rem;                /* room so card isn't under nav */
   background-size:cover !important;
   background-position:center center;
   background-repeat:no-repeat;
 }
 
-/* ===== GLASS CARD — smaller, centered, 2 columns ===== */
+/* ===== GLASS CARD as 2 columns × 3 rows ===== */
 .page__hero--overlay .wrapper{
   background:rgba(10,15,31,.42);
   backdrop-filter:blur(6px);
@@ -86,81 +83,90 @@ header.masthead{
   box-shadow:0 10px 40px rgba(0,0,0,.35);
   border-radius:18px;
 
-  /* size + grid */
-  max-width:1100px;      /* shrink card width */
-  margin:0 auto;         /* center card */
+  max-width:1100px;
+  margin:0 auto;
   padding:2rem 2.25rem;
 
   display:grid;
-  grid-template-columns: 2fr 1fr;  /* left text, right photo (>= 1/3) */
-  gap:1.25rem;
+  grid-template-columns: 2fr 1fr;         /* left text, right photo (≥ 1/3) */
+  grid-template-rows: auto auto auto;     /* title / subtitle / description */
+  gap:1rem 1.25rem;
   align-items:center;
-  min-height:280px;
+  min-height:300px;
 }
 
-/* Left column — name + subtitle + mini description */
+/* Left column: 3 rows */
 .page__title{
   grid-column:1 / 2;
-  margin:0 0 .4rem 0;
-  font-weight:600; /* bold for name */
+  grid-row:1 / 2;                /* row 1 */
+  margin:0;
+  font-weight:600;               /* bolder for your name */
   font-size:clamp(2.2rem,5vw,3.2rem);
   line-height:1.1;
   text-align:left;
 }
+
 .page__lead{
   grid-column:1 / 2;
-  margin:.1rem 0 .75rem 0;
-  font-weight:300; /* thin subtitle */
+  grid-row:2 / 3;                /* row 2 */
+  margin:0;
+  font-weight:300;               /* thin subtitle */
   font-size:clamp(1rem,2.2vw,1.2rem);
   color:#dfe6ec;
   text-align:left;
   letter-spacing:.04em;
 }
-/* mini description paragraph (we’ll add in index.md) */
+
+/* The “mini description” is included INSIDE the excerpt as a sibling span */
 .header__mini-desc{
   grid-column:1 / 2;
+  grid-row:3 / 4;                /* row 3 */
   margin:0;
   font-weight:300;
   font-size:clamp(.95rem,2vw,1.05rem);
   color:#cfd7de;
   text-align:left;
+  display:block;                 /* ensure it behaves as its own row */
 }
 
-/* Right column — portrait fills the whole side */
-.page__hero--overlay .wrapper::after{
-  content:"";
+/* Right column: photo spans all three rows */
+.hero-photo{
   grid-column:2 / 3;
+  grid-row:1 / 4;                /* rows 1..3 */
   width:100%;
   height:100%;
   border-radius:16px;
-  background-image:url("/personalwebsite/assets/img/pfp.jpg"); /* hardcoded base path for project site */
-  background-size:cover;
+  background-image:url("/personalwebsite/assets/img/pfp.jpg"); /* project-site path */
+  background-size:cover;         /* fill the whole right side */
   background-position:center;
   background-repeat:no-repeat;
   border:1px solid rgba(255,255,255,.15);
   box-shadow:0 12px 40px rgba(0,0,0,.35);
 }
 
-/* Stack nicely on mobile */
+/* Make sure the photo box exists even if content height is small */
+.page__hero--overlay .wrapper{ min-height:360px; }
+
+/* Mobile: stack */
 @media (max-width: 720px){
   .page__hero--overlay{ padding-top:5rem; }
   .page__hero--overlay .wrapper{
     grid-template-columns:1fr;
+    grid-template-rows:auto auto auto auto; /* add a row for the photo */
     text-align:center;
+    min-height:0;
   }
-  .page__title,.page__lead,.header__mini-desc{
-    text-align:center; grid-column:1 / -1;
-  }
-  .page__hero--overlay .wrapper::after{
-    grid-column:1 / -1;
-    margin-top:1rem;
-    width:clamp(160px, 70vw, 260px);
-    height:clamp(200px, 90vw, 320px);
+  .page__title, .page__lead, .header__mini-desc{ text-align:center; }
+  .hero-photo{
+    grid-column:1 / 2;
+    grid-row:4 / 5;
+    width: clamp(160px, 70vw, 260px);
+    height: clamp(200px, 90vw, 320px);
     justify-self:center;
   }
 }
 
-/* (Optional) keep cards below consistent */
+/* Cards below */
 .feature__item{
   background:var(--site-bg-secondary);
   border-radius:18px;
