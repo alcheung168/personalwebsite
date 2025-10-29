@@ -1,6 +1,6 @@
 ---
 layout: splash
-title: "I'm Adam Cheung."
+title: "Adam Cheung"
 subtitle: "Cybersecurity • Networks • Systems"
 # hero header
 header:
