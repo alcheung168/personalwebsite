@@ -1,3 +1,7 @@
+/* ===========================================================
+   CYBERSECURITY PORTFOLIO — THIN FONT, FULL HERO, TRANSPARENT NAV
+   =========================================================== */
+
 /* Thin, modern font */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 
@@ -92,4 +96,27 @@ a:hover, a:focus { color: var(--site-primary); }
   margin-top: .6rem;
   font-weight: 400;
   font-size: clamp(1rem, 2.2vw, 1.2rem);
-  co
+  color: #dfe6ec;
+  text-align: center;
+  letter-spacing: .04em;
+}
+
+/* ===== FEATURE CARDS ===== */
+.feature__item {
+  background: var(--site-bg-secondary);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.feature__item:hover { transform: translateY(-5px); }
+
+/* ===== FOOTER SAFETY (if theme injects) ===== */
+.site-footer .page__footer-follow,
+.site-footer .page__footer-copyright {
+  display: none !important;
+}
+.site-footer a[href$="/feed.xml"],
+.site-footer a[href*="feed"],
+.site-footer a[href*="rss"] {
+  display: none !important;
+}
