@@ -15,6 +15,7 @@ highlighter: rouge
 
 # Plugins supported by GitHub Pages
 plugins:
+  - jekyll-include-cache
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
@@ -105,3 +106,4 @@ favicon: /assets/img/pfp.png
 
 sass:
   style: compressed
+
