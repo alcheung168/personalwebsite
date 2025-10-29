@@ -1,6 +1,7 @@
 ---
 layout: splash
 title: "Adam Cheung"
+excerpt: "Cybersecurity | Networking | Machine Learning"
 header:
   overlay_image: /assets/img/hero.jpg
   overlay_filter: 0.45
