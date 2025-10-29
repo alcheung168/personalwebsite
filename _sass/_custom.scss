@@ -1,26 +1,26 @@
-/* Stronger glass card behind the hero text */
-.page__hero--overlay .wrapper {
-  background: rgba(10, 15, 31, 0.38);      /* ↑ opacity so it pops */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 10px 40px rgba(0,0,0,.35);
-  border-radius: 18px;
-  padding: 1.25rem 1.5rem;
+/* Background for hero already done */
+:root {
+  --site-primary: #00B4D8;         /* your accent */
+  --site-primary-light: #90E0EF;
+  --site-bg-base: #0D1B2A;
+  --site-bg-secondary: #1B263B;
+  --text-color: #E0E1DD;
 }
 
-
-/* Bold CTA buttons */
-.btn, .btn--primary {
-  border-radius: 9999px;
-  padding: 0.6rem 1.1rem;
-  font-weight: 700;
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+body {
+  background-color: var(--site-bg-base);
+  color: var(--text-color);
 }
 
-/* Headline scale */
-.page__title { font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
+a, .btn--primary {
+  background-color: var(--site-primary);
+  color: var(--text-color);
+}
 
-/* Grid cards spacing */
-.feature__wrapper { gap: 1.25rem; }
-.feature__item { border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+.page__hero--overlay {
+  background: rgba(0,0,0,0.45);  /* slightly darker overlay */
+}
+
+.card, .feature__item {
+  background-color: var(--site-bg-secondary);
+}
