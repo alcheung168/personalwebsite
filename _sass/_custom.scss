@@ -2,12 +2,12 @@
 :root {
   --site-bg-base: #0d1b2a;        /* dark navy background */
   --site-bg-secondary: #1b263b;   /* secondary card/nav bg */
-  --site-primary: #00b4d8;        /* cyan accent (buttons/links) */
-  --site-primary-light: #90e0ef;  /* lighter accent */
-  --text-color: #e0e1dd;          /* off-white for text */
+  --site-primary: #00b4d8;        /* cyan accent */
+  --site-primary-light: #90e0ef;  /* light cyan */
+  --text-color: #e0e1dd;          /* off-white */
 }
 
-/* ===== GLOBAL STYLES ===== */
+/* ===== GLOBAL ===== */
 body {
   background: var(--site-bg-base);
   color: var(--text-color);
@@ -25,10 +25,10 @@ a:focus {
 .btn--primary {
   background: var(--site-primary);
   color: var(--text-color);
-  border-color: transparent;
+  border: none;
   border-radius: 9999px;
   font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 180, 216, 0.25);
   transition: 0.25s ease;
 }
 
@@ -39,31 +39,25 @@ a:focus {
 
 /* ===== HERO SECTION ===== */
 .page__hero--overlay {
-  background: rgba(0, 0, 0, 0.45); /* darken overlay slightly */
+  background: rgba(0, 0, 0, 0.45);
   background-position: center top;
   background-repeat: no-repeat;
 }
 
-/* reduce hero zoom (less cropping) */
+/* Reduce zoom (less cropping) */
 @media (min-width: 768px) {
-  .page__hero--overlay {
-    background-size: 1400px auto;
-  }
+  .page__hero--overlay { background-size: 1400px auto; }
 }
 @media (min-width: 1200px) {
-  .page__hero--overlay {
-    background-size: 1700px auto;
-  }
+  .page__hero--overlay { background-size: 1700px auto; }
 }
 @media (min-width: 1600px) {
-  .page__hero--overlay {
-    background-size: 2000px auto;
-  }
+  .page__hero--overlay { background-size: 2000px auto; }
 }
 
-/* glass effect box behind hero text */
+/* Glass card behind hero text */
 .page__hero--overlay .wrapper {
-  background: rgba(10, 15, 31, 0.42); /* visible dark glass */
+  background: rgba(10, 15, 31, 0.42);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -72,34 +66,34 @@ a:focus {
   padding: 1.25rem 1.5rem;
 }
 
-/* ===== NAVBAR / TOP BAR ===== */
+/* ===== NAVBAR ===== */
 .masthead,
 .masthead--fixed,
+.masthead__inner-wrap,
 .greedy-nav {
   background: var(--site-bg-base) !important;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
-/* remove white bar background from title & links */
+/* Remove white bar backgrounds */
 .greedy-nav .site-title,
+.greedy-nav .site-title a,
 .greedy-nav .visible-links a,
 .greedy-nav .hidden-links a {
   background: transparent !important;
   color: var(--text-color) !important;
 }
 
-/* nav hover + active links */
+/* Nav hover/active */
 .greedy-nav a:hover,
 .greedy-nav a:focus,
 .greedy-nav .active > a {
   color: var(--site-primary-light) !important;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
-/* mobile menu icon color */
-.greedy-nav .toggle-nav {
-  color: var(--text-color);
-}
+/* Mobile menu icon */
+.greedy-nav .toggle-nav { color: var(--text-color) !important; }
 
 /* ===== FEATURE CARDS ===== */
 .feature__item {
@@ -114,8 +108,15 @@ a:focus {
 }
 
 /* ===== FOOTER ===== */
-/* Hide Feed + Copyright */
+/* Remove Feed + Copyright completely */
 .site-footer .page__footer-follow,
 .site-footer .page__footer-copyright {
-  display: none;
+  display: none !important;
+}
+
+/* Specifically hide any Feed link */
+.site-footer a[href$="/feed.xml"],
+.site-footer a[href*="feed"],
+.site-footer a[href*="rss"] {
+  display: none !important;
 }
