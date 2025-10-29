@@ -16,7 +16,6 @@ highlighter: rouge
 # Plugins supported by GitHub Pages
 plugins:
   - jekyll-include-cache
-  - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
 
@@ -97,9 +96,15 @@ author:
 # Footer
 footer:
   links:
-    - label: "RSS"
-      icon: "fas fa-rss"
-      url: /feed.xml
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: https://github.com/alcheung168
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: https://www.linkedin.com/in/adam-cheung1/
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: mailto:<alcheung1008@gmail.com>
 
 # SEO & goodies
 favicon: /assets/img/pfp.png
@@ -107,6 +112,7 @@ favicon: /assets/img/pfp.png
 sass:
   style: compressed
   sass_dir: _sass
+
 
 
 
