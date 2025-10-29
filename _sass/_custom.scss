@@ -1,10 +1,14 @@
-/* Softer “glass” card on splash header */
+/* Stronger glass card behind the hero text */
 .page__hero--overlay .wrapper {
-  backdrop-filter: blur(3px);
-  background: rgba(255,255,255,0.02);
+  background: rgba(10, 15, 31, 0.38);      /* ↑ opacity so it pops */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
   border-radius: 18px;
   padding: 1.25rem 1.5rem;
 }
+
 
 /* Bold CTA buttons */
 .btn, .btn--primary {
