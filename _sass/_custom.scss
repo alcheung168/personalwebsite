@@ -360,6 +360,12 @@ header.site-header {
 .section-education h2,
 .section-mission h2{          text-align: center; }
 
+/* text alignment for education and mission */
+.section-education p,
+.section-education h2 {
+  text-align: center;  
+}
+
 /* reverse column order when photo is on the LEFT (self-study) */
 .image-left .two-col{
   grid-template-columns: .9fr 1.1fr;    /* media/text split */
