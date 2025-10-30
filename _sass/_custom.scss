@@ -261,3 +261,31 @@ header.site-header {
   outline: none;
 }
 
+/* ---- “SEE MORE BELOW” prompt under the glass card ---- */
+.below-hero-prompt {
+  margin: 1.25rem auto 0;           /* space above the body; adjust to taste */
+  max-width: 1100px;                /* align with your card width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  color: #e0e1dd;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  opacity: .9;
+}
+
+/* down arrows on each side */
+.below-hero-prompt::before,
+.below-hero-prompt::after {
+  content: "\2193";                 /* Unicode down arrow */
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: .9;
+}
+
+/* optional hover glow */
+.below-hero-prompt:hover {
+  color: var(--site-primary-light);
+}
