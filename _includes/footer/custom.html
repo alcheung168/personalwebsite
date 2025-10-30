@@ -46,6 +46,12 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  /* ===== Helpers ===== */
+  function pointerInRect(e, rect){
+    var x = e.clientX, y = e.clientY;
+    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+  }
+
   /* ===== Portrait tilt ONLY when pointer is over the photo area ===== */
   function getPhotoRect(){
     if (!card) return null;
@@ -53,7 +59,7 @@
     const r  = card.getBoundingClientRect();
     const cs = getComputedStyle(card);
 
-    // These resolve to *pixels* reliably:
+    // These resolve to pixels:
     const padRight = parseFloat(cs.paddingRight) || 0;            // = photoW + padX
     const padX     = parseFloat(cs.getPropertyValue('--card-pad-x')) || 0;
     const padY     = parseFloat(cs.getPropertyValue('--card-pad-y')) || 0;
@@ -90,7 +96,7 @@
     card.style.setProperty('--tiltY', '0deg');
   }
 
-  // Global listeners (tilt only engages when over photo hitbox)
+  // Global listeners (tilt only engages when over photo hitbox due to pointerInRect)
   window.addEventListener('mousemove', applyTilt, { passive:true });
   window.addEventListener('mouseleave', resetTilt, { passive:true });
 
@@ -114,3 +120,4 @@
   });
 })();
 </script>
+
