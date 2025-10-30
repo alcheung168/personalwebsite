@@ -107,8 +107,8 @@ header.masthead{
 .page__hero--overlay .wrapper::after{
   content:"";
   position:absolute;
-  top: 1.25rem;
-  bottom: 1.25rem;
+  top: 0.8rem;
+  bottom: 0.8rem;
   right: 1.25rem;
   width: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
   border-radius:16px;
