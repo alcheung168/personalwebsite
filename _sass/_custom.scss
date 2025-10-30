@@ -200,13 +200,6 @@ header.site-header,
   --global-nav-background-color: transparent !important;
 }
 
-/* Remove any pseudo-element overlay from skins */
-.masthead::before,
-.greedy-nav::before {
-  background: transparent !important;
-  content: none !important;
-}
-
 /* Ensure the nav is placed above the hero image */
 header.site-header {
   position: absolute !important;
