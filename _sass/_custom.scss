@@ -38,52 +38,72 @@ body{
 a{ color:var(--site-primary-light); text-decoration:none; }
 a:hover,a:focus{ color:var(--site-primary-light); }
 
-/* ===== OVERLAY NAVBAR ===== */
+/* =======================================================================
+   STICKY, FULL-BLEED NAV WITH FADE-IN BACKGROUND ON SCROLL
+   (requires the small script that toggles html.nav-scrolled)
+   ======================================================================= */
 
-/* Make sure the hero image reaches the top of the viewport */
-.initial-content {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+/* Fix header to top + full width; base stays visually transparent */
+.site-header,
+.masthead {
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  width: 100vw;
+  z-index: 1000;
+  background: transparent !important; /* the colored bg is drawn by ::before */
 }
 
-/* Let the hero background start right at the top */
-.page__hero--overlay {
-  margin-top: 0 !important;
-  padding-top: 4rem;   /* small space so card doesn’t sit under nav */
-}
-
-/* Position the masthead directly over the hero */
-header.site-header,
-.masthead,
-.masthead--fixed,
-.masthead__inner-wrap {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  right: 0;
+/* Nav content above the background layer */
+.masthead__inner-wrap,
+.greedy-nav {
+  position: relative;
+  z-index: 2;
   background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  z-index: 50 !important; /* ensures it layers above the hero */
 }
 
-/* Keep navigation readable over image */
+/* Full-bleed background layer (always present; fades via opacity) */
+.site-header::before,
+.masthead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 27, 42, 0.94);     /* match body bg or use var(--site-bg-base) with opacity */
+  opacity: 0;                              /* fully transparent at page top */
+  transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+/* When scrolled: fade background in + subtle shadow/glass */
+html.nav-scrolled .site-header::before,
+html.nav-scrolled .masthead::before {
+  opacity: 1;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  backdrop-filter: saturate(120%) blur(4px);
+}
+
+/* Readable links in both states + ALL CAPS */
 .greedy-nav .site-title,
-.greedy-nav .visible-links a {
+.greedy-nav .visible-links a,
+.greedy-nav .hidden-links a {
   color: #e0e1dd !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em;
 }
-.greedy-nav a:hover {
-  color: #90e0ef !important;
-}
+.greedy-nav a:hover { color: var(--site-primary-light) !important; }
 
+/* Let the hero touch the top (no push-down) */
+.initial-content { padding-top: 0 !important; margin-top: 0 !important; }
+.page__hero--overlay { margin-top: 0 !important; position: relative; }
 
-/* ===== HERO — make the image touch the top ===== */
-.initial-content{ padding-top:0 !important; margin-top:0 !important; }
-
+/* =======================================================================
+   HERO — make the image touch the top and give room for the card
+   ======================================================================= */
 .page__hero--overlay{
-  margin-top:0 !important;
-  min-height:60vh;                     /* tall enough beneath fixed nav */
+  min-height:60vh;                     /* tall enough beneath the fixed nav */
   padding-top:6rem;                    /* space so the card isn’t under nav */
   background-size:cover !important;
   background-position:center center;
@@ -93,8 +113,10 @@ header.site-header,
 /* ---------- GLASS CARD CONTAINER ---------- */
 .page__hero--overlay .wrapper{
   position: relative;
-  /* use the same padding everywhere */
+
+  /* consistent padding */
   padding: var(--card-pad-y) var(--card-pad-x);
+
   /* reserve the right column (photo width + right padding) */
   padding-right: calc(var(--photo-w) + var(--card-pad-x));
 
@@ -114,20 +136,21 @@ header.site-header,
   content:"";
   position: absolute;
 
-  /* set the image box to respect the exact same padding as the card */
+  /* match the card’s vertical padding for perfectly even spacing */
   top:    var(--card-pad-y);
-  bottom: var(--card-pad-y);   /* <-- makes top & bottom spacing identical */
+  bottom: var(--card-pad-y);
   right:  var(--card-pad-x);
   width:  var(--photo-w);       /* height is implied by top/bottom */
 
   border-radius: 16px;
   background-image: url("/personalwebsite/assets/img/pfp.jpg");
   background-size: cover;
-  background-position: center 6%;  /* nudge up so there’s less air above head */
+  background-position: center 6%;  /* nudge up to reduce air above head */
   background-repeat: no-repeat;
   border: 1px solid rgba(255,255,255,.15);
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
 }
+
 /* Left-side text (stays in the reserved area) */
 .page__title{
   margin:0 0 .6rem 0;
@@ -161,6 +184,66 @@ header.site-header,
   color:#cfd7de;
 }
 
+/* ===== HERO BUTTONS ===== */
+.page__lead .btn-hero {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.9rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ffffff !important;
+  border: 1.5px solid #ffffff;
+  background: transparent;
+  transition: background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.page__lead .btn-hero:hover,
+.page__lead .btn-hero:focus {
+  background: var(--site-primary-light);
+  border-color: var(--site-primary-light);
+  color: #0d1b2a !important;
+  box-shadow: 0 0 10px rgba(144, 224, 239, 0.3);
+  text-decoration: none;
+}
+
+/* Ensure we can place elements outside the card bounds */
+.page__hero--overlay .wrapper { overflow: visible; }
+
+/* SEE MORE BELOW — centered under the glass card, over the hero */
+.page__lead .see-more{
+  position: absolute;
+  left: 50%;
+  bottom: -6.5rem;                     /* tweak to sit perfectly in the gap */
+  transform: translateX(-50%);
+  z-index: 35;
+
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 700;
+  font-size: .95rem;
+  color: #e0e1dd;
+  text-decoration: none !important;
+  opacity: .95;
+}
+.page__lead .see-more::before,
+.page__lead .see-more::after{
+  content: "↓";
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.page__lead .see-more:hover,
+.page__lead .see-more:focus{
+  color: var(--site-primary-light);
+  text-decoration: none !important;
+}
+
 /* Mobile: stack with photo below text */
 @media (max-width: 720px){
   .page__hero--overlay{ padding-top:5rem; }
@@ -178,121 +261,9 @@ header.site-header,
   .page__title, .page__lead{ text-align:center; }
 }
 
-/* ===== FORCE FULL TRANSPARENT NAVBAR ===== */
-
-/* Remove all background layers Minimal Mistakes injects */
-.site-header,
-.page__header,
-.masthead,
-.masthead--fixed,
-.masthead__inner-wrap,
-.greedy-nav,
-.greedy-nav::before,
-.masthead::before {
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* Also clear the theme's default color variables */
-:root {
-  --global-header-background-color: transparent !important;
-  --global-nav-background-color: transparent !important;
-}
-
-/* Ensure the nav is placed above the hero image */
-header.site-header {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50 !important;
-}
-
-/* all nav bar words capitalized */
-.greedy-nav .site-title,
-.greedy-nav .visible-links a,
-.greedy-nav .hidden-links a {
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em;   /* optional: adds clean spacing between letters */
-}
-
-/* ===== HERO BUTTONS ===== */
-.page__lead .btn-hero {
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-  font-size: 0.85rem;          /* smaller text */
-  padding: 0.5rem 0.9rem;    /* less vertical & horizontal padding */
-  margin-top: 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #ffffff !important;  /* white text */
-  border: 1.5px solid #ffffff; /* thinner border */
-  background: transparent;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Hover effect */
-.page__lead .btn-hero:hover,
-.page__lead .btn-hero:focus {
-  background: var(--site-primary-light);
-  border-color: var(--site-primary-light);
-  color: #0d1b2a !important;  /* dark navy text on hover */
-  box-shadow: 0 0 10px rgba(144, 224, 239, 0.3);
-  text-decoration: none;
-}
-
-
-/* Ensure we can place elements outside the card bounds */
-.page__hero--overlay { position: relative; }
-.page__hero--overlay .wrapper { position: relative; overflow: visible; }
-
-/* SEE MORE BELOW — centered under the glass card, over the hero */
-.page__lead .see-more{
-  position: absolute;
-  left: 50%;
-  /* push it BELOW the card: negative offset from wrapper bottom */
-  bottom: -6.5rem;                     /* tweak this to sit perfectly in the gap */
-  transform: translateX(-50%);
-  z-index: 35;
-
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
-
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  font-weight: 700;
-  font-size: .95rem;
-  color: #e0e1dd;
-  text-decoration: none !important;    /* no underline, even on hover */
-  opacity: .95;
-}
-
-/* arrows on each side */
-.page__lead .see-more::before,
-.page__lead .see-more::after{
-  content: "↓";
-  font-size: 1.1rem;
-  line-height: 1;
-}
-
-/* hover color only — no underline */
-.page__lead .see-more:focus{
-  color: white;
-  text-decoration: none !important;
-}
-.page__lead .see-more:hover{
-   color: var(--site-primary-light);
-   text-decoration: none !important;
-}
-
 /* ========= Full-bleed sections with centered content ========= */
 
-/* full-bleed wrapper: makes the background stretch edge-to-edge
-   even though the page content has a max-width constraint */
+/* full-bleed wrapper: makes the background stretch edge-to-edge */
 .content-section{
   position: relative;
   left: 50%;
@@ -301,7 +272,7 @@ header.site-header {
   margin-right: -50vw;
   width: 100vw;
 
-  padding: 4rem 0;          /* vertical space for each section */
+  padding: 4rem 0;
   color: #e0e1dd;
 }
 
@@ -309,10 +280,10 @@ header.site-header {
 .section-inner{
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 2rem;          /* side gutter so text doesn't touch the edges */
+  padding: 0 2rem;
 }
 
-/* headings: all caps, no lines */
+/* headings: all caps, site font, no lines */
 .content-section h2{
   text-transform: uppercase;
   font-family: var(--font-main);
@@ -320,7 +291,7 @@ header.site-header {
   font-weight: 800;
   margin: 0 0 1rem 0;
   line-height: 1.15;
-  border: none;             /* ensure no theme underline */
+  border: none;
 }
 
 /* paragraph body */
@@ -350,7 +321,7 @@ header.site-header {
 
 /* title alignment rules per section */
 .section-extracurriculars h2{ text-align: left; }   /* photo on RIGHT  */
-.section-selfstudy h2{        text-align: left; }  /* photo on LEFT   */
+.section-selfstudy h2{        text-align: right; }  /* photo on LEFT   */
 .section-education h2,
 .section-mission  h2{         text-align: center; }
 
@@ -374,10 +345,10 @@ header.site-header {
 }
 
 /* Background palette tuned to your hero scheme */
-.section-education{       background: #10243e; } /* deep navy    */
-.section-extracurriculars{background: #173a5e; } /* midnight blue*/
-.section-selfstudy{       background: #0e314c; } /* teal-blue    */
-.section-mission{         background: #132f44; } /* dark steel   */
+.section-education{        background: #10243e; } /* deep navy    */
+.section-extracurriculars{ background: #173a5e; } /* midnight blue*/
+.section-selfstudy{        background: #0e314c; } /* teal-blue    */
+.section-mission{          background: #132f44; } /* dark steel   */
 
 /* responsive stacking */
 @media (max-width: 900px){
@@ -389,70 +360,3 @@ header.site-header {
   .section-selfstudy h2{ text-align: center; }
   .content-section p{ max-width: 100%; }
 }
-
-/* ========= Sticky full-bleed nav with fade state ========= */
-
-/* Make header fixed and full-bleed */
-.site-header,
-.masthead {
-  position: fixed !important;
-  top: 0; left: 0; right: 0;
-  width: 100vw;
-  z-index: 1000;
-}
-
-/* Content layer above the background */
-.masthead__inner-wrap,
-.greedy-nav { position: relative; z-index: 2; background: transparent !important; }
-
-/* Ensure the header can host the background layer */
-.site-header, .masthead { position: fixed !important; }
-
-/* --- STATE 1: top of page (transparent) --- */
-/* Explicitly set and SHOW the ::before, but transparent */
-html:not(.nav-scrolled) .site-header::before,
-html:not(.nav-scrolled) .masthead::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: transparent !important;
-  opacity: 0 !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* --- STATE 2: scrolled (colored background fades in) --- */
-/* Overrides earlier “force transparent !important” rules */
-html.nav-scrolled .site-header::before,
-html.nav-scrolled .masthead::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 27, 42, 0.94) !important; /* or use var(--site-bg-base) with opacity */
-  opacity: 1 !important;
-  transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
-  box-shadow: 0 6px 16px rgba(0,0,0,.25) !important;
-  backdrop-filter: saturate(120%) blur(4px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Link readability */
-.greedy-nav .site-title a,
-.greedy-nav .visible-links a { color: #e0e1dd !important; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
-.greedy-nav a:hover { color: var(--site-primary-light) !important; }
-
-/* Let hero touch the top */
-.initial-content { padding-top: 0 !important; }
-.page__hero--overlay { margin-top: 0 !important; position: relative; }
-
-/* Optional: ensure NO old global transparent overrides fight this */
-.site-header,
-.masthead,
-.masthead__inner-wrap,
-.greedy-nav { background: transparent; } /* no !important here */
-
-
-
