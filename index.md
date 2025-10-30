@@ -3,7 +3,7 @@ layout: splash
 title: "Adam Cheung"
 excerpt: >
   <span class="subtitle">Cybersecurity&nbsp;|&nbsp;Networking&nbsp;|&nbsp;Machine&nbsp;Learning</span>
-  <span class="mini">I design secure communication systems, analyze network traffic, and build ML-powered tooling.</span>
+  <span class="mini">Aspiring cybersecurity specialist blending machine learning, network engineering, and real-world competitions to build secure, resilient systems.</span>
 header:
   overlay_image: /assets/img/hero.jpg
   overlay_filter: 0.45
