@@ -1,82 +1,114 @@
+<!-- _includes/footer/custom.html -->
+
+<!-- Sticky Back to Top button -->
 <button id="backToTop" class="back-to-top" aria-label="Back to top">↑ BACK TO TOP</button>
+
 <script>
 (function () {
-  var root = document.documentElement;
-  var hero = document.querySelector('.page__hero--overlay');
-  var card = document.querySelector('.page__hero--overlay .wrapper');
+  var root    = document.documentElement;
+  var hero    = document.querySelector('.page__hero--overlay');
+  var card    = document.querySelector('.page__hero--overlay .wrapper');
   var seeMore = document.querySelector('.page__lead .see-more');
   var backBtn = document.getElementById('backToTop');
-  var THRESHOLD = 10;         // nav fade
-  var PARALLAX_RATIO = 0.35;  // hero moves 35% of scroll
 
+  var THRESHOLD = 10;        // navbar fade
+  var PARALLAX_RATIO = 0.35; // hero moves 35% of scroll
+
+  /* ===== Navbar fade (adds html.nav-scrolled) ===== */
   function updateNav(){
     if (window.scrollY > THRESHOLD) root.classList.add('nav-scrolled');
     else root.classList.remove('nav-scrolled');
   }
 
+  /* ===== Parallax (hero lags scroll) ===== */
   function updateParallax(){
     if (!hero) return;
     var offset = Math.round(window.scrollY * PARALLAX_RATIO);
     hero.style.setProperty('--hero-parallax', offset + 'px');
   }
 
+  /* ===== SEE MORE fade + Back-to-Top visibility ===== */
   function updateUI(){
     var vh = Math.max(1, window.innerHeight);
     var y  = window.scrollY || 0;
 
-    // SEE MORE fades out across first ~40% of viewport height
     if (seeMore){
       var hidden = y > (vh * 0.4);
       seeMore.classList.toggle('see-more-hidden', hidden);
     }
-
-    // Back-to-top appears after ~60% of viewport height
     if (backBtn){
       backBtn.classList.toggle('show', y > (vh * 0.6));
     }
   }
 
-  // Tilt: set CSS vars based on pointer inside the card
-  function handleTilt(e){
-    if (!card) return;
-    var r = card.getBoundingClientRect();
-    var cx = r.left + r.width/2;
-    var cy = r.top  + r.height/2;
-    var px = (e.clientX - cx) / (r.width/2);   // -1 .. 1
-    var py = (e.clientY - cy) / (r.height/2);  // -1 .. 1
-    // limit and map to degrees
-    var max = 6; // degrees
-    var tiltX = (-py * max).toFixed(2) + 'deg';
-    var tiltY = ( px * max).toFixed(2) + 'deg';
-    card.style.setProperty('--tiltX', tiltX);
-    card.style.setProperty('--tiltY', tiltY);
+  /* ===== Smooth scroll to top ===== */
+  backBtn && backBtn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ===== Portrait tilt ONLY when pointer is over the photo area ===== */
+  function getPhotoRect(){
+    if (!card) return null;
+    var r    = card.getBoundingClientRect();
+    var cs   = getComputedStyle(card);
+    var padX = parseFloat(cs.getPropertyValue('--card-pad-x')) || 0;
+    var padY = parseFloat(cs.getPropertyValue('--card-pad-y')) || 0;
+    var pW   = parseFloat(cs.getPropertyValue('--photo-w'))    || 0;
+
+    var left   = r.right - padX - pW;
+    var right  = r.right - padX;
+    var top    = r.top + padY;
+    var bottom = r.bottom - padY;
+
+    return { left, right, top, bottom, width: pW, height: (bottom - top) };
   }
+
+  function pointerInRect(e, rect){
+    return e.clientX >= rect.left && e.clientX <= rect.right &&
+           e.clientY >= rect.top  && e.clientY <= rect.bottom;
+  }
+
+  function applyTilt(e){
+    if (!card) return;
+    var rect = getPhotoRect();
+    if (!rect || !pointerInRect(e, rect)) {
+      resetTilt();
+      return;
+    }
+    var nx = ((e.clientX - rect.left) / rect.width)  * 2 - 1; // -1..1
+    var ny = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+    var max = 6; // degrees
+    card.style.setProperty('--tiltX', (-ny * max).toFixed(2) + 'deg');
+    card.style.setProperty('--tiltY', ( nx * max).toFixed(2) + 'deg');
+  }
+
   function resetTilt(){
     if (!card) return;
     card.style.setProperty('--tiltX', '0deg');
     card.style.setProperty('--tiltY', '0deg');
   }
 
-  // listeners
+  // Global listeners (tilt only engages when over photo hitbox)
+  window.addEventListener('mousemove', applyTilt, { passive:true });
+  window.addEventListener('mouseleave', resetTilt, { passive:true });
+
+  // Prevent card zoom when SEE MORE is hovered
+  if (seeMore && card){
+    seeMore.addEventListener('mouseenter', function(){ card.classList.add('no-zoom'); });
+    seeMore.addEventListener('mouseleave', function(){ card.classList.remove('no-zoom'); });
+  }
+
+  // Scroll/resize lifecycle
   document.addEventListener('scroll', function(){
     updateNav(); updateParallax(); updateUI();
   }, { passive:true });
+
   window.addEventListener('resize', function(){
-    updateParallax(); updateUI();
+    updateParallax();
   }, { passive:true });
+
   document.addEventListener('DOMContentLoaded', function(){
     updateNav(); updateParallax(); updateUI();
   });
-
-  backBtn && backBtn.addEventListener('click', function(){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // tilt events on the card (affects the ::after image)
-  if (card){
-    card.addEventListener('mousemove', handleTilt);
-    card.addEventListener('mouseleave', resetTilt);
-    card.addEventListener('mouseenter', handleTilt);
-  }
 })();
 </script>
