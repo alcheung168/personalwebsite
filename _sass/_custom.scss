@@ -355,27 +355,35 @@ header.site-header {
 }
 
 /* title alignment rules per section */
-.section-extracurriculars h2,  /* photo on RIGHT */
-.section-selfstudy h2{        text-align: left; }  /* photo on LEFT  */
+.section-extracurriculars h2{ text-align: left; }   /* photo on RIGHT  */
+.section-selfstudy h2{        text-align: right; }  /* photo on LEFT   */
 .section-education h2,
-.section-mission h2{          text-align: center; }
+.section-mission  h2{         text-align: center; }
 
-/* text alignment for education and mission */
+/* make the whole inner block centered for Education & Mission */
+.section-education .section-inner,
+.section-mission  .section-inner{
+  text-align: center;
+}
+
+/* center the body copy and keep block centered */
 .section-education p,
-.section-education h2 {
-  text-align: center;  
+.section-mission  p{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* reverse column order when photo is on the LEFT (self-study) */
 .image-left .two-col{
-  grid-template-columns: .9fr 1.1fr;    /* media/text split */
+  grid-template-columns: .9fr 1.1fr; /* media/text split */
 }
 
 /* Background palette tuned to your hero scheme */
-.section-education{      background: #10243e; }  /* deep navy */
-.section-extracurriculars{ background: #173a5e; }/* midnight blue */
-.section-selfstudy{      background: #0e314c; }  /* teal-blue */
-.section-mission{        background: #132f44; }  /* dark steel */
+.section-education{       background: #10243e; } /* deep navy    */
+.section-extracurriculars{background: #173a5e; } /* midnight blue*/
+.section-selfstudy{       background: #0e314c; } /* teal-blue    */
+.section-mission{         background: #132f44; } /* dark steel   */
 
 /* responsive stacking */
 @media (max-width: 900px){
@@ -387,5 +395,6 @@ header.site-header {
   .section-selfstudy h2{ text-align: center; }
   .content-section p{ max-width: 100%; }
 }
+
 
 
