@@ -218,31 +218,39 @@ header.site-header {
   z-index: 50 !important;
 }
 
-/* ===== HERO BUTTONS ===== */
-.hero-buttons {
-  margin-top: 1.8rem;           /* space below your description */
+/* ===== HERO BUTTONS INSIDE GLASS CARD ===== */
+.page__lead .hero-buttons {
+  margin-top: 1.25rem;
   display: flex;
-  gap: 1.25rem;                 /* space between buttons */
+  gap: 1rem;
+  justify-content: flex-start;   /* left aligned */
+  align-items: center;
 }
 
-.btn-hero {
+.page__lead .btn-hero {
   display: inline-block;
-  text-transform: uppercase;    /* all caps */
-  letter-spacing: 0.05em;
+  text-transform: uppercase;     /* ALL CAPS */
+  letter-spacing: 0.06em;
   font-weight: 600;
-  padding: 0.6rem 1.4rem;
-  border: 2px solid var(--site-primary-light);
-  color: var(--site-primary-light);
-  background: transparent;
-  border-radius: 8px;
-  transition: all 0.25s ease;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
   text-decoration: none;
+
+  /* initial state: white text + white border, transparent fill */
+  color: #ffffff !important;
+  border: 2px solid #ffffff;
+  background: transparent;
+
+  transition: background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
-/* Hover effect — fills with color, text becomes dark */
-.btn-hero:hover {
+/* hover: fill with nav-accent color, flip text to dark */
+.page__lead .btn-hero:hover,
+.page__lead .btn-hero:focus {
   background: var(--site-primary-light);
-  color: #0d1b2a;               /* dark navy text for contrast */
-  box-shadow: 0 0 12px rgba(144, 224, 239, 0.4);
+  border-color: var(--site-primary-light);
+  color: #0d1b2a !important;        /* dark navy for contrast */
+  box-shadow: 0 0 14px rgba(144, 224, 239, 0.35);
+  outline: none;
 }
 
