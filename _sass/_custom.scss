@@ -104,7 +104,7 @@ header.site-header,
 
   /* reserve space for the photo panel on the right */
   padding-right: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
-  min-height: auto;
+  min-height: clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.25 + 1rem);
   height: auto;
 }
 
@@ -122,7 +122,7 @@ header.site-header,
   border-radius: 16px;
   background-image: url("/personalwebsite/assets/img/pfp.jpg");
   background-size: cover;
-  background-position: center 15%; /* keeps your head visible */
+  background-position: center 6%; /* keeps your head visible */
   background-repeat: no-repeat;
   border: 1px solid rgba(255,255,255,.15);
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
