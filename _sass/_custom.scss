@@ -218,6 +218,15 @@ header.site-header {
   z-index: 50 !important;
 }
 
+/* all nav bar words capitalized */
+.greedy-nav .site-title,
+.greedy-nav .visible-links a,
+.greedy-nav .hidden-links a {
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em;   /* optional: adds clean spacing between letters */
+}
+
+
 /* ===== HERO BUTTONS INSIDE GLASS CARD ===== */
 .page__lead .hero-buttons {
   margin-top: 1.25rem;
