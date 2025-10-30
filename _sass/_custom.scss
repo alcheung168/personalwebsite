@@ -360,3 +360,22 @@ html.nav-scrolled .masthead::before {
   .section-selfstudy h2{ text-align: center; }
   .content-section p{ max-width: 100%; }
 }
+
+/* ===== REMOVE NAVBAR BOTTOM LINE / BORDER ===== */
+.site-header,
+.masthead {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Some Minimal Mistakes skins add it via a pseudo-element — remove that too */
+.site-header::after,
+.masthead::after,
+.site-header::before,
+.masthead::before {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  content: none !important;
+}
+
