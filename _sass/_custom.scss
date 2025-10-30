@@ -295,3 +295,71 @@ header.site-header {
    color: var(--site-primary-light);
    text-decoration: none !important;
 }
+
+/* ----- GENERAL SECTION STYLES ----- */
+.content-section {
+  padding: 4rem 2rem;
+  color: #e0e1dd;
+  text-align: left;
+}
+
+.content-section h2 {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.content-section p {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* Make photo + text side-by-side for sections with images */
+.section-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-content img {
+  width: 40%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* ----- BACKGROUND COLORS THAT MATCH YOUR HERO ----- */
+.section-education {
+  background: #10243e;          /* dark navy */
+}
+
+.section-extracurriculars {
+  background: #173a5e;          /* slightly lighter blue */
+}
+
+.section-selfstudy {
+  background: #0e314c;          /* deep teal-blue */
+}
+
+.section-mission {
+  background: #132f44;          /* dark steel */
+}
+
+/* ----- RESPONSIVE: stack image below text on mobile ----- */
+@media (max-width: 768px) {
+  .section-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section-content img {
+    width: 80%;
+  }
+}
+
