@@ -72,6 +72,8 @@ a:hover,a:focus{ color:var(--site-primary-light); }
   transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
   z-index: 1;
   pointer-events: none;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 /* When scrolled: fade background in + subtle shadow/glass */
@@ -378,20 +380,4 @@ html.nav-scrolled .masthead::before {
   box-shadow: none !important;
 }
 
-/* IMPORTANT: do NOT blank ::before — it’s the fade-in background layer */
-/* Leave .site-header::before / .masthead::before alone so this still works:
-   html.nav-scrolled .site-header::before,
-   html.nav-scrolled .masthead::before { opacity:1; … } */
-
-
-/* Some Minimal Mistakes skins add it via a pseudo-element — remove that too */
-.site-header::after,
-.masthead::after,
-.site-header::before,
-.masthead::before {
-  border-bottom: none !important;
-  box-shadow: none !important;
-  background: none !important;
-  content: none !important;
-}
-
+/* IMPORTANT: do NOT touch ::before — it’s the fade-in background layer */
