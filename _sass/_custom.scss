@@ -104,7 +104,7 @@ header.site-header,
 
   /* reserve space for the photo panel on the right */
   padding-right: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
-  min-height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.5 + 1rem);
+  min-height: auto;
   height: auto;
 }
 
