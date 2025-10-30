@@ -422,3 +422,10 @@ html.nav-scrolled .masthead::before {
   transform: translate(-50%, 0);
   opacity: 1;
 }
+
+/* Prevent card zoom when SEE MORE is hovered */
+.page__hero--overlay .wrapper.no-zoom:hover{
+  transform: none;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35); /* same as non-hover */
+}
+
