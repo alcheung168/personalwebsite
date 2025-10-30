@@ -260,7 +260,7 @@ header.site-header {
   position: absolute;
   left: 50%;
   /* push it BELOW the card: negative offset from wrapper bottom */
-  bottom: -2.0rem;                     /* tweak this to sit perfectly in the gap */
+  bottom: -2.5rem;                     /* tweak this to sit perfectly in the gap */
   transform: translateX(-50%);
   z-index: 35;
 
@@ -286,8 +286,11 @@ header.site-header {
 }
 
 /* hover color only — no underline */
-.page__lead .see-more:hover,
 .page__lead .see-more:focus{
   color: white;
   text-decoration: none !important;
+}
+.page__lead .see-more:hover{
+   color: var(--site-primary-light);
+   text-decoration: none !important;
 }
