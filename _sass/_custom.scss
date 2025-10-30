@@ -18,6 +18,14 @@
   --photo-min: 260px;
   --photo-max: 360px;
   --photo-frac: 32%;     /* ~ one third of card width */
+
+  /* derive photo width/height */
+  --photo-w: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
+  --photo-ar: 1.25;                      /* photo taller than wide (1.25 = 5:4) */
+  --photo-h: calc(var(--photo-w) * var(--photo-ar));
+
+  --card-pad-y: 2.0rem;                  /* top & bottom padding of the glass card */
+  --card-pad-x: 2.25rem;                 /* left padding; right is computed below */
 }
 
 /* Global */
@@ -82,54 +90,44 @@ header.site-header,
   background-repeat:no-repeat;
 }
 
-/* ===== GLASS CARD =====
-   We DON’T add extra HTML. Instead:
-   - Make the wrapper a positioned container
-   - Reserve space on the RIGHT for the photo using padding-right
-   - Paint the photo as a ::after pseudo-element that fills that space
-*/
+/* ---------- GLASS CARD CONTAINER ---------- */
 .page__hero--overlay .wrapper{
-  position:relative;
-  background:rgba(10,15,31,.42);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:0 10px 40px rgba(0,0,0,.35);
-  border-radius:18px;
+  position: relative;
+  /* use the same padding everywhere */
+  padding: var(--card-pad-y) var(--card-pad-x);
+  /* reserve the right column (photo width + right padding) */
+  padding-right: calc(var(--photo-w) + var(--card-pad-x));
 
-  max-width:1100px;                    /* shrink the card */
-  margin:0 auto;
-  padding:3rem 2.25rem;
+  /* ensure the card is at least tall enough for the photo + equal top/btm gaps */
+  min-height: calc(var(--photo-h) + (var(--card-pad-y) * 2));
 
-  /* reserve space for the photo panel on the right */
-  padding-right: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
-  min-height: auto;
-  height: auto;
+  background: rgba(10,15,31,.42);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  border-radius: 18px;
 }
 
-/* Photo panel — fills entire right side of the card */
-.page__hero--overlay .wrapper::after {
+/* ---------- PHOTO PSEUDO-ELEMENT (EVEN GAPS) ---------- */
+.page__hero--overlay .wrapper::after{
   content:"";
-  position:absolute;
-  top: 1rem;
-  bottom: 1rem;
-  right: 1rem;
+  position: absolute;
 
-  /* keep same width but control height directly */
-  width: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
-  height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.5); /* taller than wide */
+  /* set the image box to respect the exact same padding as the card */
+  top:    var(--card-pad-y);
+  bottom: var(--card-pad-y);   /* <-- makes top & bottom spacing identical */
+  right:  var(--card-pad-x);
+  width:  var(--photo-w);       /* height is implied by top/bottom */
 
   border-radius: 16px;
   background-image: url("/personalwebsite/assets/img/pfp.jpg");
   background-size: cover;
-  background-position: top center; /* keeps your head visible */
+  background-position: center 6%;  /* nudge up so there’s less air above head */
   background-repeat: no-repeat;
   border: 1px solid rgba(255,255,255,.15);
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
 }
-
-
-
 /* Left-side text (stays in the reserved area) */
 .page__title{
   margin:0 0 .6rem 0;
