@@ -160,13 +160,22 @@ html.nav-scrolled .masthead::before {
   overflow: visible;
 
   /* 3D context for image tilt + zoom-in on hover */
+  --zoom: 1;                              /* NEW: zoom factor */
+  transform: scale(var(--zoom));          /* drive zoom via var */
   transform-style: preserve-3d;
   perspective: 800px;
   transition: transform .22s ease, box-shadow .22s ease;
 }
 .page__hero--overlay .wrapper:hover{
-  transform: scale(1.03);
+  --zoom: 1.03;                           /* NEW: zoom on hover */
   box-shadow: 0 16px 54px rgba(0,0,0,.45);
+}
+
+/* When we temporarily want *no* zoom (e.g., see-more hover), force 1 */
+.page__hero--overlay .wrapper.no-zoom,
+.page__hero--overlay .wrapper.no-zoom:hover{
+  --zoom: 1 !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);   /* back to base */
 }
 
 /* ---------- PHOTO PSEUDO-ELEMENT (TILTS TOWARD MOUSE) ---------- */
@@ -250,7 +259,7 @@ html.nav-scrolled .masthead::before {
   position: absolute;
   left: 50%;
   bottom: -6.5rem;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(calc(1 / var(--zoom)));
   z-index: 35;
   display: inline-flex;
   align-items: center;
