@@ -115,9 +115,9 @@ header.site-header,
   right: 1.25rem;
   width: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
   border-radius:16px;
-  background-image:url("/personalwebsite/assets/img/pfp.jpg"); /* project-site path */
-  background-size:cover;               /* fills the frame */
-  background-position:center;
+  background-image:url("/personalwebsite/assets/img/pfp.jpg");
+  background-size:cover;
+  background-position:center 15%;   /* <- adjust this % to taste */
   background-repeat:no-repeat;
   border:1px solid rgba(255,255,255,.15);
   box-shadow:0 12px 40px rgba(0,0,0,.35);
