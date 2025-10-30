@@ -31,41 +31,45 @@ body{
 a{ color:var(--site-primary-light); text-decoration:none; }
 a:hover,a:focus{ color:var(--site-primary); }
 
-/* ===== NAVBAR — really transparent & floating ===== */
+/* ===== OVERLAY NAVBAR ===== */
+
+/* Make sure the hero image reaches the top of the viewport */
+.initial-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Let the hero background start right at the top */
+.page__hero--overlay {
+  margin-top: 0 !important;
+  padding-top: 4rem;   /* small space so card doesn’t sit under nav */
+}
+
+/* Position the masthead directly over the hero */
 header.site-header,
-.page__header,
 .masthead,
 .masthead--fixed,
-.masthead__inner-wrap,
-.greedy-nav{
-  background:transparent !important;
-  border:0 !important;
-  box-shadow:none !important;
-}
-.masthead::before{ background:transparent !important; }
-
-header.masthead{
-  position:fixed !important; top:0; left:0; right:0;
-  z-index:40 !important;
+.masthead__inner-wrap {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 50 !important; /* ensures it layers above the hero */
 }
 
-.greedy-nav{
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  font-weight:300;
-}
+/* Keep navigation readable over image */
 .greedy-nav .site-title,
-.greedy-nav .site-title a,
-.greedy-nav .visible-links a,
-.greedy-nav .hidden-links a{
-  background:transparent !important;
-  color:var(--text-color) !important;
-  text-shadow:0 1px 2px rgba(0,0,0,.55);
+.greedy-nav .visible-links a {
+  color: #e0e1dd !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
-.greedy-nav a:hover,
-.greedy-nav a:focus,
-.greedy-nav .active>a{ color:var(--site-primary-light) !important; }
-.greedy-nav .toggle-nav{ color:var(--text-color) !important; }
+.greedy-nav a:hover {
+  color: #90e0ef !important;
+}
+
 
 /* ===== HERO — make the image touch the top ===== */
 .initial-content{ padding-top:0 !important; margin-top:0 !important; }
