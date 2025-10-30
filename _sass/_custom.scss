@@ -261,31 +261,40 @@ header.site-header {
   outline: none;
 }
 
-/* ---- “SEE MORE BELOW” prompt under the glass card ---- */
-.below-hero-prompt {
-  margin: 1.25rem auto 0;           /* space above the body; adjust to taste */
-  max-width: 1100px;                /* align with your card width */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .75rem;
+/* ---- SEE MORE BELOW prompt over hero ---- */
+.see-more {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;                 /* space from bottom of hero */
+  transform: translateX(-50%);
   color: #e0e1dd;
   text-transform: uppercase;
-  letter-spacing: .12em;
+  letter-spacing: 0.12em;
   font-weight: 600;
-  opacity: .9;
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  text-decoration: none !important;   /* removes underline */
 }
 
-/* down arrows on each side */
-.below-hero-prompt::before,
-.below-hero-prompt::after {
-  content: "\2193";                 /* Unicode down arrow */
+/* arrows on each side */
+.see-more::before,
+.see-more::after {
+  content: "↓";
   font-size: 1.1rem;
   line-height: 1;
-  opacity: .9;
+  opacity: 0.9;
 }
 
-/* optional hover glow */
-.below-hero-prompt:hover {
+/* hover style — color only, no underline */
+.see-more:hover,
+.see-more:focus {
   color: var(--site-primary-light);
+  text-decoration: none !important;   /* ensure no underline on hover */
 }
+
