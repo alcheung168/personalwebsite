@@ -1,52 +1,82 @@
-<!-- Sticky Back to Top -->
-<button id="backToTop" class="back-to-top" aria-label="Back to top">
-  ↑ BACK TO TOP
-</button>
-
+<button id="backToTop" class="back-to-top" aria-label="Back to top">↑ BACK TO TOP</button>
 <script>
 (function () {
   var root = document.documentElement;
+  var hero = document.querySelector('.page__hero--overlay');
+  var card = document.querySelector('.page__hero--overlay .wrapper');
+  var seeMore = document.querySelector('.page__lead .see-more');
+  var backBtn = document.getElementById('backToTop');
+  var THRESHOLD = 10;         // nav fade
+  var PARALLAX_RATIO = 0.35;  // hero moves 35% of scroll
 
-  // existing nav fade toggle (keep if you already have it)
-  var THRESHOLD = 10;
-  function updateNav() {
+  function updateNav(){
     if (window.scrollY > THRESHOLD) root.classList.add('nav-scrolled');
     else root.classList.remove('nav-scrolled');
   }
 
-  // see-more fade + back-to-top visibility
-  var seeMore = document.querySelector('.page__lead .see-more');
-  var backBtn = document.getElementById('backToTop');
-  var heroH = Math.max(1, Math.round(window.innerHeight * 0.68)); // ~ --hero-h
+  function updateParallax(){
+    if (!hero) return;
+    var offset = Math.round(window.scrollY * PARALLAX_RATIO);
+    hero.style.setProperty('--hero-parallax', offset + 'px');
+  }
 
-  function updateUI() {
-    var y = window.scrollY || 0;
+  function updateUI(){
+    var vh = Math.max(1, window.innerHeight);
+    var y  = window.scrollY || 0;
 
-    // Fade SEE MORE from 1 -> 0 during the first ~40% of hero
-    if (seeMore) {
-      var fadeEnd = heroH * 0.4;
-      var op = 1 - Math.min(1, Math.max(0, y / fadeEnd));
-      seeMore.style.opacity = op.toFixed(3);
-      seeMore.style.pointerEvents = op <= 0 ? 'none' : 'auto';
+    // SEE MORE fades out across first ~40% of viewport height
+    if (seeMore){
+      var hidden = y > (vh * 0.4);
+      seeMore.classList.toggle('see-more-hidden', hidden);
     }
 
-    // Show the Back-to-Top button after ~60% of hero height
-    if (backBtn) {
-      if (y > heroH * 0.6) backBtn.classList.add('show');
-      else backBtn.classList.remove('show');
+    // Back-to-top appears after ~60% of viewport height
+    if (backBtn){
+      backBtn.classList.toggle('show', y > (vh * 0.6));
     }
   }
 
-  // smooth scroll to top
-  if (backBtn) {
-    backBtn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+  // Tilt: set CSS vars based on pointer inside the card
+  function handleTilt(e){
+    if (!card) return;
+    var r = card.getBoundingClientRect();
+    var cx = r.left + r.width/2;
+    var cy = r.top  + r.height/2;
+    var px = (e.clientX - cx) / (r.width/2);   // -1 .. 1
+    var py = (e.clientY - cy) / (r.height/2);  // -1 .. 1
+    // limit and map to degrees
+    var max = 6; // degrees
+    var tiltX = (-py * max).toFixed(2) + 'deg';
+    var tiltY = ( px * max).toFixed(2) + 'deg';
+    card.style.setProperty('--tiltX', tiltX);
+    card.style.setProperty('--tiltY', tiltY);
+  }
+  function resetTilt(){
+    if (!card) return;
+    card.style.setProperty('--tiltX', '0deg');
+    card.style.setProperty('--tiltY', '0deg');
   }
 
   // listeners
-  document.addEventListener('scroll', function () { updateNav(); updateUI(); }, { passive: true });
-  window.addEventListener('resize', function(){ updateUI(); }, { passive: true });
-  document.addEventListener('DOMContentLoaded', function () { updateNav(); updateUI(); });
+  document.addEventListener('scroll', function(){
+    updateNav(); updateParallax(); updateUI();
+  }, { passive:true });
+  window.addEventListener('resize', function(){
+    updateParallax(); updateUI();
+  }, { passive:true });
+  document.addEventListener('DOMContentLoaded', function(){
+    updateNav(); updateParallax(); updateUI();
+  });
+
+  backBtn && backBtn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // tilt events on the card (affects the ::after image)
+  if (card){
+    card.addEventListener('mousemove', handleTilt);
+    card.addEventListener('mouseleave', resetTilt);
+    card.addEventListener('mouseenter', handleTilt);
+  }
 })();
 </script>
