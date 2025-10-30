@@ -18,7 +18,7 @@ author_profile: false
 <section id="education" class="content-section section-education">
   <div class="section-inner">
     <h2>EDUCATION</h2>
-    <p>B.S. Computer Science, Minor in Cybersecurity expected in May 2026. Currently enrolled in the Cyber Defender Pathway, a program that encourages extracurricular activities and awards digital badges.</p>
+    <p>B.S. Computer Science, Minor in Cybersecurity expected in May 2026. Currently enrolled in the Cyber Defender Pathway, a program that encourages extracurricular activities and awards digital badges.</p><br>
     <p>Planning to pursue a Master's Degree in Cybersecurity at CPP in Fall 2026. </p>
   </div>
 </section>
