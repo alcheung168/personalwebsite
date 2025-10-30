@@ -397,57 +397,69 @@ header.site-header {
   .content-section p{ max-width: 100%; }
 }
 
-/* ========== Sticky, full-bleed nav with fade-in/out background ========== */
+/* ========= Sticky full-bleed nav with fade state ========= */
 
-/* Make header fixed and full-width */
+/* Make header fixed and full-bleed */
 .site-header,
 .masthead {
   position: fixed !important;
   top: 0; left: 0; right: 0;
-  width: 100vw;           /* full-bleed across viewport */
+  width: 100vw;
   z-index: 1000;
-  background: transparent !important; /* base is transparent; bg handled by ::before */
 }
 
-/* Ensure inner content sits above the background layer */
+/* Content layer above the background */
 .masthead__inner-wrap,
 .greedy-nav { position: relative; z-index: 2; background: transparent !important; }
 
-/* Full-bleed background layer that fades */
-.site-header::before,
-.masthead::before {
+/* Ensure the header can host the background layer */
+.site-header, .masthead { position: fixed !important; }
+
+/* --- STATE 1: top of page (transparent) --- */
+/* Explicitly set and SHOW the ::before, but transparent */
+html:not(.nav-scrolled) .site-header::before,
+html:not(.nav-scrolled) .masthead::before {
   content: "";
   position: absolute;
-  inset: 0;               /* fill the entire header box */
-  background: rgba(13, 27, 42, 0.94);  /* matches your body bg (var(--site-bg-base)) */
-  opacity: 0;             /* invisible at the top */
-  transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
-  z-index: 1;             /* behind the nav links, above the page */
-  pointer-events: none;   /* clicks pass through */
-  box-shadow: none;
-  backdrop-filter: none;
+  inset: 0;
+  background: transparent !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* When scrolled: fade the background in (and add subtle glass/shadow) */
+/* --- STATE 2: scrolled (colored background fades in) --- */
+/* Overrides earlier “force transparent !important” rules */
 html.nav-scrolled .site-header::before,
 html.nav-scrolled .masthead::before {
-  opacity: 1;
-  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 27, 42, 0.94) !important; /* or use var(--site-bg-base) with opacity */
+  opacity: 1 !important;
+  transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25) !important;
   backdrop-filter: saturate(120%) blur(4px);
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Readable links in both states */
+/* Link readability */
 .greedy-nav .site-title a,
-.greedy-nav .visible-links a {
-  color: #e0e1dd !important;
-  text-shadow: 0 1px 2px rgba(0,0,0,.5);
-}
+.greedy-nav .visible-links a { color: #e0e1dd !important; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
 .greedy-nav a:hover { color: var(--site-primary-light) !important; }
 
-/* Keep the hero touching the top (no push-down) */
+/* Let hero touch the top */
 .initial-content { padding-top: 0 !important; }
 .page__hero--overlay { margin-top: 0 !important; position: relative; }
 
+/* Optional: ensure NO old global transparent overrides fight this */
+.site-header,
+.masthead,
+.masthead__inner-wrap,
+.greedy-nav { background: transparent; } /* no !important here */
 
 
 
