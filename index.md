@@ -15,6 +15,8 @@ header:
   overlay_color: "#0a0f1f"
 author_profile: false
 ---
+<div class="hero-spacer" aria-hidden="true"></div>
+
 <section id="education" class="content-section section-education">
   <div class="section-inner">
     <h2>EDUCATION</h2>
