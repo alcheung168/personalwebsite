@@ -104,7 +104,7 @@ header.site-header,
 
   /* reserve space for the photo panel on the right */
   padding-right: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
-  min-height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.25 + 1rem);
+  min-height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.5 + 1rem);
   height: auto;
 }
 
@@ -117,7 +117,7 @@ header.site-header,
 
   /* keep same width but control height directly */
   width: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
-  height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.25); /* taller than wide */
+  height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.5); /* taller than wide */
 
   border-radius: 16px;
   background-image: url("/personalwebsite/assets/img/pfp.jpg");
