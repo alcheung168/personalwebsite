@@ -1,6 +1,6 @@
 /* ===========================================================
    Transparent Nav over Full-Bleed Hero + Glass Card (Left Text, Right Photo)
-   Font: Montserrat (Thin/Light/Bold)
+   Font: Montserrat (Thin/Light/Bold) + Parallax + Hover Effects
    =========================================================== */
 
 /* Font */
@@ -14,8 +14,12 @@
   --text-color:#e0e1dd;
   --font-main:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
-  /* fixed hero height (visible area while it stays put) */
-  --hero-h: 68vh;
+  /* hero parallax offset (set by JS) */
+  --hero-parallax: 0px;
+
+  /* hover tilt (set by JS) */
+  --tiltX: 0deg;
+  --tiltY: 0deg;
 
   /* photo panel size (right side of card) */
   --photo-min: 260px;
@@ -116,35 +120,30 @@ html.nav-scrolled .masthead::before {
 .initial-content { padding-top: 0 !important; margin-top: 0 !important; }
 
 /* =======================================================================
-   FIXED HERO LAYER (stays put) + GLASS CARD
+   HERO (parallax) + GLASS CARD
    ======================================================================= */
 
-/* Hero stays fixed; sections scroll over it */
+/* Parallax: hero scrolls slower than page via transform set from JS */
 .page__hero--overlay{
-  position: fixed !important;
-  top: 0; left: 0; right: 0;
-  height: var(--hero-h);
+  /* normal flow (NOT fixed), but we translate it a bit each scroll */
+  transform: translateY(var(--hero-parallax));
+  will-change: transform;
+  transition: transform .06s linear; /* tiny smoothing */
   margin-top: 0 !important;
-  padding-top: 6rem; /* room for the fixed nav above the card */
-  background-size: cover !important;
-  background-position: center center;
-  background-repeat: no-repeat;
-  z-index: 0; /* hero underneath page content */
+
+  min-height:60vh;                     /* visible area */
+  padding-top:6rem;                    /* space so the card isn’t under nav */
+  background-size:cover !important;
+  background-position:center center;
+  background-repeat:no-repeat;
+  position: relative;
+  z-index: 0;                          /* below the content sections */
 }
 
-/* Spacer gives the document room to scroll past the fixed hero */
-.hero-spacer {
-  height: var(--hero-h);
-  width: 100%;
-}
-
-/* Make sure the rest of the page stacks above the fixed hero */
+/* ensure sections layer above the hero as it lags behind */
 .content-section,
 .page__content,
-.page__inner-wrap {
-  position: relative;
-  z-index: 1;
-}
+.page__inner-wrap { position: relative; z-index: 1; }
 
 /* ---------- GLASS CARD CONTAINER ---------- */
 .page__hero--overlay .wrapper{
@@ -159,9 +158,18 @@ html.nav-scrolled .masthead::before {
   box-shadow: 0 10px 40px rgba(0,0,0,.35);
   border-radius: 18px;
   overflow: visible;
+
+  /* 3D context for image tilt + zoom-in on hover */
+  transform-style: preserve-3d;
+  perspective: 800px;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.page__hero--overlay .wrapper:hover{
+  transform: scale(1.03);
+  box-shadow: 0 16px 54px rgba(0,0,0,.45);
 }
 
-/* ---------- PHOTO PSEUDO-ELEMENT (EVEN GAPS) ---------- */
+/* ---------- PHOTO PSEUDO-ELEMENT (TILTS TOWARD MOUSE) ---------- */
 .page__hero--overlay .wrapper::after{
   content:"";
   position: absolute;
@@ -169,13 +177,20 @@ html.nav-scrolled .masthead::before {
   bottom: var(--card-pad-y);
   right:  var(--card-pad-x);
   width:  var(--photo-w);
+
   border-radius: 16px;
   background-image: url("/personalwebsite/assets/img/pfp.jpg");
   background-size: cover;
   background-position: center 6%;
   background-repeat: no-repeat;
+
   border: 1px solid rgba(255,255,255,.15);
   box-shadow: 0 12px 40px rgba(0,0,0,.35);
+
+  /* Tilt via CSS variables set by JS */
+  transform: perspective(800px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
+  transform-origin: center;
+  transition: transform .10s ease; /* snappy, but smooth enough */
 }
 
 /* Left-side text */
@@ -230,7 +245,7 @@ html.nav-scrolled .masthead::before {
   text-decoration: none;
 }
 
-/* ===== SEE MORE: centered under the card, fades out via class ===== */
+/* ===== SEE MORE (supports fade-out via class) ===== */
 .page__lead .see-more{
   position: absolute;
   left: 50%;
@@ -260,7 +275,6 @@ html.nav-scrolled .masthead::before {
   color: var(--site-primary-light);
   text-decoration: none !important;
 }
-/* JS should toggle this class as the user scrolls */
 .page__lead .see-more.see-more-hidden{
   opacity: 0;
   pointer-events: none;
@@ -279,6 +293,7 @@ html.nav-scrolled .masthead::before {
     width: clamp(160px, 70vw, 260px);
     height: clamp(200px, 90vw, 320px);
     margin:1rem auto 0 auto;
+    transform: none; /* no tilt on tiny screens */
   }
   .page__title, .page__lead{ text-align:center; }
 }
