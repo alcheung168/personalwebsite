@@ -251,40 +251,43 @@ header.site-header {
 }
 
 
-/* ---- SEE MORE BELOW prompt over hero ---- */
-.see-more {
+/* Ensure we can place elements outside the card bounds */
+.page__hero--overlay { position: relative; }
+.page__hero--overlay .wrapper { position: relative; overflow: visible; }
+
+/* SEE MORE BELOW — centered under the glass card, over the hero */
+.page__lead .see-more{
   position: absolute;
   left: 50%;
-  bottom: 1.5rem;                 /* space from bottom of hero */
+  /* push it BELOW the card: negative offset from wrapper bottom */
+  bottom: -2.0rem;                     /* tweak this to sit perfectly in the gap */
   transform: translateX(-50%);
-  color: #e0e1dd;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  text-align: center;
-  font-size: 0.95rem;
-  opacity: 0.9;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  z-index: 35;
 
-  text-decoration: none !important;   /* removes underline */
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 700;
+  font-size: .95rem;
+  color: #e0e1dd;
+  text-decoration: none !important;    /* no underline, even on hover */
+  opacity: .95;
 }
 
 /* arrows on each side */
-.see-more::before,
-.see-more::after {
+.page__lead .see-more::before,
+.page__lead .see-more::after{
   content: "↓";
   font-size: 1.1rem;
   line-height: 1;
-  opacity: 0.9;
 }
 
-/* hover style — color only, no underline */
-.see-more:hover,
-.see-more:focus {
-  color: var(--site-primary-light);
-  text-decoration: none !important;   /* ensure no underline on hover */
+/* hover color only — no underline */
+.page__lead .see-more:hover,
+.page__lead .see-more:focus{
+  color: white;
+  text-decoration: none !important;
 }
-
