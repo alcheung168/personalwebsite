@@ -10,118 +10,38 @@
 :root{
   --site-bg-base:#0d1b2a;
   --site-bg-secondary:#1b263b;
-  --site-primary-light:#90e0ef;
-  --text-color:#e0e1dd;
-  --font-main:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --site-bg-tertiary:#415a77;
+  --site-fg-base:#e0e1dd;
+  --site-fg-dim:#b8c0cc;
 
-  /* hero parallax offset (set by JS) */
-  --hero-parallax: 0px;
+  /* hero */
+  --hero-h: 72vh;
+  --hero-parallax: 0px; /* set by JS */
 
-  /* hover tilt (set by JS) */
-  --tiltX: 0deg;
-  --tiltY: 0deg;
+  /* card */
+  --card-pad-x: 24px;
+  --card-pad-y: 24px;
 
-  /* photo panel size (right side of card) */
-  --photo-min: 260px;
-  --photo-max: 360px;
-  --photo-frac: 32%;
-
-  /* derive photo width/height */
-  --photo-w: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
-  --photo-ar: 1.25;     /* slightly taller than wide (5:4) */
-  --photo-h: calc(var(--photo-w) * var(--photo-ar));
-
-  --card-pad-y: 1.5rem; /* top & bottom padding of the glass card */
-  --card-pad-x: 2.25rem;/* left padding; right is computed below */
+  /* right photo block */
+  --photo-w: 240px;
+  --photo-h: 300px;
 }
 
-/* Global */
-body{
-  background:var(--site-bg-base);
-  color:var(--text-color);
-  font-family:var(--font-main);
-  font-weight:300;
-}
-a{ color:var(--site-primary-light); text-decoration:none; }
-a:hover,a:focus{ color:var(--site-primary-light); }
-
-/* =======================================================================
-   STICKY, FULL-BLEED NAV WITH FADE-IN BACKGROUND ON SCROLL
-   ======================================================================= */
-
-/* Fix header to top + full width; base stays visually transparent */
-.site-header,
-.masthead {
-  position: fixed !important;
-  top: 0; left: 0; right: 0;
-  width: 100vw;
-  z-index: 1000;
-  background: transparent !important; /* the colored bg is drawn by ::before */
+/* Page background & base text */
+html, body{
+  background: var(--site-bg-base);
+  color: var(--site-fg-base);
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
 }
 
-/* Nav content above the background layer */
-.masthead__inner-wrap,
-.greedy-nav {
-  position: relative;
-  z-index: 2;
-  background: transparent !important;
-}
+/* Simple link style */
+a { color: #9ec1ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* Full-bleed background layer (fades via opacity) */
-.site-header::before,
-.masthead::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 27, 42, 0.94);
-  opacity: 0; /* transparent at page top */
-  transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
-  z-index: 1;
-  pointer-events: none;
-  box-shadow: none;
-  backdrop-filter: none;
-}
+/* Sticky top nav transparency tweak on scroll */
+html.nav-scrolled .masthead{ background: rgba(0,0,0,.25); backdrop-filter: blur(4px); }
 
-/* When scrolled: fade background in + subtle shadow/glass */
-html.nav-scrolled .site-header::before,
-html.nav-scrolled .masthead::before {
-  opacity: 1;
-  box-shadow: 0 6px 16px rgba(0,0,0,.25);
-  backdrop-filter: saturate(120%) blur(4px);
-}
-
-/* Readable links in both states + ALL CAPS */
-.greedy-nav .site-title,
-.greedy-nav .visible-links a,
-.greedy-nav .hidden-links a {
-  color: #e0e1dd !important;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em;
-}
-.greedy-nav a:hover { color: var(--site-primary-light) !important; }
-
-/* Remove any theme divider line below nav */
-.site-header::after,
-.masthead::after {
-  content: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  background: none !important;
-}
-.site-header,
-.masthead,
-.greedy-nav {
-  border-bottom: 0 !important;
-  box-shadow: none !important;
-}
-
-/* Let the document start at the top (no push-down) */
-.initial-content { padding-top: 0 !important; margin-top: 0 !important; }
-
-/* =======================================================================
-   HERO (parallax) + GLASS CARD
-   ======================================================================= */
+/* ===== HERO =================================================== */
 
 /* Parallax: hero scrolls slower than page via transform set from JS */
 .page__hero--overlay{
@@ -131,13 +51,13 @@ html.nav-scrolled .masthead::before {
   transition: transform .06s linear; /* tiny smoothing */
   margin-top: 0 !important;
 
-  min-height:60vh;                     /* visible area */
-  padding-top:6rem;                    /* space so the card isn’t under nav */
+  min-height:60vh;                 /* visible area */
+  padding-top:6rem;                /* space so the card isn’t under nav */
   background-size:cover !important;
   background-position:center center;
   background-repeat:no-repeat;
   position: relative;
-  z-index: 0;                          /* below the content sections */
+  z-index: 0;                      /* below the content sections */
 }
 
 /* ensure sections layer above the hero as it lags behind */
@@ -159,282 +79,119 @@ html.nav-scrolled .masthead::before {
   border-radius: 18px;
   overflow: visible;
 
-  /* 3D context for image tilt + zoom-in on hover */
-  --zoom: 1;                              /* NEW: zoom factor */
-  transform: scale(var(--zoom));          /* drive zoom via var */
+  /* 3D context for image tilt + (legacy zoom controlled below) */
+  --zoom: 1;
+  transform: scale(var(--zoom)); /* (overridden later) */
   transform-style: preserve-3d;
   perspective: 800px;
   transition: transform .22s ease, box-shadow .22s ease;
 }
+
+/* legacy hover zoom (will be superseded by overrides below) */
 .page__hero--overlay .wrapper:hover{
-  --zoom: 1.03;                           /* NEW: zoom on hover */
+  --zoom: 1.03;
   box-shadow: 0 16px 54px rgba(0,0,0,.45);
 }
 
 /* When we temporarily want *no* zoom (e.g., see-more hover), force 1 */
 .page__hero--overlay .wrapper.no-zoom,
 .page__hero--overlay .wrapper.no-zoom:hover{
-  --zoom: 1 !important;
-  box-shadow: 0 10px 40px rgba(0,0,0,.35);   /* back to base */
+  --zoom: 1;
 }
 
-/* ---------- PHOTO PSEUDO-ELEMENT (TILTS TOWARD MOUSE) ---------- */
-.page__hero--overlay .wrapper::after{
-  content:"";
+/* ---------- LEFT TEXT / RIGHT PHOTO LAYOUT INSIDE CARD ---------- */
+.page__hero--overlay .wrapper .card-content{
+  position: relative;
+  z-index: 2;
+  max-width: 56ch;
+}
+
+.page__hero--overlay .wrapper .photo{
   position: absolute;
-  top:    var(--card-pad-y);
-  bottom: var(--card-pad-y);
-  right:  var(--card-pad-x);
-  width:  var(--photo-w);
-
-  border-radius: 16px;
-  background-image: url("/personalwebsite/assets/img/pfp.jpg");
-  background-size: cover;
-  background-position: center 6%;
-  background-repeat: no-repeat;
-
-  border: 1px solid rgba(255,255,255,.15);
-  box-shadow: 0 12px 40px rgba(0,0,0,.35);
-
-  /* Tilt via CSS variables set by JS */
-  transform: perspective(800px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
-  transform-origin: center;
-  transition: transform .10s ease; /* snappy, but smooth enough */
+  right: var(--card-pad-x);
+  top: var(--card-pad-y);
+  width: var(--photo-w);
+  height: var(--photo-h);
+  border-radius: 12px;
+  overflow: hidden;
+  transform: translateZ(30px); /* pops slightly forward in 3D */
+  box-shadow: 0 16px 44px rgba(0,0,0,.35);
 }
 
-/* Left-side text */
-.page__title{
-  margin:0 0 .6rem 0;
-  font-weight:600;
-  font-size:clamp(2.2rem,5vw,3.2rem);
-  line-height:1.1;
-  text-align:left;
-}
-.page__lead{
-  margin:0;
-  text-align:left;
-  color:#dfe6ec;
-  letter-spacing:.02em;
-}
-.page__lead .subtitle{
+.page__hero--overlay .wrapper .photo img{
   display:block;
-  font-weight:300;
-  font-size:clamp(1rem,2.2vw,1.2rem);
-  margin:.1rem 0 .6rem 0;
-}
-.page__lead .mini{
-  display:block;
-  font-weight:300;
-  font-size:clamp(.95rem,2vw,1.05rem);
-  color:#cfd7de;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  pointer-events: none; /* pointer tracked via card hitbox */
 }
 
-/* ===== HERO BUTTONS ===== */
-.page__lead .btn-hero {
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 0.5rem 0.9rem;
+.page__lead {
   margin-top: 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #ffffff !important;
-  border: 1.5px solid #ffffff;
-  background: transparent;
-  transition: background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
-}
-.page__lead .btn-hero:hover,
-.page__lead .btn-hero:focus {
-  background: var(--site-primary-light);
-  border-color: var(--site-primary-light);
-  color: #0d1b2a !important;
-  box-shadow: 0 0 10px rgba(144, 224, 239, 0.3);
-  text-decoration: none;
 }
 
-/* ===== SEE MORE (supports fade-out via class) ===== */
 .page__lead .see-more{
-  position: absolute;
-  left: 50%;
-  bottom: -6.5rem;
-  transform: translateX(-50%) scale(calc(1 / var(--zoom)));
-  z-index: 35;
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  font-weight: 700;
-  font-size: .95rem;
-  color: #e0e1dd;
-  text-decoration: none !important;
-  opacity: .95;
+  display:inline-block;
+  margin-top:.5rem;
+  font-weight:600;
+  letter-spacing:.04em;
+  opacity: 1;
   transition: opacity .25s ease;
 }
-.page__lead .see-more::before,
-.page__lead .see-more::after{
-  content: "↓";
-  font-size: 1.1rem;
-  line-height: 1;
-}
-.page__lead .see-more:hover,
-.page__lead .see-more:focus{
-  color: var(--site-primary-light);
-  text-decoration: none !important;
-}
-.page__lead .see-more.see-more-hidden{
-  opacity: 0;
-  pointer-events: none;
-}
 
-/* Mobile: stack with photo below text */
-@media (max-width: 720px){
-  .page__hero--overlay{ padding-top:5rem; }
-  .page__hero--overlay .wrapper{
-    padding-right: 2rem;
-    min-height:0;
-  }
-  .page__hero--overlay .wrapper::after{
-    position:static;
-    display:block;
-    width: clamp(160px, 70vw, 260px);
-    height: clamp(200px, 90vw, 320px);
-    margin:1rem auto 0 auto;
-    transform: none; /* no tilt on tiny screens */
-  }
-  .page__title, .page__lead{ text-align:center; }
-}
+.page__lead .see-more.see-more-hidden{ opacity: 0; }
 
-/* ========= Full-bleed sections with centered content ========= */
-
-.content-section{
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-  padding: 4rem 0;
-  color: #e0e1dd;
-}
-
-/* centered inner container */
-.section-inner{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* headings: all caps, site font, no lines */
-.content-section h2{
-  text-transform: uppercase;
-  font-family: var(--font-main);
-  letter-spacing: .08em;
-  font-weight: 800;
-  margin: 0 0 1rem 0;
-  line-height: 1.15;
-  border: none;
-}
-
-/* paragraph body */
-.content-section p{
-  line-height: 1.75;
-  font-size: 1.05rem;
-  margin: 0;
-  max-width: 900px;
-}
-
-/* two-column layout for sections with images */
-.two-col{
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-/* image styles */
-.with-image .media img{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
-  box-shadow: 0 12px 34px rgba(0,0,0,.35);
-}
-
-/* title alignment rules per section */
-.section-extracurriculars h2{ text-align: left; }   /* photo on RIGHT  */
-.section-selfstudy h2{        text-align: right; }  /* photo on LEFT   */
-.section-education h2,
-.section-mission  h2{         text-align: center; }
-
-/* center whole block for Education & Mission */
-.section-education .section-inner,
-.section-mission  .section-inner{ text-align: center; }
-.section-education p,
-.section-mission  p{
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* reverse column order when photo is on the LEFT (self-study) */
-.image-left .two-col{
-  grid-template-columns: .9fr 1.1fr;
-}
-
-/* Background palette tuned to your hero scheme */
-.section-education{        background: #10243e; }
-.section-extracurriculars{ background: #173a5e; }
-.section-selfstudy{        background: #0e314c; }
-.section-mission{          background: #132f44; }
-
-/* responsive stacking */
-@media (max-width: 900px){
-  .two-col{
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  .section-extracurriculars h2,
-  .section-selfstudy h2{ text-align: center; }
-  .content-section p{ max-width: 100%; }
-}
-
-/* ===== Sticky Back-to-Top button (slides in from bottom) ===== */
+/* Back to top button */
 .back-to-top{
   position: fixed;
-  left: 50%;
-  transform: translate(-50%, 120%);  /* start below the viewport */
-  bottom: 16px;
-  z-index: 1200;
-  padding: .6rem 1rem;
-  border-radius: 999px;
-  border: 1.5px solid #fff;
-  background: rgba(13,27,42,.85);
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  right: 1rem;
+  bottom: 1rem;
   opacity: 0;
-  transition: transform .28s ease, opacity .28s ease, background .25s ease, color .25s ease, border-color .25s ease;
-  cursor: pointer;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease;
+  padding:.5rem .75rem;
+  border-radius: .75rem;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(6px);
 }
-.back-to-top:hover{
-  background: var(--site-primary-light);
-  color: #0d1b2a;
-  border-color: var(--site-primary-light);
-}
-/* visible state toggled by JS */
+
 .back-to-top.show{
-  transform: translate(-50%, 0);
   opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
-/* Prevent card zoom when SEE MORE is hovered */
-.page__hero--overlay .wrapper.no-zoom:hover{
-  transform: none;
-  box-shadow: 0 10px 40px rgba(0,0,0,.35); /* same as non-hover */
+/* ===== Overrides: precise tilt + controlled zoom (SEE MORE safe) ===== */
+.page__hero--overlay .wrapper {
+  /* Base transform reads tilt variables set by JS; no base zoom */
+  transform: perspective(900px)
+             rotateX(var(--tiltX, 0deg))
+             rotateY(var(--tiltY, 0deg));
+  transition: transform 300ms ease, box-shadow 300ms ease;
 }
 
+.page__hero--overlay .wrapper:hover:not(.no-zoom) {
+  /* Only zoom when the card itself is hovered and no-zoom isn't active */
+  transform: perspective(900px)
+             rotateX(var(--tiltX, 0deg))
+             rotateY(var(--tiltY, 0deg))
+             scale(1.03);
+  box-shadow: 0 16px 54px rgba(0,0,0,.45);
+}
+
+.page__hero--overlay .wrapper.no-zoom:hover {
+  /* While SEE MORE is hovered, keep scale neutral */
+  transform: perspective(900px)
+             rotateX(var(--tiltX, 0deg))
+             rotateY(var(--tiltY, 0deg));
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+
+/* (optional) Stable math for JS hitbox (safe if already defined elsewhere) */
+.page__hero--overlay .wrapper {
+  --card-pad-x: 24px;
+  --card-pad-y: 24px;
+}
