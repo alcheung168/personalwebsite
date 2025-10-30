@@ -72,8 +72,6 @@ a:hover,a:focus{ color:var(--site-primary-light); }
   transition: opacity .28s ease, box-shadow .28s ease, backdrop-filter .28s ease;
   z-index: 1;
   pointer-events: none;
-  box-shadow: none;
-  backdrop-filter: none;
 }
 
 /* When scrolled: fade background in + subtle shadow/glass */
@@ -361,12 +359,30 @@ html.nav-scrolled .masthead::before {
   .content-section p{ max-width: 100%; }
 }
 
-/* ===== REMOVE NAVBAR BOTTOM LINE / BORDER ===== */
+/* ===== REMOVE ONLY THE THIN DIVIDER LINE, KEEP FADE LAYER ===== */
+
+/* Some skins add a tiny divider via ::after — remove it */
+.site-header::after,
+.masthead::after {
+  content: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+/* If any element itself had a border/shadow, clear it */
 .site-header,
-.masthead {
-  border-bottom: none !important;
+.masthead,
+.greedy-nav {
+  border-bottom: 0 !important;
   box-shadow: none !important;
 }
+
+/* IMPORTANT: do NOT blank ::before — it’s the fade-in background layer */
+/* Leave .site-header::before / .masthead::before alone so this still works:
+   html.nav-scrolled .site-header::before,
+   html.nav-scrolled .masthead::before { opacity:1; … } */
+
 
 /* Some Minimal Mistakes skins add it via a pseudo-element — remove that too */
 .site-header::after,
