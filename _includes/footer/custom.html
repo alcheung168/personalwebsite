@@ -1,13 +1,52 @@
+<!-- Sticky Back to Top -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+  ↑ BACK TO TOP
+</button>
+
 <script>
 (function () {
   var root = document.documentElement;
-  var THRESHOLD = 10; // px from top before coloring the nav
-  function update() {
+
+  // existing nav fade toggle (keep if you already have it)
+  var THRESHOLD = 10;
+  function updateNav() {
     if (window.scrollY > THRESHOLD) root.classList.add('nav-scrolled');
     else root.classList.remove('nav-scrolled');
   }
-  document.addEventListener('scroll', update, { passive: true });
-  document.addEventListener('DOMContentLoaded', update);
-  update();
+
+  // see-more fade + back-to-top visibility
+  var seeMore = document.querySelector('.page__lead .see-more');
+  var backBtn = document.getElementById('backToTop');
+  var heroH = Math.max(1, Math.round(window.innerHeight * 0.68)); // ~ --hero-h
+
+  function updateUI() {
+    var y = window.scrollY || 0;
+
+    // Fade SEE MORE from 1 -> 0 during the first ~40% of hero
+    if (seeMore) {
+      var fadeEnd = heroH * 0.4;
+      var op = 1 - Math.min(1, Math.max(0, y / fadeEnd));
+      seeMore.style.opacity = op.toFixed(3);
+      seeMore.style.pointerEvents = op <= 0 ? 'none' : 'auto';
+    }
+
+    // Show the Back-to-Top button after ~60% of hero height
+    if (backBtn) {
+      if (y > heroH * 0.6) backBtn.classList.add('show');
+      else backBtn.classList.remove('show');
+    }
+  }
+
+  // smooth scroll to top
+  if (backBtn) {
+    backBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // listeners
+  document.addEventListener('scroll', function () { updateNav(); updateUI(); }, { passive: true });
+  window.addEventListener('resize', function(){ updateUI(); }, { passive: true });
+  document.addEventListener('DOMContentLoaded', function () { updateNav(); updateUI(); });
 })();
 </script>
