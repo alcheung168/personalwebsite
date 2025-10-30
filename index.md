@@ -16,27 +16,39 @@ header:
 author_profile: false
 ---
 <section id="education" class="content-section section-education">
-  <h2>EDUCATION</h2>
-  <p>Placeholder text about your academic background, major, GPA, honors, and relevant coursework.</p>
-</section>
-
-<section id="extracurriculars" class="content-section section-extracurriculars">
-  <h2>EXTRACURRICULARS</h2>
-  <div class="section-content">
-    <p>Placeholder text about your cybersecurity club activities, HackTheBox, TryHackMe, or volunteer work.</p>
-    <img src="/personalwebsite/assets/img/extracurriculars-placeholder.jpg" alt="Extracurriculars photo">
+  <div class="section-inner">
+    <h2>EDUCATION</h2>
+    <p>Placeholder: your degree, school, GPA/honors, and a one-line focus (e.g., secure systems, networking, ML).</p>
   </div>
 </section>
 
-<section id="self-study" class="content-section section-selfstudy">
-  <h2>SELF-STUDY</h2>
-  <div class="section-content">
-    <p>Placeholder text about independent learning—CTFs, machine learning projects, and personal labs.</p>
-    <img src="/personalwebsite/assets/img/selfstudy-placeholder.jpg" alt="Self-study photo">
+<section id="extracurriculars" class="content-section section-extracurriculars with-image image-right">
+  <div class="section-inner two-col">
+    <div class="text">
+      <h2>EXTRACURRICULARS</h2>
+      <p>Placeholder: club leadership, CTFs, HackTheBox/TryHackMe, outreach — what you do and the impact.</p>
+    </div>
+    <div class="media">
+      <img src="/personalwebsite/assets/img/extracurriculars-placeholder.jpg" alt="Extracurriculars">
+    </div>
+  </div>
+</section>
+
+<section id="self-study" class="content-section section-selfstudy with-image image-left">
+  <div class="section-inner two-col">
+    <div class="media">
+      <img src="/personalwebsite/assets/img/selfstudy-placeholder.jpg" alt="Self-study">
+    </div>
+    <div class="text">
+      <h2>SELF-STUDY</h2>
+      <p>Placeholder: independent labs, ML experiments, network monitoring/analysis practice, books/courses.</p>
+    </div>
   </div>
 </section>
 
 <section id="mission" class="content-section section-mission">
-  <h2>MY MISSION</h2>
-  <p>Placeholder text about your long-term goals, passion for secure systems, and continuous improvement.</p>
+  <div class="section-inner">
+    <h2>MY MISSION</h2>
+    <p>Placeholder: the “why” — building secure, resilient systems that blend ML and practical network defense.</p>
+  </div>
 </section>
