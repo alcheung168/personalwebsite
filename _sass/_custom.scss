@@ -104,7 +104,6 @@ header.site-header,
 
   /* reserve space for the photo panel on the right */
   padding-right: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
-  padding-left: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) + 2rem);
   min-height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.5 + 1rem);
   height: auto;
 }
@@ -218,3 +217,32 @@ header.site-header {
   right: 0;
   z-index: 50 !important;
 }
+
+/* ===== HERO BUTTONS ===== */
+.hero-buttons {
+  margin-top: 1.8rem;           /* space below your description */
+  display: flex;
+  gap: 1.25rem;                 /* space between buttons */
+}
+
+.btn-hero {
+  display: inline-block;
+  text-transform: uppercase;    /* all caps */
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid var(--site-primary-light);
+  color: var(--site-primary-light);
+  background: transparent;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+/* Hover effect — fills with color, text becomes dark */
+.btn-hero:hover {
+  background: var(--site-primary-light);
+  color: #0d1b2a;               /* dark navy text for contrast */
+  box-shadow: 0 0 12px rgba(144, 224, 239, 0.4);
+}
+
