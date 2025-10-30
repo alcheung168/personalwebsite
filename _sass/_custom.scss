@@ -397,35 +397,42 @@ header.site-header {
   .content-section p{ max-width: 100%; }
 }
 
-/* ===== Sticky nav at top ===== */
-header.site-header,
-.masthead {
-  position: fixed !important;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: transparent;              /* transparent at page top */
-  transition: background-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+/* ===== Overlay nav at top (transparent) ===== */
+html:not(.nav-scrolled) .site-header,
+html:not(.nav-scrolled) .masthead,
+html:not(.nav-scrolled) .masthead__inner-wrap,
+html:not(.nav-scrolled) .greedy-nav,
+html:not(.nav-scrolled) .greedy-nav::before,
+html:not(.nav-scrolled) .masthead::before {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
-/* inner containers also transparent by default */
-.masthead__inner-wrap,
-.greedy-nav { background: transparent !important; }
-
-/* when scrolled: use body background color and a subtle shadow */
-header.site-header.scrolled,
-.masthead.scrolled {
-  background: rgba(13, 27, 42, 0.94);   /* matches your --site-bg-base (#0d1b2a) */
-  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+/* ===== Colored nav after scrolling ===== */
+html.nav-scrolled .site-header,
+html.nav-scrolled .masthead,
+html.nav-scrolled .masthead__inner-wrap,
+html.nav-scrolled .greedy-nav,
+html.nav-scrolled .greedy-nav::before,
+html.nav-scrolled .masthead::before {
+  background: rgba(13, 27, 42, 0.94) !important; /* matches --site-bg-base */
+  box-shadow: 0 6px 16px rgba(0,0,0,.25) !important;
   backdrop-filter: saturate(120%) blur(4px);
 }
 
-/* ensure links remain readable on both states */
+/* Keep it fixed and above content */
+.site-header,
+.masthead { position: fixed !important; top: 0; left: 0; right: 0; z-index: 1000; }
+
+/* Readable links in both states */
 .greedy-nav .site-title a,
 .greedy-nav .visible-links a { color: #e0e1dd !important; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
 .greedy-nav a:hover { color: var(--site-primary-light) !important; }
 
-/* Let the hero still “touch” the top (nav overlays it) */
+/* Let the hero touch the top (no extra push-down) */
 .initial-content { padding-top: 0 !important; }
 .page__hero--overlay { margin-top: 0 !important; position: relative; }
+
 
 
