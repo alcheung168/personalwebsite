@@ -112,8 +112,9 @@ header.site-header,
 .page__hero--overlay .wrapper::after {
   content:"";
   position:absolute;
-  top: 0.5rem;
-  right: 1.25rem;
+  top: 1rem;
+  bottom: 1rem;
+  right: 1rem;
 
   /* keep same width but control height directly */
   width: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
