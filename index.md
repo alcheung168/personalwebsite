@@ -14,3 +14,5 @@ header:
   overlay_color: "#0a0f1f"
 author_profile: false
 ---
+
+<a href="#main" class="below-hero-prompt">SEE MORE BELOW</a>
