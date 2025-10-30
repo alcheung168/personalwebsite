@@ -10,3 +10,8 @@ header:
   overlay_color: "#0a0f1f"
 author_profile: false
 ---
+
+<div class="hero-buttons">
+  <a href="/personalwebsite/assets/docs/resume.pdf" class="btn-hero">Resume</a>
+  <a href="mailto:alcheung1008@gmail.com" class="btn-hero">Contact</a>
+</div>
