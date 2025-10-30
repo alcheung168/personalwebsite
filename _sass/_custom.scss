@@ -107,21 +107,22 @@ header.site-header,
 }
 
 /* Photo panel — fills entire right side of the card */
-.page__hero--overlay .wrapper::after{
+.page__hero--overlay .wrapper::after {
   content:"";
   position:absolute;
-  top: 0.8rem;
-  bottom: 0.5rem;
   right: 1.25rem;
+  top: 0.5rem; /* leave a small top gap */
   width: clamp(var(--photo-min), var(--photo-frac), var(--photo-max));
+  height: calc(clamp(var(--photo-min), var(--photo-frac), var(--photo-max)) * 1.2); /* 1.2x taller than width */
   border-radius:16px;
   background-image:url("/personalwebsite/assets/img/pfp.jpg");
   background-size:cover;
-  background-position:center 15%;   /* <- adjust this % to taste */
+  background-position:center 15%;  /* keep head visible */
   background-repeat:no-repeat;
   border:1px solid rgba(255,255,255,.15);
   box-shadow:0 12px 40px rgba(0,0,0,.35);
 }
+
 
 /* Left-side text (stays in the reserved area) */
 .page__title{
