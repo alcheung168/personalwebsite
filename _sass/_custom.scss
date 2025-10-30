@@ -10,7 +10,6 @@
 :root{
   --site-bg-base:#0d1b2a;
   --site-bg-secondary:#1b263b;
-  --site-primary:#00b4d8;
   --site-primary-light:#90e0ef;
   --text-color:#e0e1dd;
   --font-main:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -29,7 +28,7 @@ body{
   font-weight:300; /* thin default */
 }
 a{ color:var(--site-primary-light); text-decoration:none; }
-a:hover,a:focus{ color:var(--site-primary); }
+a:hover,a:focus{ color:var(--site-primary-light); }
 
 /* ===== OVERLAY NAVBAR ===== */
 
