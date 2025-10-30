@@ -322,6 +322,7 @@ header.site-header {
 /* headings: all caps, no lines */
 .content-section h2{
   text-transform: uppercase;
+  font-family: var(--font-main);
   letter-spacing: .08em;
   font-weight: 800;
   margin: 0 0 1rem 0;
