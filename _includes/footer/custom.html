@@ -49,23 +49,25 @@
   /* ===== Portrait tilt ONLY when pointer is over the photo area ===== */
   function getPhotoRect(){
     if (!card) return null;
-    var r    = card.getBoundingClientRect();
-    var cs   = getComputedStyle(card);
-    var padX = parseFloat(cs.getPropertyValue('--card-pad-x')) || 0;
-    var padY = parseFloat(cs.getPropertyValue('--card-pad-y')) || 0;
-    var pW   = parseFloat(cs.getPropertyValue('--photo-w'))    || 0;
 
-    var left   = r.right - padX - pW;
-    var right  = r.right - padX;
-    var top    = r.top + padY;
-    var bottom = r.bottom - padY;
+    const r  = card.getBoundingClientRect();
+    const cs = getComputedStyle(card);
 
-    return { left, right, top, bottom, width: pW, height: (bottom - top) };
-  }
+    // These resolve to *pixels* reliably:
+    const padRight = parseFloat(cs.paddingRight) || 0;            // = photoW + padX
+    const padX     = parseFloat(cs.getPropertyValue('--card-pad-x')) || 0;
+    const padY     = parseFloat(cs.getPropertyValue('--card-pad-y')) || 0;
 
-  function pointerInRect(e, rect){
-    return e.clientX >= rect.left && e.clientX <= rect.right &&
-           e.clientY >= rect.top  && e.clientY <= rect.bottom;
+    // Photo width = padding-right - padX
+    const photoW = Math.max(0, padRight - padX);
+
+    // Photo occupies the right side between (right - padRight + padX) and (right - padX)
+    const right  = r.right - padX;
+    const left   = right - photoW;
+    const top    = r.top + padY;
+    const bottom = r.bottom - padY;
+
+    return { left, right, top, bottom, width: photoW, height: (bottom - top) };
   }
 
   function applyTilt(e){
