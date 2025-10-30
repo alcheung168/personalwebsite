@@ -162,11 +162,30 @@ html.nav-scrolled .masthead::before {
   /* 3D context for image tilt + zoom-in on hover */
   transform-style: preserve-3d;
   perspective: 800px;
+
+  /* ✨ use a zoom var so children can counter-scale */
+  --zoom: 1;
+  transform: scale(var(--zoom));
   transition: transform .22s ease, box-shadow .22s ease;
 }
+
+/* zoom the CARD by bumping the var — not by setting transform directly */
 .page__hero--overlay .wrapper:hover{
-  transform: scale(1.03);
+  --zoom: 1.03;
   box-shadow: 0 16px 54px rgba(0,0,0,.45);
+}
+
+/* Don’t zoom SEE MORE: counter-scale it by the inverse of the card’s zoom */
+.page__hero--overlay .wrapper .see-more{
+  transform: scale(calc(1 / var(--zoom)));
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+/* keep your existing “no-zoom while SEE MORE is hovered” behavior */
+.page__hero--overlay .wrapper.no-zoom:hover{
+  --zoom: 1;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
 }
 
 /* ---------- PHOTO PSEUDO-ELEMENT (TILTS TOWARD MOUSE) ---------- */
