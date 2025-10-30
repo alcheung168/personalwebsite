@@ -173,3 +173,41 @@ header.site-header,
   }
   .page__title, .page__lead{ text-align:center; }
 }
+
+/* ===== FORCE FULL TRANSPARENT NAVBAR ===== */
+
+/* Remove all background layers Minimal Mistakes injects */
+.site-header,
+.page__header,
+.masthead,
+.masthead--fixed,
+.masthead__inner-wrap,
+.greedy-nav,
+.greedy-nav::before,
+.masthead::before {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Also clear the theme's default color variables */
+:root {
+  --global-header-background-color: transparent !important;
+  --global-nav-background-color: transparent !important;
+}
+
+/* Remove any pseudo-element overlay from skins */
+.masthead::before,
+.greedy-nav::before {
+  background: transparent !important;
+  content: none !important;
+}
+
+/* Ensure the nav is placed above the hero image */
+header.site-header {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50 !important;
+}
