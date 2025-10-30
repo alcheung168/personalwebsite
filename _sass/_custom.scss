@@ -260,7 +260,7 @@ header.site-header {
   position: absolute;
   left: 50%;
   /* push it BELOW the card: negative offset from wrapper bottom */
-  bottom: -3.5rem;                     /* tweak this to sit perfectly in the gap */
+  bottom: -6.5rem;                     /* tweak this to sit perfectly in the gap */
   transform: translateX(-50%);
   z-index: 35;
 
