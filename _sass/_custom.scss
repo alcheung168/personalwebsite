@@ -24,7 +24,7 @@
   --photo-ar: 1.25;                      /* photo taller than wide (1.25 = 5:4) */
   --photo-h: calc(var(--photo-w) * var(--photo-ar));
 
-  --card-pad-y: 2.0rem;                  /* top & bottom padding of the glass card */
+  --card-pad-y: 1.5rem;                  /* top & bottom padding of the glass card */
   --card-pad-x: 2.25rem;                 /* left padding; right is computed below */
 }
 
