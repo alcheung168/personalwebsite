@@ -1,0 +1,20 @@
+<script>
+(function () {
+  var header = document.querySelector('header.site-header') || document.querySelector('.masthead');
+  if (!header) return;
+
+  var THRESHOLD = 10; // px from top before coloring the nav
+
+  function update() {
+    if (window.scrollY > THRESHOLD) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+
+  document.addEventListener('scroll', update, { passive: true });
+  document.addEventListener('DOMContentLoaded', update);
+  update();
+})();
+</script>
