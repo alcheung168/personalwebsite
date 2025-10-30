@@ -18,7 +18,8 @@ author_profile: false
 <section id="education" class="content-section section-education">
   <div class="section-inner">
     <h2>EDUCATION</h2>
-    <p>Placeholder: your degree, school, GPA/honors, and a one-line focus (e.g., secure systems, networking, ML).</p>
+    <p>B.S. Computer Science, Minor in Cybersecurity expected in May 2026. Currently enrolled in the Cyber Defender Pathway, a program that encourages extracurricular activities and awards digital badges.</p>
+    <p>Planning to pursue a Master's Degree in Cybersecurity at CPP in Fall 2026. </p>
   </div>
 </section>
 
@@ -26,7 +27,7 @@ author_profile: false
   <div class="section-inner two-col">
     <div class="text">
       <h2>EXTRACURRICULARS</h2>
-      <p>Placeholder: club leadership, CTFs, HackTheBox/TryHackMe, outreach — what you do and the impact.</p>
+      <p>Actively attending club meetings and workshops held by Students With an Interest in the Future of Technology (SWIFT) to practice and learn common industry tools and software. Joined SWIFT's Pals program to connect with peers and mentor newcomers.</p>
     </div>
     <div class="media">
       <img src="/personalwebsite/assets/img/extracurriculars-placeholder.jpg" alt="Extracurriculars">
@@ -41,7 +42,7 @@ author_profile: false
     </div>
     <div class="text">
       <h2>SELF-STUDY</h2>
-      <p>Placeholder: independent labs, ML experiments, network monitoring/analysis practice, books/courses.</p>
+      <p>Regularly progressing through labs and modules on TryHackMe and HackTheBox to widen foundational knowledge of various topics such as Metasploit, Active Directory, and Scripting.</p>
     </div>
   </div>
 </section>
@@ -49,6 +50,6 @@ author_profile: false
 <section id="mission" class="content-section section-mission">
   <div class="section-inner">
     <h2>MY MISSION</h2>
-    <p>Placeholder: the “why” — building secure, resilient systems that blend ML and practical network defense.</p>
+    <p>My mission is to strengthen my technical expertise through research, competitions, and collaboration to build a lasting career in cybersecurity and intelligent system defense.</p>
   </div>
 </section>
