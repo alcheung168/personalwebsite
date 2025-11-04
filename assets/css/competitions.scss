@@ -1,0 +1,19 @@
+---
+---
+/* COMPETITIONS PAGE — same as home but no photo panel */
+
+@import "custom";
+
+.page__hero--overlay {
+  background: url('{{ "/assets/img/hero.png" | relative_url }}') center/cover no-repeat !important;
+}
+
+.page__hero--overlay .wrapper {
+  padding-right: var(--card-pad-x) !important;
+  min-height: auto !important;
+}
+
+.page__hero--overlay .wrapper::after {
+  display: none !important;
+  content: none !important;
+}
