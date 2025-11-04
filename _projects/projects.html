@@ -4,7 +4,8 @@ title: Projects
 permalink: /projects/
 ---
 
-<section class="page__hero--overlay" style="background-image:url('/personalwebsite/assets/img/hero.png');">
+<section class="page__hero--overlay"
+  style="background: url('{{ "/assets/img/hero.png" | relative_url }}') center/cover no-repeat;">
   <div class="wrapper">
     <div class="card-content">
       <h1 class="page__title">Projects</h1>
@@ -33,7 +34,7 @@ permalink: /projects/
       <p><a href="https://github.com/yourname/secure-messaging">View on GitHub →</a></p>
     </div>
     <div class="media">
-      <img src="/personalwebsite/assets/img/projects/secure-messaging.png" alt="Secure Messaging Project">
+      <img src="{{ "/assets/img/projects/secure-messaging.png" | relative_url }}" alt="Secure Messaging Project">
     </div>
   </div>
 </section>
