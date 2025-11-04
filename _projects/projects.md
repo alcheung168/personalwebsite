@@ -7,26 +7,30 @@ header:
   overlay_filter: 0.3
 ---
 
-<div class="wrapper">
-  <div class="card-content">
-    <h1 class="page__title">Projects</h1>
-    <p class="page__lead">
-      <span class="subtitle">Building secure systems and cybersecurity tools.</span><br>
-      <span class="mini">Hands-on development using C, OpenSSL, and network protocols.</span>
-    </p>
-    <p class="page__lead">
-      <a class="btn-hero" href="#featured">View Featured</a>
-    </p>
-    <a href="#featured" class="see-more">See more below</a>
+<section class="page__hero--overlay">
+  <div class="wrapper no-photo">
+    <div class="card-content">
+      <h1 class="page__title">Projects</h1>
+      <p class="page__lead">
+        <span class="subtitle">Building secure systems and practical cybersecurity tools.</span>
+        <span class="mini">Hands-on work with C, OpenSSL, and network protocols.</span>
+      </p>
+
+      <p class="page__lead">
+        <a class="btn-hero" href="#featured">View Featured</a>
+        <a class="btn-hero" href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a>
+      </p>
+
+      <a href="#featured" class="see-more">See more below</a>
+    </div>
   </div>
-</div>
+</section>
 
 ---
 
-## 🔐 Secure Communication System
-A sender/receiver program using OpenSSL for encrypted communication and replay protection.  
-[View on GitHub →](https://github.com/yourname/secure-messaging)
-
-## 🌐 IoT Device Fingerprinting
-Wavelet-based traffic analysis for identifying IoT device types.  
-[View on GitHub →](https://github.com/yourname/iot-wavelet-fp)
+<section id="featured" class="content-section section-projects">
+  <div class="section-inner">
+    <h2>Featured Projects</h2>
+    <p>Highlights of work in secure comms, IoT fingerprinting, and more.</p>
+  </div>
+</section>
