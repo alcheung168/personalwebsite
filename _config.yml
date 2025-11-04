@@ -89,6 +89,7 @@ footer:
     - label: "Email"
       icon: "fas fa-envelope"
       url: mailto:<alcheung1008@gmail.com>
+  copyright: false
 
 sass:
   style: compressed
@@ -96,6 +97,7 @@ sass:
 
 atom_feed:
   hide: true
+
 
 
 
