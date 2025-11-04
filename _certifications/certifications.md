@@ -5,6 +5,8 @@ permalink: /certifications/
 header:
   overlay_image: /assets/img/hero.png
   overlay_filter: 0.3
+custom_css:
+  - /assets/css/certifications.css
 ---
 
 <section class="page__hero--overlay">
