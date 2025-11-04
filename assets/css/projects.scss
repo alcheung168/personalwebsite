@@ -5,7 +5,7 @@
 @import "custom";  /* pull in the main _custom.scss */
 
 .page__hero--overlay {
-  background: url('{{ "/assets/img/hero.png" | relative_url }}') center/cover no-repeat !important;
+  background: url('{{ "/assets/img/hero.jpg" | relative_url }}') center/cover no-repeat !important;
 }
 
 /* Disable right photo panel */
