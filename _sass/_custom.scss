@@ -131,6 +131,8 @@ html.nav-scrolled .masthead::before {
   transition: transform .06s linear; /* tiny smoothing */
   margin-top: 0 !important;
 
+  background-image: var(--hero-img, none);
+
   min-height:60vh;                     /* visible area */
   padding-top:6rem;                    /* space so the card isn’t under nav */
   background-size:cover !important;
