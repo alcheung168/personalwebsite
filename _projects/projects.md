@@ -2,12 +2,10 @@
 layout: single
 title: "Projects"
 permalink: /projects/
-header:
-  overlay_image: /assets/img/hero.png
-  overlay_filter: 0.3
 ---
 
-<section class="page__hero--overlay">
+<section class="page__hero--overlay"
+  style="background: url('{{ "/assets/img/hero.png" | relative_url }}') center/cover no-repeat;">
   <div class="wrapper no-photo">
     <div class="card-content">
       <h1 class="page__title">Projects</h1>
