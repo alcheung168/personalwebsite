@@ -32,7 +32,7 @@ author_profile: false
       <p>Actively attending club meetings and workshops held by Students With an Interest in the Future of Technology (SWIFT) to practice and learn common industry tools and software. Joined SWIFT's Pals program to connect with peers and mentor newcomers.</p>
     </div>
     <div class="media">
-      <img src="/personalwebsite/assets/img/extracurriculars-placeholder.png" alt="Extracurriculars">
+      <img src="/personalwebsite/assets/img/extracurriculars-placeholder.jpg" alt="Extracurriculars">
     </div>
   </div>
 </section>
