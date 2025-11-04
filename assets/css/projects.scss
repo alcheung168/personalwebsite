@@ -1,25 +1,47 @@
 ---
 ---
+/* PROJECTS PAGE — inherit global styles */
 @import "custom";
 
-/* Ensure full-width hero background behaves like home page */
+/* 1) Full-bleed hero that matches home and keeps the image uncropped */
 .page__hero--overlay {
+  /* make the hero break out of the content column */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  /* background image & sizing */
   background: url('{{ "/assets/img/hero.jpg" | relative_url }}') center center / cover no-repeat !important;
-  background-attachment: scroll; /* or fixed if you want a static parallax look */
-  width: 100%;
-  min-height: 75vh; /* match home hero height */
+
+  /* optional: uncomment for fixed/parallax feel
+  background-attachment: fixed;
+  */
+
+  /* keep the same vertical feel as home */
+  min-height: 60vh;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-/* Remove right photo panel */
+/* 2) Remove the right-side photo panel INSIDE the glass card */
 .page__hero--overlay .wrapper {
-  padding-right: var(--card-pad-x) !important;
+  padding-right: var(--card-pad-x) !important; /* don't reserve photo space */
   min-height: auto !important;
 }
-
 .page__hero--overlay .wrapper::after {
   display: none !important;
   content: none !important;
+}
+
+/* 3) Hide the layout's default page title that appears ABOVE the hero
+      (scoped to the layout header so your card's .page__title remains) */
+.page .page__inner-wrap > header .page__title {
+  display: none !important;
+}
+/* also collapse the empty header space */
+.page .page__inner-wrap > header {
+  display: none !important;
 }
