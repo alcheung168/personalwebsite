@@ -1,14 +1,19 @@
 ---
 ---
-/* PROJECTS PAGE — same as home but no photo panel */
+@import "custom";
 
-@import "custom";  /* pull in the main _custom.scss */
-
+/* Ensure full-width hero background behaves like home page */
 .page__hero--overlay {
-  background: url('{{ "/assets/img/hero.jpg" | relative_url }}') center/cover no-repeat !important;
+  background: url('{{ "/assets/img/hero.jpg" | relative_url }}') center center / cover no-repeat !important;
+  background-attachment: scroll; /* or fixed if you want a static parallax look */
+  width: 100%;
+  min-height: 75vh; /* match home hero height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Disable right photo panel */
+/* Remove right photo panel */
 .page__hero--overlay .wrapper {
   padding-right: var(--card-pad-x) !important;
   min-height: auto !important;
