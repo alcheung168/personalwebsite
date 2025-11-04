@@ -1,3 +1,9 @@
+---
+layout: single
+title: "Projects"
+permalink: /projects/
+---
+
 <section class="page__hero--overlay"
   style="--hero-img: url('{{ "/assets/img/hero.png" | relative_url }}');">
   <div class="wrapper no-photo">
@@ -13,5 +19,15 @@
       </p>
       <a href="#featured" class="see-more">See more below</a>
     </div>
+  </div>
+</section>
+
+
+---
+
+<section id="featured" class="content-section section-projects">
+  <div class="section-inner">
+    <h2>Featured Projects</h2>
+    <p>Highlights of work in secure comms, IoT fingerprinting, and more.</p>
   </div>
 </section>
