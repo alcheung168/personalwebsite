@@ -2,6 +2,8 @@
 layout: single
 title: "Projects"
 permalink: /projects/
+custom_css:
+  - /assets/css/projects.css
 ---
 
 <section class="page__hero--overlay"
