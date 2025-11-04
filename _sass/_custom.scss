@@ -436,13 +436,19 @@ html.nav-scrolled .masthead::before {
   box-shadow: 0 10px 40px rgba(0,0,0,.35); /* same as non-hover */
 }
 
-/* No-photo modifier for the hero glass card */
+/* Strong no-photo modifier (must come after ::after rules) */
 .page__hero--overlay .wrapper.no-photo {
-  padding-right: var(--card-pad-x);         /* don’t reserve space for photo */
-  min-height: auto;                         /* let height fit content */
+  padding-right: var(--card-pad-x) !important;  /* don’t reserve photo space */
+  min-height: auto !important;
 }
 .page__hero--overlay .wrapper.no-photo::after {
-  content: none !important;                 /* remove the image panel */
+  content: none !important;
   display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
 }
+
 
