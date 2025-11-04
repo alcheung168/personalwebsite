@@ -7,24 +7,37 @@ header:
   overlay_filter: 0.3
 ---
 
-<div class="wrapper">
-  <div class="card-content">
-    <h1 class="page__title">Competitions</h1>
-    <p class="page__lead">
-      <span class="subtitle">Hands-on cybersecurity competitions with SWIFT @ Cal Poly Pomona.</span><br>
-      <span class="mini">CTFs, blue-team defense, and forensic challenges.</span>
-    </p>
-    <p class="page__lead">
-      <a class="btn-hero" href="#highlights">Highlights</a>
-    </p>
-    <a href="#highlights" class="see-more">See more below</a>
+<section class="page__hero--overlay">
+  <div class="wrapper no-photo">
+    <div class="card-content">
+      <h1 class="page__title">Competitions</h1>
+      <p class="page__lead">
+        <span class="subtitle">CTFs and blue-team exercises with SWIFT @ CPP.</span>
+        <span class="mini">Writeups, tooling, and lessons learned.</span>
+      </p>
+
+      <p class="page__lead">
+        <a class="btn-hero" href="#highlights">Highlights</a>
+        <a class="btn-hero" href="#writeups">All Writeups</a>
+      </p>
+
+      <a href="#highlights" class="see-more">See more below</a>
+    </div>
   </div>
-</div>
+</section>
 
 ---
 
-## 🚩 CTF Highlights
-Reverse engineering, forensics, and web exploitation challenges emphasizing teamwork and precision.
+<section id="highlights" class="content-section section-extracurriculars">
+  <div class="section-inner">
+    <h2>CTF Highlights</h2>
+    <p>Reverse engineering, web exploitation, crypto, and forensics.</p>
+  </div>
+</section>
 
-## 🧩 Blue Team Exercises
-Incident response and defense simulations under SWIFT guidance.
+<section id="writeups" class="content-section section-extracurriculars">
+  <div class="section-inner">
+    <h2>All Writeups</h2>
+    <p>Links to detailed notes and solutions.</p>
+  </div>
+</section>
