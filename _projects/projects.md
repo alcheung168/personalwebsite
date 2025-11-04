@@ -7,7 +7,7 @@ custom_css:
 ---
 
 <section class="page__hero--overlay"
-  style="--hero-img: url('{{ "/assets/img/hero.png" | relative_url }}');">
+  style="--hero-img: url('{{ "/assets/img/hero.jpg" | relative_url }}');">
   <div class="wrapper no-photo">
     <div class="card-content">
       <h1 class="page__title">Projects</h1>
