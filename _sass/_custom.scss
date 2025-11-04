@@ -131,8 +131,6 @@ html.nav-scrolled .masthead::before {
   transition: transform .06s linear; /* tiny smoothing */
   margin-top: 0 !important;
 
-  background-image: var(--hero-img, none);
-
   min-height:60vh;                     /* visible area */
   padding-top:6rem;                    /* space so the card isn’t under nav */
   background-size:cover !important;
@@ -437,20 +435,4 @@ html.nav-scrolled .masthead::before {
   --zoom: 1; /* neutralize zoom */
   box-shadow: 0 10px 40px rgba(0,0,0,.35); /* same as non-hover */
 }
-
-/* Strong no-photo modifier (must come after ::after rules) */
-.page__hero--overlay .wrapper.no-photo {
-  padding-right: var(--card-pad-x) !important;  /* don’t reserve photo space */
-  min-height: auto !important;
-}
-.page__hero--overlay .wrapper.no-photo::after {
-  content: none !important;
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: none !important;
-}
-
 
