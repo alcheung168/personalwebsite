@@ -45,3 +45,21 @@
 .page .page__inner-wrap > header {
   display: none !important;
 }
+
+/* Remove unwanted top padding/margin so hero aligns flush with nav */
+.page .page__inner-wrap {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Also remove any top margin from the main content area */
+.main, .initial-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Confirm the hero sits directly under the fixed nav */
+.page__hero--overlay {
+  margin-top: 0 !important;
+  top: 0;
+}
