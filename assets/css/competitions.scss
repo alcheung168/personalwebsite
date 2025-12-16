@@ -1,13 +1,27 @@
 ---
 ---
-/* COMPETITIONS PAGE — same as home but no photo panel */
-
+/* COMPETITIONS PAGE — reuse global styles and tweak layout */
 @import "custom";
 
+/* Full-bleed hero with same background as other pages */
 .page__hero--overlay {
-  background: url('{{ "/assets/img/hero.png" | relative_url }}') center/cover no-repeat !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: url('{{ "/assets/img/hero.jpg" | relative_url }}')
+              center center / cover no-repeat !important;
+
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  margin-top: 0 !important;
 }
 
+/* Glass card without portrait image */
 .page__hero--overlay .wrapper {
   padding-right: var(--card-pad-x) !important;
   min-height: auto !important;
@@ -15,5 +29,92 @@
 
 .page__hero--overlay .wrapper::after {
   display: none !important;
+  content: none !important;
+}
+
+/* Hide the default page title that Minimal Mistakes adds above content */
+.page .page__inner-wrap > header,
+.page .page__inner-wrap > header .page__title {
+  display: none !important;
+}
+
+/* Remove extra top padding in the content area */
+.page .page__inner-wrap {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Tidy typography/layout for competition sections */
+.content-section.section-comps .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: left;
+}
+
+.content-section.section-comps h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+}
+
+.content-section.section-comps h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.content-section.section-comps p {
+  line-height: 1.75;
+  font-size: 1.02rem;
+  margin: 0 0 1rem 0;
+}
+
+.content-section.section-comps ul {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+}
+
+.content-section.section-comps li {
+  margin-bottom: 0.4rem;
+}
+
+/* Alternating background colors for sections (similar to other pages) */
+#ccdc.section-comps {
+  background: #10243e;
+}
+
+#rvb.section-comps {
+  background: #173a5e;
+}
+
+#hivestorm.section-comps {
+  background: #0e314c;
+}
+
+#comps-summary.section-comps {
+  background: #132f44;
+}
+
+/* Make sure images look good (uses your existing .with-image styles as well) */
+.section-comps .media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 12px 34px rgba(0,0,0,.35);
+}
+
+/* Remove any automatic horizontal dividers the theme adds on this page */
+.page__content hr,
+.page__inner-wrap hr,
+.page__inner-wrap::before,
+.page__inner-wrap > * + *::before {
+  display: none !important;
+  border: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   content: none !important;
 }
