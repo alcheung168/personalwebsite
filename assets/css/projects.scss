@@ -115,3 +115,22 @@
   background: #132f44;
 }
 
+/* Make project tables a bit cleaner */
+.section-projects table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.section-projects th,
+.section-projects td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.section-projects th {
+  text-align: left;
+  font-weight: 700;
+}
+
