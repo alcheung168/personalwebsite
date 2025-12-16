@@ -21,7 +21,6 @@ custom_css:
         </span>
       </p>
       <p class="page__lead">
-        <a class="btn-hero" href="#overview">Overview</a>
         <a class="btn-hero" href="{{ "/assets/img/research_poster.pdf" | relative_url }}" target="_blank">Poster (PDF)</a>
         <a class="btn-hero" href="https://ndss26-fall.hotcrp.com/paper/1953?cap=hcav1953AAnRbiQXsdrdShBPEqShBTeB"
            target="_blank" rel="noopener">NDSS Submission</a>
