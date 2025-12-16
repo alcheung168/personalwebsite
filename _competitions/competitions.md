@@ -102,7 +102,7 @@ custom_css:
         </p>
       </div>
       <div class="media">
-        <img src="{{ "/assets/img/hivestorm.jpg" | relative_url }}"
+        <img class="tilt-img" src="{{ "/assets/img/hivestorm.jpg" | relative_url }}"
            alt="Photo from the Hivestorm competition"
            style="max-width: 100%; height: auto; border-radius: 14px; box-shadow: 0 12px 34px rgba(0,0,0,.35);">
       </div>
