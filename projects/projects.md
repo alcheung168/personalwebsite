@@ -46,7 +46,6 @@ custom_css:
       <strong>frequency-domain wavelet analysis to encrypted network traffic</strong> for fingerprinting.
       Wavelet-based features capture multi-scale temporal patterns in packet timing and volume—revealing stable,
       device-specific characteristics even when traffic is sparse, noisy, or irregular.
-      :contentReference[oaicite:0]{index=0}
     </p>
     <p>
       This approach significantly improves classification accuracy across diverse IoT environments and remains robust
