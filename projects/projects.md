@@ -64,7 +64,6 @@ custom_css:
       <h2>System Architecture</h2>
       <p>
         The full framework consists of four major modules, as described in our paper:
-        :contentReference[oaicite:1]{index=1}
       </p>
       <ul>
         <li>
@@ -106,7 +105,6 @@ custom_css:
     <p>
       We evaluated the system using three real-world IoT datasets—ranging from small homogeneous networks to large-scale,
       heterogeneous deployments with multiple protocols and attack scenarios:
-      :contentReference[oaicite:2]{index=2}
     </p>
     <table>
       <thead>
