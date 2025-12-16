@@ -12,14 +12,13 @@ custom_css:
       <p class="page__lead">
         <span class="subtitle">Wavelet-Based IoT Device Fingerprinting for Network Security</span>
         <span class="mini">
-          Research program at Cal Poly Pomona exploring how encrypted network traffic can be used
+          Research program at Cal Poly Pomona exploring how network traffic can be used
           to fingerprint IoT devices and identify device <em>types</em> for network defense.
           Awarded <strong>2nd place</strong> in the Poster Competition at CPP’s
           Cybersecurity Awareness Fair and submitted to venues including IEEE, NDSS, and Electronics.
         </span>
       </p>
       <p class="page__lead">
-        <a class="btn-hero" href="#overview">Overview</a>
         <a class="btn-hero" href="{{ "/assets/img/research_poster.pdf" | relative_url }}" target="_blank">
           View Poster (PDF)
         </a>
