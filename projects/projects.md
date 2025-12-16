@@ -179,7 +179,6 @@ custom_css:
         device ID, but both benefit heavily from wavelet features.
       </li>
     </ul>
-
     <p>
       In every scenario, wavelet-based features significantly outperform time-domain baselines,
       confirming that multi-scale temporal structure matters for IoT fingerprinting.
