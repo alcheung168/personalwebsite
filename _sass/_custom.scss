@@ -436,3 +436,17 @@ html.nav-scrolled .masthead::before {
   box-shadow: 0 10px 40px rgba(0,0,0,.35); /* same as non-hover */
 }
 
+/* Icon-ready hero buttons */
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;             /* spacing between icon + text */
+}
+
+/* SVG inherits button text color */
+.btn-hero .icon {
+  stroke: currentColor;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
