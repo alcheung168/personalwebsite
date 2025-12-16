@@ -457,10 +457,10 @@ html.nav-scrolled .masthead::before {
   transform-style: preserve-3d;
 }
 
-.tilt-img{
+/* Generic tilt images */
+.tilt-img {
   display: block;
   transform-origin: center;
-  transition: transform .10s ease;
-  will-change: transform;
 }
+
 
