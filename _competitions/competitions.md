@@ -88,33 +88,40 @@ custom_css:
 ---
 
 <!-- ========================= HIVESTORM SECTION ========================= -->
-<section id="hivestorm" class="content-section section-comps with-image">
-  <div class="section-inner two-col">
-    <div>
-      <h2>Hivestorm</h2>
-      <p>
-        <strong>Hivestorm</strong> was my first cybersecurity competition and a major step into practical blue-team work.
-        It is a defensive competition where teams secure and maintain a set of systems against misconfigurations and
-        vulnerabilities, while being scored on service uptime and issue remediation.
-      </p>
-      <h3>What I Learned</h3>
-      <ul>
-        <li>System hardening basics: user management, file permissions, and service configuration.</li>
-        <li>Prioritizing fixes that have the most impact on scoring and security.</li>
-        <li>Working under time pressure while staying organized and documenting changes.</li>
-        <li>Using checklists, scripts, and notes to avoid repeating manual work across machines.</li>
-      </ul>
-      <p>
-        Hivestorm gave me the confidence to move into larger, more complex competitions like SWIFT RvB and CCDC.
-      </p>
+<section id="hivestorm" class="content-section section-comps">
+  <div class="section-inner">
+    <h2>Hivestorm</h2>
+    <!-- Intro row: paragraph + image side by side -->
+    <div class="intro-row two-col">
+      <div>
+        <p>
+          <strong>Hivestorm</strong> was my first cybersecurity competition and a major step
+          into practical blue-team work. It is a defensive competition where teams secure
+          and maintain a set of systems against misconfigurations and vulnerabilities,
+          while being scored on service uptime and issue remediation.
+        </p>
+      </div>
+      <div class="media">
+        <img src="{{ "/assets/img/hivestorm.jpg" | relative_url }}"
+             alt="Photo from the Hivestorm competition"
+             style="max-width: 100%; height: auto; border-radius: 14px; box-shadow: 0 12px 34px rgba(0,0,0,.35);">
+      </div>
     </div>
-    <div class="media">
-      <img src="{{ "/assets/img/hivestorm.jpg" | relative_url }}"
-           alt="Screenshot or photo from the Hivestorm competition"
-           style="max-width: 100%; height: auto; border-radius: 14px; box-shadow: 0 12px 34px rgba(0,0,0,.35);">
-    </div>
+    <!-- Full-width content below -->
+    <h3>What I Learned</h3>
+    <ul>
+      <li>System hardening basics: user management, file permissions, and service configuration.</li>
+      <li>Prioritizing fixes that have the most impact on scoring and security.</li>
+      <li>Working under time pressure while staying organized and documenting changes.</li>
+      <li>Using checklists, scripts, and notes to avoid repeating manual work across machines.</li>
+    </ul>
+    <p>
+      Hivestorm gave me the confidence to move into larger, more complex competitions like
+      SWIFT RvB and CCDC.
+    </p>
   </div>
 </section>
+
 
 ---
 
