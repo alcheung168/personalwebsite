@@ -134,3 +134,15 @@
   font-weight: 700;
 }
 
+/* Remove automatic section divider lines for Projects page */
+.page__content hr,
+.page__inner-wrap hr,
+.page__inner-wrap::before,
+.page__inner-wrap > * + *::before {
+  display: none !important;
+  border: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  content: none !important;
+}
