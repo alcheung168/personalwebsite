@@ -18,7 +18,6 @@ custom_css:
           Cybersecurity Awareness Fair and submitted to conferences including IEEE, NDSS, and Electronics.
         </span>
       </p>
-
       <p class="page__lead">
         <a class="btn-hero" href="#overview">View Overview</a>
         <a class="btn-hero" href="{{ "/assets/img/research_poster.pdf" | relative_url }}" target="_blank">
@@ -28,7 +27,6 @@ custom_css:
           NDSS Submission
         </a>
       </p>
-
       <a href="#overview" class="see-more">See more below</a>
     </div>
   </div>
@@ -129,4 +127,5 @@ custom_css:
       As decisions are returned, you can update this section with accepted papers, DOIs,
       and camera-ready links.
     </p>
-  </div
+  </div>
+</section>
