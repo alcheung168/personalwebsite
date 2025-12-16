@@ -1,0 +1,96 @@
+---
+---
+/* BLOG PAGE — reuse global styles and match formatting */
+@import "custom";
+
+/* Full-bleed hero background (same as other pages) */
+.page__hero--overlay {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+
+  background: url('{{ "/assets/img/hero.jpg" | relative_url }}')
+              center center / cover no-repeat !important;
+
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  margin-top: 0 !important;
+}
+
+/* Glass card without portrait */
+.page__hero--overlay .wrapper {
+  padding-right: var(--card-pad-x) !important;
+  min-height: auto !important;
+}
+
+.page__hero--overlay .wrapper::after {
+  display: none !important;
+}
+
+/* Remove default page title from Minimal Mistakes layout */
+.page .page__inner-wrap > header,
+.page .page__inner-wrap > header .page__title {
+  display: none !important;
+}
+
+/* Remove default padding above content */
+.page .page__inner-wrap {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Typography and layout for blog sections */
+.content-section.section-blog .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: left;
+}
+
+.content-section.section-blog h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.content-section.section-blog p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin: 0 0 1rem 0;
+}
+
+.content-section.section-blog ul {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+}
+
+.content-section.section-blog li {
+  margin-bottom: 0.4rem;
+}
+
+/* Alternating background colors for sections */
+#coming-soon.section-blog {
+  background: #10243e;
+}
+
+#blog-summary.section-blog {
+  background: #173a5e;
+}
+
+/* Remove Minimal Mistakes horizontal dividers */
+.page__content hr,
+.page__inner-wrap hr,
+.page__inner-wrap::before,
+.page__inner-wrap > * + *::before {
+  display: none !important;
+  border: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  content: none !important;
+}
