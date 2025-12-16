@@ -15,13 +15,23 @@ custom_css:
         <span class="subtitle">Validating core knowledge in networking and cybersecurity.</span>
         <span class="mini">
           I’ve earned <strong>CompTIA Security+</strong> and <strong>CompTIA Network+</strong>,
-          building a strong foundation in threat analysis, network design, and secure operations
-          that supports my research and hands-on projects.
+          building a strong foundation in threat analysis, secure architecture, and network operations.
         </span>
       </p>
       <p class="page__lead">
         <a class="btn-hero" href="#security-plus">Security+</a>
         <a class="btn-hero" href="#network-plus">Network+</a>
+        <!-- Notes Buttons -->
+        <a class="btn-hero"
+           href="https://docs.google.com/document/d/1ktMwgZdfTY_Vu5WJhk7wgKUYwCqmgf8j9SAfs-X-vvQ/edit?usp=sharing"
+           target="_blank" rel="noopener">
+           Security+ Notes
+        </a>
+        <a class="btn-hero"
+           href="https://docs.google.com/document/d/19ihMOxspgd9G9f75dY13YSrlTW4g3IwtzjLTOqmBqKw/edit?usp=sharing"
+           target="_blank" rel="noopener">
+           Network+ Notes
+        </a>
       </p>
       <a href="#security-plus" class="see-more">See more below</a>
     </div>
@@ -35,42 +45,24 @@ custom_css:
   <div class="section-inner">
     <h2>CompTIA Security+</h2>
     <p>
-      The <strong>Security+</strong> certification covers practical, vendor-neutral security skills
-      that map closely to how real networks are attacked and defended. It strengthened my ability to
-      think like both an attacker and a defender while grounding me in security architecture and
-      risk management.
+      The <strong>Security+</strong> certification develops essential, vendor-neutral security skills
+      used in real-world environments. It strengthened my ability to identify threats, implement defenses,
+      analyze logs, and respond to incidents across modern enterprise networks.
     </p>
     <h3>Key Concepts & Skills</h3>
     <ul>
-      <li>
-        <strong>Threats, Attacks, and Vulnerabilities:</strong>
-        Reconnaissance, social engineering, password attacks, malware families, web application attacks,
-        and how to interpret vulnerability scan results.
-      </li>
-      <li>
-        <strong>Security Architecture & Design:</strong>
-        Network segmentation, DMZs, zero-trust concepts, secure baselines, and defense-in-depth across
-        on-prem and cloud environments.
-      </li>
-      <li>
-        <strong>Secure Implementation:</strong>
-        Hardening endpoints and servers, secure configuration of firewalls, VPNs, and wireless networks,
-        and applying secure protocols such as TLS, SSH, and IPsec.
-      </li>
-      <li>
-        <strong>Operations & Incident Response:</strong>
-        Log analysis, SIEM concepts, incident response phases (preparation, identification, containment,
-        eradication, recovery, lessons learned), and common playbook patterns.
-      </li>
-      <li>
-        <strong>Governance, Risk, and Compliance (GRC):</strong>
-        Risk assessment, qualitative vs. quantitative risk, basic policy design, and the role of
-        frameworks and standards in securing organizations.
-      </li>
+      <li><strong>Threats, Attacks, and Vulnerabilities:</strong> Malware, password attacks, reconnaissance, and interpreting vulnerability scans.</li>
+      <li><strong>Secure Architecture:</strong> Zero-trust concepts, segmentation, DMZs, microsegmentation, cloud infrastructure security.</li>
+      <li><strong>Secure Implementation:</strong> Hardening systems, configuring secure protocols (TLS, SSH, IPsec), wireless security controls.</li>
+      <li><strong>Operations & Incident Response:</strong> SIEM concepts, log analysis, digital forensics basics, IR lifecycle and playbooks.</li>
+      <li><strong>Governance, Risk, and Compliance:</strong> Qualitative and quantitative risk, control types, security policies, frameworks.</li>
     </ul>
     <p>
-      Together, these areas help me reason about security controls not just as isolated tools,
-      but as part of a coherent strategy for protecting networks and systems.
+      <strong>My Notes:</strong>
+      <a href="https://docs.google.com/document/d/1ktMwgZdfTY_Vu5WJhk7wgKUYwCqmgf8j9SAfs-X-vvQ/edit?usp=sharing"
+         target="_blank" rel="noopener">
+        View Security+ Notes →
+      </a>
     </p>
   </div>
 </section>
@@ -82,61 +74,43 @@ custom_css:
   <div class="section-inner">
     <h2>CompTIA Network+</h2>
     <p>
-      <strong>Network+</strong> provided the baseline networking knowledge I use in both my research
-      and lab work—covering everything from physical media and topologies to routing, switching,
-      wireless, and troubleshooting.
+      <strong>Network+</strong> provided a strong foundation in how networks operate at every layer—from
+      physical media and switching to routing, wireless, and troubleshooting. These concepts support both
+      my research and systems work.
     </p>
     <h3>Key Concepts & Skills</h3>
     <ul>
-      <li>
-        <strong>Network Fundamentals:</strong>
-        OSI and TCP/IP models, addressing (IPv4/IPv6), subnets, VLANs, and how data actually moves
-        across wired and wireless links.
-      </li>
-      <li>
-        <strong>Network Implementations:</strong>
-        Configuring switches and routers, static vs. dynamic routing, common protocols
-        (ARP, ICMP, DHCP, DNS, HTTP/S), and basic WAN technologies.
-      </li>
-      <li>
-        <strong>Network Operations:</strong>
-        Monitoring performance and availability, using tools like ping, traceroute, packet capture,
-        and interpreting logs and metrics to understand network health.
-      </li>
-      <li>
-        <strong>Network Security Basics:</strong>
-        ACLs, port security, VPN concepts, wireless security modes, and how to place security
-        controls logically within a topology.
-      </li>
-      <li>
-        <strong>Troubleshooting Methodology:</strong>
-        A structured approach to diagnosing connectivity issues—identify the problem,
-        establish a theory, test, implement fixes, and verify functionality.
-      </li>
+      <li><strong>Network Fundamentals:</strong> OSI/TCP-IP models, IPv4/IPv6, VLANs, subnets, and how traffic flows across a network.</li>
+      <li><strong>Implementations:</strong> Configuring routers/switches, dynamic routing, DHCP, DNS, NAT, firewall placement.</li>
+      <li><strong>Network Operations:</strong> Monitoring, logging, metrics, availability, and toolsets like traceroute, packet capture, and SNMP.</li>
+      <li><strong>Network Security Basics:</strong> ACLs, VPNs, WPA2/3, wireless design, secure topologies.</li>
+      <li><strong>Troubleshooting:</strong> A structured, step-by-step methodology for diagnosing and resolving connectivity issues.</li>
     </ul>
     <p>
-      This certification makes it much easier to design, reason about, and debug the networks that
-      my security tools and research systems depend on.
+      <strong>My Notes:</strong>
+      <a href="https://docs.google.com/document/d/19ihMOxspgd9G9f75dY13YSrlTW4g3IwtzjLTOqmBqKw/edit?usp=sharing"
+         target="_blank" rel="noopener">
+        View Network+ Notes →
+      </a>
     </p>
+
   </div>
 </section>
 
 ---
 
-<!-- ========================= PUTTING IT TOGETHER ========================= -->
+<!-- ========================= SUMMARY SECTION ========================= -->
 <section id="certs-summary" class="content-section section-certs">
   <div class="section-inner">
     <h2>How These Certifications Support My Work</h2>
     <p>
-      Network+ gives me the vocabulary and mental models to understand how packets move, where devices
-      live in a topology, and how to troubleshoot when things go wrong. Security+ adds the attacker
-      and defender perspectives on top—how to harden those networks, detect malicious behavior, and
-      respond when incidents occur.
+      <strong>Network+</strong> gives me strong intuition for how packets move, how networks are structured,
+      and how to diagnose failures. <strong>Security+</strong> adds the attacker–defender mindset, secure design principles,
+      and real-world incident response skills.
     </p>
     <p>
-      Together, these certifications underpin my work in <strong>IoT device fingerprinting</strong>,
-      secure communication systems, and blue-team competitions by ensuring that my projects are grounded
-      in solid networking and security fundamentals.
+      Together, they reinforce the practical and theoretical foundation behind my research in
+      <strong>IoT device fingerprinting</strong>, secure system design, and applied cybersecurity.
     </p>
   </div>
 </section>
