@@ -5,7 +5,7 @@ excerpt: >
   <span class="subtitle">Cybersecurity&nbsp;|&nbsp;Networking&nbsp;|&nbsp;Machine&nbsp;Learning</span>
   <span class="mini">Aspiring cybersecurity specialist blending machine learning, network engineering, and real-world competitions to build secure, resilient systems.</span>
   <span class="hero-buttons">
-    <a class="btn-hero" href="/portfolio/assets/Adam Cheung.pdf" download>
+    <a class="btn-hero" href="/portfolio/assets/AdamCheung.pdf" download>
       <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 5v14m0 0l-6-6m6 6l6-6"/>
       </svg>
