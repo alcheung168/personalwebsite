@@ -1,4 +1,6 @@
 main:
+  - title: "Home"
+    url: /
   - title: "Projects"
     url: /projects/
   - title: "Competitions"
@@ -6,4 +8,4 @@ main:
   - title: "Certifications"
     url: /certifications/
   - title: "Blog"
-    url: /posts/
+    url: /blog/
