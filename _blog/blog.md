@@ -18,9 +18,6 @@ custom_css:
           competition experiences, and cybersecurity projects—all in a clean, structured format.
         </span>
       </p>
-      <p class="page__lead">
-        <a class="btn-hero" href="#coming-soon">See More</a>
-      </p>
       <a href="#coming-soon" class="see-more">See more below</a>
     </div>
   </div>
