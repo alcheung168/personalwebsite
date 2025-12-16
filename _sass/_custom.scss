@@ -450,3 +450,17 @@ html.nav-scrolled .masthead::before {
   height: 1em;
   flex-shrink: 0;
 }
+
+/* Generic 3D tilt effect for images */
+.tilt-wrap{
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.tilt-img{
+  display: block;
+  transform-origin: center;
+  transition: transform .10s ease;
+  will-change: transform;
+}
+
