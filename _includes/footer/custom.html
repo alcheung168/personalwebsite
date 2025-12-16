@@ -5,144 +5,118 @@
 
 <script>
 (function () {
-  var root    = document.documentElement;
-  var hero    = document.querySelector('.page__hero--overlay');
-  var card    = document.querySelector('.page__hero--overlay .wrapper');
-  var seeMore = document.querySelector('.page__lead .see-more');
-  var backBtn = document.getElementById('backToTop');
+  var root      = document.documentElement;
+  var hero      = document.querySelector('.page__hero--overlay');
+  var card      = document.querySelector('.page__hero--overlay .wrapper');
+  var seeMore   = document.querySelector('.page__lead .see-more');
+  var backBtn   = document.getElementById('backToTop');
 
-  var THRESHOLD = 10;        // navbar fade
-  var PARALLAX_RATIO = 0.35; // hero moves 35% of scroll
+  var THRESHOLD      = 10;     // navbar fade trigger (px)
+  var PARALLAX_RATIO = 0.35;   // hero moves 35% of scroll
 
   /* ===== Navbar fade (adds html.nav-scrolled) ===== */
-  function updateNav(){
-    if (window.scrollY > THRESHOLD) root.classList.add('nav-scrolled');
-    else root.classList.remove('nav-scrolled');
+  function updateNavFade() {
+    if (window.scrollY > THRESHOLD) {
+      root.classList.add('nav-scrolled');
+    } else {
+      root.classList.remove('nav-scrolled');
+    }
   }
 
-  /* ===== Parallax (hero lags scroll) ===== */
-  function updateParallax(){
+  /* ===== Parallax hero scroll ===== */
+  function updateParallax() {
     if (!hero) return;
     var offset = Math.round(window.scrollY * PARALLAX_RATIO);
     hero.style.setProperty('--hero-parallax', offset + 'px');
   }
 
   /* ===== SEE MORE fade + Back-to-Top visibility ===== */
-  function updateUI(){
-    var vh = Math.max(1, window.innerHeight);
-    var y  = window.scrollY || 0;
+  function updateUI() {
+    var y   = Math.max(0, Math.min(window.scrollY, window.innerHeight));
+    var vh  = window.innerHeight || 0;
 
-    if (seeMore){
+    if (seeMore) {
       var hidden = y > (vh * 0.4);
       seeMore.classList.toggle('see-more-hidden', hidden);
     }
-    if (backBtn){
+
+    if (backBtn) {
       backBtn.classList.toggle('show', y > (vh * 0.6));
     }
   }
 
   /* ===== Smooth scroll to top ===== */
-  backBtn && backBtn.addEventListener('click', function(){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (backBtn) {
+    backBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* ===== Helpers ===== */
-  function pointerInRect(e, rect){
+  function pointerInRect(e, rect) {
     var x = e.clientX, y = e.clientY;
     return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
   }
 
-  /* ===== Portrait tilt ONLY when pointer is over the photo area ===== */
-  function getPhotoRect(){
-    if (!card) return null;
+  /* ===== Hero portrait tilt via CSS vars (pfp.jpg) ===== */
+  if (card) {
+    card.addEventListener('pointermove', function (e) {
+      var rect = card.getBoundingClientRect();
+      if (!pointerInRect(e, rect)) return;
 
-    const r  = card.getBoundingClientRect();
-    const cs = getComputedStyle(card);
+      var relX = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5..0.5
+      var relY = (e.clientY - rect.top)  / rect.height - 0.5; // -0.5..0.5
 
-    // These resolve to pixels:
-    const padRight = parseFloat(cs.paddingRight) || 0;            // = photoW + padX
-    const padX     = parseFloat(cs.getPropertyValue('--card-pad-x')) || 0;
-    const padY     = parseFloat(cs.getPropertyValue('--card-pad-y')) || 0;
+      var maxTilt = 12; // deg
+      var tiltX = (-relY * maxTilt * 2).toFixed(2);
+      var tiltY = ( relX * maxTilt * 2).toFixed(2);
 
-    // Photo width = padding-right - padX
-    const photoW = Math.max(0, padRight - padX);
+      root.style.setProperty('--tiltX', tiltX + 'deg');
+      root.style.setProperty('--tiltY', tiltY + 'deg');
+    });
 
-    // Photo occupies the right side between (right - padRight + padX) and (right - padX)
-    const right  = r.right - padX;
-    const left   = right - photoW;
-    const top    = r.top + padY;
-    const bottom = r.bottom - padY;
-
-    return { left, right, top, bottom, width: photoW, height: (bottom - top) };
+    card.addEventListener('pointerleave', function () {
+      root.style.setProperty('--tiltX', '0deg');
+      root.style.setProperty('--tiltY', '0deg');
+    });
   }
 
-  function applyTilt(e){
-    if (!card) return;
-    var rect = getPhotoRect();
-    if (!rect || !pointerInRect(e, rect)) {
-      resetTilt();
-      return;
-    }
-    var nx = ((e.clientX - rect.left) / rect.width)  * 2 - 1; // -1..1
-    var ny = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
-    var max = 6; // degrees
-    card.style.setProperty('--tiltX', (-ny * max).toFixed(2) + 'deg');
-    card.style.setProperty('--tiltY', ( nx * max).toFixed(2) + 'deg');
-  }
+  /* ===== NEW: Generic tilt for any .tilt-img on the site ===== */
+  (function setupGenericTiltImages() {
+    var MAX_TILT = 8; // degrees
+    var tiltImages = document.querySelectorAll('.tilt-img');
 
-  function resetTilt(){
-    if (!card) return;
-    card.style.setProperty('--tiltX', '0deg');
-    card.style.setProperty('--tiltY', '0deg');
-  }
+    tiltImages.forEach(function (img) {
+      img.style.transformOrigin = 'center';
+      img.style.transition      = 'transform 0.1s ease';
+      img.style.willChange      = 'transform';
 
-  // Global listeners (tilt only engages when over photo hitbox due to pointerInRect)
-  window.addEventListener('mousemove', applyTilt, { passive:true });
-  window.addEventListener('mouseleave', resetTilt, { passive:true });
+      img.addEventListener('mousemove', function (e) {
+        var rect = img.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5..0.5
+        var relY = (e.clientY - rect.top)  / rect.height - 0.5; // -0.5..0.5
 
-  // Prevent card zoom when SEE MORE is hovered
-  if (seeMore && card){
-    seeMore.addEventListener('mouseenter', function(){ card.classList.add('no-zoom'); });
-    seeMore.addEventListener('mouseleave', function(){ card.classList.remove('no-zoom'); });
-  }
+        var tiltX = (-relY * MAX_TILT * 2).toFixed(2);
+        var tiltY = ( relX * MAX_TILT * 2).toFixed(2);
 
-  // Scroll/resize lifecycle
-  document.addEventListener('scroll', function(){
-    updateNav(); updateParallax(); updateUI();
-  }, { passive:true });
+        img.style.transform = 'rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg)';
+      });
 
-  window.addEventListener('resize', function(){
+      img.addEventListener('mouseleave', function () {
+        img.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+    });
+  })();
+
+  /* ===== Initial run & scroll hooks ===== */
+  updateNavFade();
+  updateParallax();
+  updateUI();
+
+  window.addEventListener('scroll', function () {
+    updateNavFade();
     updateParallax();
-  }, { passive:true });
-
-  document.addEventListener('DOMContentLoaded', function(){
-    updateNav(); updateParallax(); updateUI();
+    updateUI();
   });
 })();
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  // === Generic tilt for any .tilt-img ===
-  const MAX_TILT = 8; // degrees
-
-  document.querySelectorAll(".tilt-img").forEach(function(img){
-    const wrap = img.closest(".tilt-wrap") || img;
-
-    wrap.addEventListener("mousemove", function(e){
-      const rect = wrap.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width;   // 0..1
-      const relY = (e.clientY - rect.top) / rect.height;   // 0..1
-
-      const tiltY = (relX - 0.5) * MAX_TILT * 2;           // left/right
-      const tiltX = (0.5 - relY) * MAX_TILT * 2;           // up/down
-
-      img.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-    });
-
-    wrap.addEventListener("mouseleave", function(){
-      img.style.transform = "rotateX(0deg) rotateY(0deg)";
-    });
-  });
-});
 </script>
