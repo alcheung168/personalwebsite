@@ -141,49 +141,105 @@ custom_css:
   <div class="section-inner">
     <h2>Performance Summary</h2>
     <p>
-      Our experiments compare baseline time-domain features against wavelet-based features
-      (DWT and WST) across all datasets and tasks. Key results: :contentReference[oaicite:4]{index=4}
+      We compare baseline time-domain features against wavelet-based features (DWT and WST)
+      across all datasets and tasks. Wavelet features consistently yield large accuracy gains
+      for both <strong>individual device identification</strong> and
+      <strong>device type classification</strong>.
     </p>
     <h3>Individual Device Identification</h3>
-    <ul>
-      <li>
-        On <strong>CIC IoT 2022</strong>, XGBoost improves from
-        <strong>72% baseline</strong> to <strong>99% (DWT)</strong> and
-        <strong>98% (WST)</strong>.
-      </li>
-      <li>
-        On <strong>CIC IoT 2023</strong>, XGBoost reaches
-        <strong>99% (DWT)</strong> and <strong>96% (WST)</strong>, up from 68% baseline.
-      </li>
-      <li>
-        On <strong>UNSW IoT</strong>, WST with XGBoost achieves
-        <strong>100% accuracy</strong>, compared to a 77% baseline.
-      </li>
-      <li>
-        Random Forest, SVM, and KNN all see similar dramatic gains when paired with wavelet features.
-      </li>
-    </ul>
-    <h3>Device Type Classification</h3>
-    <ul>
-      <li>
-        On <strong>CIC IoT 2022</strong>, XGBoost with DWT reaches
-        <strong>100% accuracy</strong>, up from a 72% baseline.
-      </li>
-      <li>
-        On <strong>UNSW IoT</strong>, both DWT and WST achieve
-        <strong>100% accuracy</strong> with XGBoost.
-      </li>
-      <li>
-        Overall, <strong>device type classification is slightly easier</strong> than individual
-        device ID, but both benefit heavily from wavelet features.
-      </li>
-    </ul>
     <p>
-      In every scenario, wavelet-based features significantly outperform time-domain baselines,
-      confirming that multi-scale temporal structure matters for IoT fingerprinting.
+      Accuracy comparison for identifying specific IoT devices (per device) using XGBoost:
+    </p>
+    <!-- Table: Device Identification Accuracy -->
+    <table>
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>Baseline<br>(time-domain)</th>
+          <th>DWT<br>(wavelet features)</th>
+          <th>WST<br>(wavelet scattering)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CICIoT2022</td>
+          <td>72%</td>
+          <td>99%</td>
+          <td>98%</td>
+        </tr>
+        <tr>
+          <td>CICIoT2023</td>
+          <td>69%</td>
+          <td>99%</td>
+          <td>91%</td>
+        </tr>
+        <tr>
+          <td>UNSW IoT</td>
+          <td>64%</td>
+          <td>81%</td>
+          <td>90%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Wavelet-based features dramatically improve identification accuracy, reaching up to
+      <strong>99–100%</strong> on several datasets.
+    </p>
+    <!-- Graph: Device Identification Accuracy -->
+    <p>
+      <img src="{{ "/assets/img/graphs/iot_device_identification_accuracy.png" | relative_url }}"
+           alt="Bar chart showing individual device identification accuracy for baseline, DWT, and WST across CICIoT2022, CICIoT2023, and UNSW IoT datasets."
+           style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 12px 34px rgba(0,0,0,.35);">
+    </p>
+    <h3>Device Type Classification</h3>
+    <p>
+      Accuracy comparison for classifying devices by type (e.g., camera, sensor, plug):
+    </p>
+    <!-- Table: Device Type Classification Accuracy -->
+    <table>
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>Baseline<br>(time-domain)</th>
+          <th>DWT<br>(wavelet features)</th>
+          <th>WST<br>(wavelet scattering)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CICIoT2022</td>
+          <td>54%</td>
+          <td>90%</td>
+          <td>92%</td>
+        </tr>
+        <tr>
+          <td>CICIoT2023</td>
+          <td>68%</td>
+          <td>99%</td>
+          <td>96%</td>
+        </tr>
+        <tr>
+          <td>UNSW IoT</td>
+          <td>64%</td>
+          <td>84%</td>
+          <td>87%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Device type classification also benefits strongly from wavelet features, achieving
+      <strong>near-perfect accuracy</strong> on multiple datasets and providing a practical way
+      to inventory device types in an encrypted network.
+    </p>
+    <!-- Graph: Device Type Classification Accuracy -->
+    <p>
+      <img src="{{ "/assets/img/graphs/iot_device_type_accuracy.png" | relative_url }}"
+           alt="Bar chart showing device type classification accuracy for baseline, DWT, and WST across CICIoT2022, CICIoT2023, and UNSW IoT datasets."
+           style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 12px 34px rgba(0,0,0,.35);">
     </p>
   </div>
 </section>
+
 
 <section id="contributions" class="content-section section-projects">
   <div class="section-inner">
