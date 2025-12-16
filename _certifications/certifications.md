@@ -19,8 +19,6 @@ custom_css:
         </span>
       </p>
       <p class="page__lead">
-        <a class="btn-hero" href="#security-plus">Security+</a>
-        <a class="btn-hero" href="#network-plus">Network+</a>
         <!-- Notes Buttons -->
         <a class="btn-hero"
            href="https://docs.google.com/document/d/1ktMwgZdfTY_Vu5WJhk7wgKUYwCqmgf8j9SAfs-X-vvQ/edit?usp=sharing"
