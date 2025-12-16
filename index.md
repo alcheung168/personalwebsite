@@ -11,10 +11,10 @@ excerpt: >
       </svg>
       Resume
     </a>
-    <a class="btn-hero" href="mailto:alcheung1008@gmail.com">
-      <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 4h16v16H4z"/>
-        <path d="M4 4l8 8l8-8"/>
+    <a class="btn-hero" href="/contact/">
+      <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+        <polyline points="3 7 12 13 21 7"></polyline>
       </svg>
       Contact
     </a>
