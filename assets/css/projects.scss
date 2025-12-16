@@ -44,3 +44,74 @@
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
+
+/* PROJECTS SECTIONS: tidy typography and layout */
+.content-section.section-projects .section-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: left;
+}
+
+.content-section.section-projects h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.content-section.section-projects h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.content-section.section-projects p {
+  line-height: 1.75;
+  font-size: 1.02rem;
+  margin: 0 0 1rem 0;
+}
+
+.content-section.section-projects ul {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+}
+
+.content-section.section-projects li {
+  margin-bottom: 0.4rem;
+}
+
+/* PROJECTS: alternating backgrounds per section, similar to home */
+
+#overview.section-projects {
+  background: #10243e;        /* dark navy */
+}
+
+#pipeline.section-projects {
+  background: #173a5e;        /* slightly lighter */
+}
+
+#datasets.section-projects {
+  background: #0e314c;
+}
+
+#sampling.section-projects {
+  background: #132f44;
+}
+
+#performance.section-projects {
+  background: #10243e;
+}
+
+#contributions.section-projects {
+  background: #173a5e;
+}
+
+#publications.section-projects {
+  background: #0e314c;
+}
+
+#future-work.section-projects {
+  background: #132f44;
+}
+
