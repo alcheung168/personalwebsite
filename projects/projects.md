@@ -147,12 +147,10 @@ custom_css:
 <section id="sampling" class="content-section section-projects">
   <div class="section-inner">
     <h2>Sampling Rate Sensitivity</h2>
-
     <p>
       Experiments evaluated sampling intervals from <strong>1–60 seconds</strong>.  
       Across all datasets and models, accuracy sharply decreases as intervals increase.
       The <strong>1-second window</strong> captures essential device behavior while minimizing noise.
-      :contentReference[oaicite:3]{index=3}
     </p>
   </div>
 </section>
@@ -260,7 +258,6 @@ custom_css:
     </ul>
     <p>
       This demonstrates the resilience of frequency-domain representations during network saturation.
-      :contentReference[oaicite:4]{index=4}
     </p>
   </div>
 </section>
