@@ -121,3 +121,28 @@
 })();
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // === Generic tilt for any .tilt-img ===
+  const MAX_TILT = 8; // degrees
+
+  document.querySelectorAll(".tilt-img").forEach(function(img){
+    const wrap = img.closest(".tilt-wrap") || img;
+
+    wrap.addEventListener("mousemove", function(e){
+      const rect = wrap.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width;   // 0..1
+      const relY = (e.clientY - rect.top) / rect.height;   // 0..1
+
+      const tiltY = (relX - 0.5) * MAX_TILT * 2;           // left/right
+      const tiltX = (0.5 - relY) * MAX_TILT * 2;           // up/down
+
+      img.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    });
+
+    wrap.addEventListener("mouseleave", function(){
+      img.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
+  });
+});
+</script>
