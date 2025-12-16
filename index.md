@@ -5,7 +5,7 @@ excerpt: >
   <span class="subtitle">Cybersecurity&nbsp;|&nbsp;Networking&nbsp;|&nbsp;Machine&nbsp;Learning</span>
   <span class="mini">Aspiring cybersecurity specialist blending machine learning, network engineering, and real-world competitions to build secure, resilient systems.</span>
   <span class="hero-buttons">
-    <a class="btn-hero" href="/personalwebsite/assets/docs/resume.pdf" download>
+    <a class="btn-hero" href="/portfolio/assets/resume.pdf" download>
       <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 5v14m0 0l-6-6m6 6l6-6"/>
       </svg>
@@ -43,7 +43,7 @@ author_profile: false
       <p>Actively attending club meetings and workshops held by Students With an Interest in the Future of Technology (SWIFT) to practice and learn common industry tools and software. Joined SWIFT's Pals program to connect with peers and mentor newcomers.</p>
     </div>
     <div class="media">
-      <img src="/personalwebsite/assets/img/extracurriculars-placeholder.jpg" alt="Extracurriculars">
+      <img src="/portfolio/assets/img/extracurriculars-placeholder.jpg" alt="Extracurriculars">
     </div>
   </div>
 </section>
@@ -51,7 +51,7 @@ author_profile: false
 <section id="self-study" class="content-section section-selfstudy with-image image-left">
   <div class="section-inner two-col">
     <div class="media">
-      <img src="/personalwebsite/assets/img/selfstudy-placeholder.png" alt="Self-study">
+      <img src="/portfolio/assets/img/selfstudy-placeholder.png" alt="Self-study">
     </div>
     <div class="text">
       <h2>SELF-STUDY</h2>
