@@ -57,43 +57,46 @@ custom_css:
 ---
 
 <!-- ========================= PIPELINE SECTION ========================= -->
-<section id="pipeline" class="content-section section-projects with-image">
-  <div class="section-inner two-col">
-    <div>
-      <h2>System Architecture</h2>
-      <p>
-        The full framework consists of four major modules, as described in our paper:
-      </p>
-      <ul>
-        <li>
-          <strong>Traffic-to-Image Encoder:</strong> Converts raw packet captures into eight time-series signals
-          (e.g., Tx/Rx packet count, payload sizes, IAT, TCP window size), then stacks them into a 2D traffic matrix.
-        </li>
-        <li>
-          <strong>Wavelet-Based Feature Extraction:</strong>
-          We evaluate both <strong>DWT</strong> and <strong>WST</strong>—capturing low-frequency behavior
-          and high-frequency burst patterns in IoT communication.
-        </li>
-        <li>
-          <strong>PCA Feature Reduction:</strong>
-          Wavelet coefficients are high-dimensional; experiments show <strong>30 PCA components</strong> retain nearly all useful structure.
-        </li>
-        <li>
-          <strong>Decision Engine:</strong> Classifiers (KNN, SVM, Random Forest, XGBoost) distinguish
-          device identity and device type.
-        </li>
-      </ul>
-      <p>
-        This four-stage pipeline enables accurate fingerprinting for both wired and wireless IoT devices—unifying environments where RF-only methods fail.
-      </p>
-    </div>
-    <div class="media">
-      <p><strong>Research Poster</strong><br>
-        <a href="{{ "/assets/img/research_poster.pdf" | relative_url }}" target="_blank">Download Poster (PDF)</a>
-      </p>
-    </div>
+<section id="pipeline" class="content-section section-projects">
+  <div class="section-inner">
+    <h2>System Architecture</h2>
+    <p>
+      The full framework consists of four major modules, as described in our paper:
+    </p>
+    <ul>
+      <li>
+        <strong>Traffic-to-Image Encoder:</strong>
+        Converts raw packet captures into eight time-series signals (e.g., Tx/Rx packet count,
+        payload sizes, IAT, TCP window size), then stacks them into a 2D traffic matrix.
+      </li>
+      <li>
+        <strong>Wavelet-Based Feature Extraction:</strong>
+        We evaluate both DWT and WST—capturing low-frequency behavior and high-frequency
+        burst patterns in IoT communication.
+      </li>
+      <li>
+        <strong>PCA Feature Reduction:</strong>
+        Wavelet coefficients are high-dimensional; experiments show 30 PCA components retain
+        nearly all useful structure.
+      </li>
+      <li>
+        <strong>Decision Engine:</strong>
+        Classifiers (KNN, SVM, Random Forest, XGBoost) distinguish device identity and device type.
+      </li>
+    </ul>
+    <p>
+      This four-stage pipeline enables accurate fingerprinting for both wired and wireless IoT devices—
+      unifying environments where RF-only methods fail.
+    </p>
+    <p class="poster-link">
+      <strong>Research Poster:</strong>
+      <a href="{{ "/assets/img/research_poster.pdf" | relative_url }}" target="_blank">
+        Download Poster (PDF)
+      </a>
+    </p>
   </div>
 </section>
+
 
 ---
 
