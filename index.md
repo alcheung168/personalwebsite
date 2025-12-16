@@ -5,8 +5,19 @@ excerpt: >
   <span class="subtitle">Cybersecurity&nbsp;|&nbsp;Networking&nbsp;|&nbsp;Machine&nbsp;Learning</span>
   <span class="mini">Aspiring cybersecurity specialist blending machine learning, network engineering, and real-world competitions to build secure, resilient systems.</span>
   <span class="hero-buttons">
-    <a href="/personalwebsite/assets/docs/resume.pdf" class="btn-hero">Resume</a>
-    <a href="mailto:alcheung1008@gmail.com" class="btn-hero">Contact</a>
+    <a class="btn-hero" href="/personalwebsite/assets/docs/resume.pdf" download>
+      <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14m0 0l-6-6m6 6l6-6"/>
+      </svg>
+      Resume
+    </a>
+    <a class="btn-hero" href="mailto:alcheung1008@gmail.com">
+      <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16v16H4z"/>
+        <path d="M4 4l8 8l8-8"/>
+      </svg>
+      Contact
+    </a>
   </span>
   <a href="#main" class="see-more">SEE MORE BELOW</a>
 header:
