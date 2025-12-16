@@ -1,11 +1,11 @@
 ---
 ---
-/* PROJECTS PAGE — inherit global styles */
+/* PROJECTS PAGE — reuse global styles, tweak hero + card */
 @import "custom";
 
-/* 1) Full-bleed hero that matches home and keeps the image uncropped */
+/* Full-bleed hero, same behavior as home but without the side portrait */
 .page__hero--overlay {
-  /* make the hero break out of the content column */
+  /* Break out of the content column */
   position: relative;
   left: 50%;
   right: 50%;
@@ -13,53 +13,34 @@
   margin-right: -50vw;
   width: 100vw;
 
-  /* background image & sizing */
+  /* Background image */
   background: url('{{ "/assets/img/hero.jpg" | relative_url }}') center center / cover no-repeat !important;
 
-  /* optional: uncomment for fixed/parallax feel
-  background-attachment: fixed;
-  */
-
-  /* keep the same vertical feel as home */
   min-height: 60vh;
   display: flex;
   align-items: center;
+  margin-top: 0 !important;
 }
 
-/* 2) Remove the right-side photo panel INSIDE the glass card */
+/* Use the no-photo version of the glass card */
 .page__hero--overlay .wrapper {
-  padding-right: var(--card-pad-x) !important; /* don't reserve photo space */
+  padding-right: var(--card-pad-x) !important;
   min-height: auto !important;
 }
+
 .page__hero--overlay .wrapper::after {
   display: none !important;
   content: none !important;
 }
 
-/* 3) Hide the layout's default page title that appears ABOVE the hero
-      (scoped to the layout header so your card's .page__title remains) */
+/* Remove dead space / default title from the layout above the hero */
+.page .page__inner-wrap > header,
 .page .page__inner-wrap > header .page__title {
   display: none !important;
 }
-/* also collapse the empty header space */
-.page .page__inner-wrap > header {
-  display: none !important;
-}
 
-/* Remove unwanted top padding/margin so hero aligns flush with nav */
+/* Make sure the main content doesn't reintroduce top padding */
 .page .page__inner-wrap {
   padding-top: 0 !important;
   margin-top: 0 !important;
-}
-
-/* Also remove any top margin from the main content area */
-.main, .initial-content {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Confirm the hero sits directly under the fixed nav */
-.page__hero--overlay {
-  margin-top: 0 !important;
-  top: 0;
 }
